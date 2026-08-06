@@ -1,5 +1,5 @@
 import Navbar from "./components/layout/Navbar";
-// import Hero from "./components/sections/Hero";
+import FloatingButtons from "./components/floating/FloatingButtons";
 import Home from "./pages/Home";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <>
       <Navbar />
       <Home />
-      {/* <Hero/> */}
+      <FloatingButtons/>
     </>
   );
 }
