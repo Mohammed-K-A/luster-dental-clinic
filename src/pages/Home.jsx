@@ -24,17 +24,6 @@ function Home() {
       <Contact/>
       <Footer/>
       
-
-
-      <section id="about" className="h-screen bg-slate-100"></section>
-
-      <section id="treatments" className="h-screen"></section>
-
-      <section id="doctors" className="h-screen bg-slate-100"></section>
-
-      <section id="gallery" className="h-screen"></section>
-
-      <section id="contact" className="h-screen"></section>
     </>
   );
 }
