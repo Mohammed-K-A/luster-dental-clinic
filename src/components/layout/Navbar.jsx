@@ -33,8 +33,8 @@ function Navbar() {
                     duration-300
 
                     ${scrolled
-                            ? "h-[76px] rounded-b-3xl bg-white/95 shadow-2xl border-b border-slate-200 px-10"
-                            : "h-[80px] rounded-[999px] bg-white/80 border border-slate-200/70 shadow-xl backdrop-blur-xl pl-6 pr-10"
+                            ? "h-[76px] rounded-b-3xl bg-white/90 shadow-2xl border-b border-slate-200 px-10"
+                            : "h-[80px] rounded-[999px] bg-white/30 border border-slate-200/70 shadow-xl backdrop-blur-xl pl-6 pr-10"
                         }
                 `}
                 >

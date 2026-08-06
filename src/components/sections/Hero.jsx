@@ -2,7 +2,17 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden pt-28"
+      className="relative
+        min-h-screen
+        flex
+        items-center
+        overflow-hidden
+        bg-gradient-to-br
+        from-white
+        via-blue-50
+        to-white
+        pt-32
+        pb-20"
     >
       <div className="mx-auto grid w-full max-w-7xl items-center gap-14 px-6 lg:grid-cols-2">
 
@@ -15,20 +25,26 @@ function Hero() {
           </p>
 
           <h1
-            className="mt-6 text-5xl font-bold leading-tight lg:text-7xl"
+            className="
+              mt-6
+              text-5xl
+              font-bold
+              leading-tight
+              lg:text-7xl
+            "
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Creating
+            Your Trusted Destination
             <span className="block text-blue-700">
-              Healthy Smiles
+              For Healthy Smiles
             </span>
-            For Every Family
           </h1>
 
           <p className="mt-8 max-w-xl text-lg leading-8 text-slate-600">
-            Experience advanced dental and facial aesthetic care with
-            modern technology, experienced professionals, and a
-            patient-first approach.
+            Experience advanced dental and facial aesthetic care
+            with modern technology, experienced professionals,
+            and personalized treatment designed to keep your
+            smile healthy and confident.
           </p>
 
           {/* Buttons */}
@@ -56,15 +72,15 @@ function Hero() {
           <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
 
             <div>
-              <h3 className="font-semibold">Experienced Doctors</h3>
+              <h3 className="font-semibold">✓ Experienced Doctors</h3>
             </div>
 
             <div>
-              <h3 className="font-semibold">Modern Equipment</h3>
+              <h3 className="font-semibold">✓ Modern Equipment</h3>
             </div>
 
             <div>
-              <h3 className="font-semibold">Patient First Care</h3>
+              <h3 className="font-semibold">✓ Patient First Care</h3>
             </div>
 
           </div>
@@ -78,7 +94,7 @@ function Hero() {
           <img
             src="/images/hero/hero.png"
             alt="Luster Dental Clinic"
-            className="w-full rounded-[30px]"
+            className="w-full max-w-xl lg:max-w-2xl rounded-[30px]"
           />
 
         </div>
