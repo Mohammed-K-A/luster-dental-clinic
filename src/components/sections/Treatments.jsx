@@ -2,45 +2,78 @@ import services from "../../data/services";
 
 function Treatments() {
   return (
-    <section id="treatments" className="py-20">
+    <section
+      id="treatments"
+      className="bg-slate-50 py-24"
+    >
       <div className="mx-auto max-w-7xl px-6">
+
+        {/* Heading */}
 
         <div className="text-center">
 
-          <p className="text-blue-700 font-semibold uppercase tracking-widest">
+          <p className="font-semibold uppercase tracking-[0.3em] text-blue-700">
             Our Treatments
           </p>
 
-          <h2 className="mt-4 text-4xl font-bold">
-            Comprehensive Dental & Facial Care
+          <h2
+            className="mt-5 text-5xl font-bold"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Complete Dental Solutions
           </h2>
 
-          <p className="mt-5 text-slate-600 max-w-3xl mx-auto">
-            We provide a wide range of dental and facial aesthetic
-            treatments using modern technology and personalized care.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+            From routine dental care to advanced cosmetic and facial
+            aesthetic treatments, we provide personalized solutions
+            for every smile.
           </p>
 
         </div>
 
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Cards */}
+
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
 
           {services.map((service) => (
 
-            <div key={service.id}>
+            <div
+              key={service.id}
+              className="
+                overflow-hidden
+                rounded-3xl
+                bg-white
+                shadow-md
+              "
+            >
 
               <img
                 src={service.image}
                 alt={service.title}
-                className="w-full rounded-2xl"
+                className="h-56 w-full object-cover"
               />
 
-              <h3 className="mt-5 text-xl font-semibold">
-                {service.title}
-              </h3>
+              <div className="p-6">
 
-              <p className="mt-3 text-slate-600">
-                {service.description}
-              </p>
+                <h3 className="text-xl font-semibold">
+                  {service.title}
+                </h3>
+
+                <p className="mt-4 text-slate-600">
+                  {service.description}
+                </p>
+
+                <button
+                  className="
+                    mt-6
+                    font-semibold
+                    text-blue-700
+                  "
+                >
+                  Learn More →
+                </button>
+
+              </div>
 
             </div>
 

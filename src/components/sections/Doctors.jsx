@@ -2,54 +2,89 @@ import doctors from "../../data/doctors";
 
 function Doctors() {
   return (
-    <section id="doctors" className="py-20">
+    <section
+      id="doctors"
+      className="bg-slate-50 py-24"
+    >
       <div className="mx-auto max-w-7xl px-6">
+
+        {/* Heading */}
 
         <div className="text-center">
 
-          <p className="text-blue-700 font-semibold uppercase tracking-widest">
+          <p className="font-semibold uppercase tracking-[0.3em] text-blue-700">
             Meet Our Doctors
           </p>
 
-          <h2 className="mt-4 text-4xl font-bold">
-            Experienced Professionals You Can Trust
+          <h2
+            className="mt-5 text-5xl font-bold"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Experienced Specialists
           </h2>
 
-          <p className="mt-5 text-slate-600 max-w-3xl mx-auto">
-            Our team is committed to delivering exceptional dental
-            and facial aesthetic care with compassion, precision,
-            and the latest technology.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+            Our dedicated team of dental professionals combines expertise,
+            compassion, and modern technology to provide exceptional care for
+            every patient.
           </p>
 
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10 mt-14">
+        {/* Cards */}
+
+        <div className="mt-16 grid gap-10 md:grid-cols-2">
 
           {doctors.map((doctor) => (
 
-            <div key={doctor.id}>
+            <div
+              key={doctor.id}
+              className="
+                overflow-hidden
+                rounded-3xl
+                bg-white
+                shadow-md
+              "
+            >
 
               <img
                 src={doctor.image}
                 alt={doctor.name}
-                className="w-full rounded-3xl"
+                className="h-[420px] w-full object-cover"
               />
 
-              <h3 className="mt-5 text-2xl font-semibold">
-                {doctor.name}
-              </h3>
+              <div className="p-8">
 
-              <p className="mt-2">
-                {doctor.qualification}
-              </p>
+                <h3 className="text-3xl font-semibold">
+                  {doctor.name}
+                </h3>
 
-              <p className="mt-1">
-                {doctor.specialization}
-              </p>
+                <p className="mt-2 font-medium text-blue-700">
+                  {doctor.qualification}
+                </p>
 
-              <p className="mt-1 text-blue-700 font-medium">
-                {doctor.experience}
-              </p>
+                <p className="mt-2 text-slate-700">
+                  {doctor.specialization}
+                </p>
+
+                <p className="mt-2 text-slate-500">
+                  {doctor.experience}
+                </p>
+
+                <p className="mt-6 leading-7 text-slate-600">
+                  Dedicated to providing personalized dental care with a focus
+                  on patient comfort, advanced treatment methods, and lasting
+                  oral health.
+                </p>
+
+                <a
+                  href="#contact"
+                  className="mt-8 inline-block font-semibold text-blue-700"
+                >
+                  Book Consultation →
+                </a>
+
+              </div>
 
             </div>
 

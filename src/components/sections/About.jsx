@@ -1,64 +1,74 @@
 function About() {
   return (
-    <section id="about" className="py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section
+      id="about"
+      className="bg-white py-24"
+    >
+      <div className="mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2">
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        {/* Left */}
 
-          {/* Left Image */}
+        <div>
 
-          <div>
-            <img
-              src="/images/about/about.png"
-              alt="About Luster Dental Clinic"
-              className="w-full rounded-3xl"
-            />
-          </div>
+          <img
+            src="/images/about/about.png"
+            alt="About Luster Dental Clinic"
+            className="w-full rounded-[30px]"
+          />
 
-          {/* Right Content */}
+        </div>
 
-          <div>
+        {/* Right */}
 
-            <p className="text-blue-700 font-semibold uppercase tracking-widest">
-              About Us
-            </p>
+        <div>
 
-            <h2 className="mt-4 text-4xl font-bold">
-              Your Trusted Dental & Facial Aesthetic Clinic
-            </h2>
+          <p className="font-semibold uppercase tracking-[0.3em] text-blue-700">
+            About Us
+          </p>
 
-            <p className="mt-6 text-slate-600">
-              Luster Dental Clinic is committed to providing high-quality
-              dental and facial aesthetic treatments with a focus on
-              patient comfort, safety, and long-term oral health.
-            </p>
+          <h2
+            className="mt-5 text-5xl font-bold leading-tight"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Your Smile
+            <br />
+            Our Commitment
+          </h2>
 
-            <p className="mt-4 text-slate-600">
-              Our experienced team combines advanced technology with
-              compassionate care to deliver personalized treatment
-              solutions for patients of all ages.
-            </p>
+          <p className="mt-8 text-lg leading-8 text-slate-600">
+            At Luster Dental Clinic, we combine advanced dental
+            technology with compassionate care to provide exceptional
+            treatment for patients of every age.
+          </p>
 
-            <div className="mt-8 grid grid-cols-2 gap-6">
+          <p className="mt-6 text-lg leading-8 text-slate-600">
+            Our experienced team focuses on personalized treatment,
+            patient comfort, and long-lasting oral health using
+            modern techniques and internationally accepted standards.
+          </p>
 
-              <div>
-                <h3 className="font-semibold">Our Mission</h3>
+          <div className="mt-10 grid grid-cols-2 gap-8">
 
-                <p className="mt-2 text-slate-600">
-                  To provide exceptional dental care with honesty,
-                  compassion, and modern technology.
-                </p>
-              </div>
+            <div>
+              <h3 className="text-xl font-semibold">
+                Our Mission
+              </h3>
 
-              <div>
-                <h3 className="font-semibold">Our Vision</h3>
+              <p className="mt-3 text-slate-600">
+                Deliver high-quality dental care with honesty,
+                compassion and innovation.
+              </p>
+            </div>
 
-                <p className="mt-2 text-slate-600">
-                  To become the most trusted dental and facial
-                  aesthetic clinic in the region.
-                </p>
-              </div>
+            <div>
+              <h3 className="text-xl font-semibold">
+                Our Vision
+              </h3>
 
+              <p className="mt-3 text-slate-600">
+                To become one of Kerala's most trusted dental &
+                facial aesthetic clinics.
+              </p>
             </div>
 
           </div>

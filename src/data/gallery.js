@@ -1,33 +1,33 @@
 const gallery = [
   {
     id: 1,
-    image: "/images/gallery/gallery1.png",
     title: "Clinic Reception",
+    image: "/images/gallery/gallery1.png",
   },
   {
     id: 2,
+    title: "Treatment Room",
     image: "/images/gallery/gallery2.png",
-    title: "Dental Treatment Room",
   },
   {
     id: 3,
+    title: "Dental Equipment",
     image: "/images/gallery/gallery3.png",
-    title: "Modern Equipment",
   },
   {
     id: 4,
-    image: "/images/gallery/gallery4.jpg",
     title: "Patient Care",
+    image: "/images/gallery/gallery4.jpg",
   },
   {
     id: 5,
+    title: "Sterilization Area",
     image: "/images/gallery/gallery5.png",
-    title: "Sterile Environment",
   },
   {
     id: 6,
+    title: "Clinic Interior",
     image: "/images/gallery/gallery6.png",
-    title: "Advanced Technology",
   },
 ];
 

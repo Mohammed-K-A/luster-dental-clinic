@@ -2,33 +2,46 @@ import faq from "../../data/faq";
 
 function FAQ() {
   return (
-    <section className="py-20">
-
+    <section
+      id="faq"
+      className="bg-white py-24"
+    >
       <div className="mx-auto max-w-5xl px-6">
 
         <div className="text-center">
 
-          <p className="text-blue-700 font-semibold uppercase">
+          <p className="font-semibold uppercase tracking-[0.3em] text-blue-700">
             FAQ
           </p>
 
-          <h2 className="mt-3 text-4xl font-bold">
+          <h2
+            className="mt-5 text-5xl font-bold"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
             Frequently Asked Questions
           </h2>
 
         </div>
 
-        <div className="mt-12 space-y-8">
+        <div className="mt-16 space-y-6">
 
           {faq.map((item, index) => (
 
-            <div key={index} className="border rounded-xl p-6">
+            <div
+              key={index}
+              className="
+                rounded-2xl
+                border
+                border-slate-200
+                p-6
+              "
+            >
 
-              <h3 className="font-semibold">
+              <h3 className="text-xl font-semibold">
                 {item.question}
               </h3>
 
-              <p className="mt-3 text-slate-600">
+              <p className="mt-4 leading-7 text-slate-600">
                 {item.answer}
               </p>
 
@@ -39,7 +52,6 @@ function FAQ() {
         </div>
 
       </div>
-
     </section>
   );
 }

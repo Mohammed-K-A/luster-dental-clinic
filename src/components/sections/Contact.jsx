@@ -1,53 +1,81 @@
 function Contact() {
   return (
-    <section id="contact" className="py-20 bg-slate-100">
-
+    <section
+      id="contact"
+      className="bg-slate-50 py-24"
+    >
       <div className="mx-auto max-w-7xl px-6">
+
+        {/* Heading */}
 
         <div className="text-center">
 
-          <p className="text-blue-700 font-semibold uppercase">
-            Contact
+          <p className="font-semibold uppercase tracking-[0.3em] text-blue-700">
+            Contact Us
           </p>
 
-          <h2 className="mt-3 text-4xl font-bold">
-            Book Your Consultation
+          <h2
+            className="mt-5 text-5xl font-bold"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            Book Your Appointment
           </h2>
+
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
+            We'd love to hear from you. Contact us today and schedule
+            your consultation.
+          </p>
 
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 mt-14">
+        {/* Content */}
 
-          <div>
+        <div className="mt-16 grid gap-12 lg:grid-cols-2">
+
+          {/* Left */}
+
+          <div className="space-y-6 rounded-3xl bg-white p-10 shadow-md">
 
             <h3 className="text-2xl font-semibold">
               Contact Information
             </h3>
 
-            <p className="mt-6">
+            <p>
               📍 Valayamkulam, Kerala
             </p>
 
-            <p className="mt-4">
-              📞 +91 XXXXX XXXXX
+            <p>
+              📞 +91 80896 50707
             </p>
 
-            <p className="mt-4">
+            <p>
               ✉️ info@lusterclinic.com
             </p>
 
-            <p className="mt-4">
-              🕒 Mon - Sat : 9:00 AM - 7:00 PM
+            <p>
+              🕒 Monday - Saturday
+              <br />
+              9:00 AM – 7:00 PM
             </p>
+
+            <a
+              href="#"
+              className="inline-block rounded-full bg-blue-700 px-8 py-4 text-white"
+            >
+              Book Consultation
+            </a>
 
           </div>
 
-          <div>
+          {/* Right */}
+
+          <div className="overflow-hidden rounded-3xl shadow-md">
 
             <iframe
-              title="Luster Clinic"
+              title="Luster Dental Clinic"
               src="https://www.google.com/maps/embed?pb="
-              className="w-full h-[400px] rounded-2xl"
+              className="h-[450px] w-full border-0"
+              loading="lazy"
             ></iframe>
 
           </div>
@@ -55,7 +83,6 @@ function Contact() {
         </div>
 
       </div>
-
     </section>
   );
 }

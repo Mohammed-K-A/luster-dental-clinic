@@ -3,22 +3,19 @@ const testimonials = [
     id: 1,
     name: "Rahul Nair",
     review:
-      "Excellent treatment and very friendly staff. Highly recommended for dental care.",
-    rating: 5,
+      "Excellent treatment, friendly doctors and a very clean clinic. Highly recommended.",
   },
   {
     id: 2,
     name: "Amina",
     review:
-      "Professional doctors, clean clinic, and a comfortable experience throughout my treatment.",
-    rating: 5,
+      "Professional staff and modern equipment made my treatment comfortable and stress-free.",
   },
   {
     id: 3,
     name: "Fathima",
     review:
-      "Very satisfied with the smile designing treatment. Thank you Luster Clinic!",
-    rating: 5,
+      "The doctors explained everything clearly and gave me the confidence to smile again.",
   },
 ];
 
