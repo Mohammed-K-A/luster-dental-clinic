@@ -1,10 +1,11 @@
 import testimonials from "../../data/testimonials";
+import { FaQuoteLeft } from "react-icons/fa";
 
 function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="bg-slate-50 py-24"
+      className="bg-white py-28"
     >
       <div className="mx-auto max-w-7xl px-6">
 
@@ -12,42 +13,63 @@ function Testimonials() {
 
         <div className="text-center">
 
-          <p className="font-semibold uppercase tracking-[0.3em] text-blue-700">
+          <p
+            className="
+              inline-flex
+              rounded-full
+              bg-blue-100
+              px-5
+              py-2
+              text-sm
+              font-semibold
+              uppercase
+              tracking-[0.2em]
+              text-blue-700
+            "
+          >
             Testimonials
           </p>
 
           <h2
-            className="mt-5 text-5xl font-bold"
+            className="mt-6 text-5xl font-bold"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             What Our Patients Say
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600">
-            Patient satisfaction is our greatest achievement.
-            Here's what our patients say about their experience at
-            Luster Dental Clinic.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+            Our patients trust us for compassionate care,
+            advanced treatment and outstanding results.
           </p>
 
         </div>
 
-        {/* Reviews */}
+        {/* Cards */}
 
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
+        <div className="mt-20 grid gap-8 md:grid-cols-3">
 
           {testimonials.map((item) => (
 
             <div
               key={item.id}
               className="
-                rounded-3xl
-                bg-white
+                rounded-[32px]
+                bg-slate-50
                 p-8
                 shadow-md
+                transition-all
+                duration-300
+                hover:-translate-y-2
+                hover:shadow-xl
               "
             >
 
-              <p className="text-xl text-yellow-500">
+              <FaQuoteLeft
+                className="text-blue-700"
+                size={34}
+              />
+
+              <p className="mt-6 text-yellow-500 text-lg">
                 ⭐⭐⭐⭐⭐
               </p>
 
@@ -55,9 +77,17 @@ function Testimonials() {
                 "{item.review}"
               </p>
 
-              <h3 className="mt-8 text-lg font-semibold">
-                {item.name}
-              </h3>
+              <div className="mt-8">
+
+                <h3 className="text-xl font-bold">
+                  {item.name}
+                </h3>
+
+                <p className="text-slate-500">
+                  Happy Patient
+                </p>
+
+              </div>
 
             </div>
 

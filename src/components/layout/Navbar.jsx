@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
 import navigation from "../../data/navigation";
+import { bookingWhatsappLink } from "../../data/clinic";
 
 
 function Navbar() {
@@ -126,7 +127,9 @@ function Navbar() {
 
                     <div className="hidden lg:flex items-center justify-center">
                         <a
-  href="#contact"
+  href={bookingWhatsappLink}
+  target="_blank"
+  rel="noopener noreferrer"
   className="
     group
     relative

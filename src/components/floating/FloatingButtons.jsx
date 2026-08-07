@@ -26,7 +26,7 @@ function FloatingButtons() {
       {/* Call Button (Left) */}
 
       <a
-        href="tel:+918089650707"
+        href="tel:+917356196707"
         className="
           fixed
           bottom-6
@@ -80,7 +80,7 @@ function FloatingButtons() {
         {/* WhatsApp */}
 
         <a
-          href="https://wa.me/918089650707"
+          href="https://wa.me/918891396707"
           target="_blank"
           rel="noopener noreferrer"
           className="

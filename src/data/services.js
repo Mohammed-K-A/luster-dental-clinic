@@ -1,60 +1,159 @@
-const services = [
+export const dentalServices = [
   {
     id: 1,
     title: "Dental Implants",
     description:
-      "Permanent replacement solution for missing teeth with a natural look and feel.",
-    image: "/images/services/implant.png",
+      "Permanent replacement for missing teeth using advanced implant technology.",
+
+    benefits: [
+      "Natural Looking",
+      "Long Lasting",
+      "Safe Procedure",
+    ],
   },
+
   {
     id: 2,
     title: "Root Canal Treatment",
     description:
-      "Save infected teeth with painless and advanced root canal procedures.",
-    image: "/images/services/root-canal.png",
+      "Advanced root canal treatment to save infected teeth and eliminate pain.",
+
+    benefits: [
+      "Pain Relief",
+      "Tooth Saving",
+      "Advanced Technology",
+    ],
   },
+
   {
     id: 3,
     title: "Smile Designing",
     description:
-      "Transform your smile with customized cosmetic dental treatments.",
-    image: "/images/services/smile-design.png",
+      "Customized cosmetic dental treatments to enhance the appearance of your smile.",
+
+    benefits: [
+      "Beautiful Smile",
+      "Personalized Treatment",
+      "Natural Results",
+    ],
   },
+
   {
     id: 4,
     title: "Braces & Aligners",
     description:
-      "Straighten teeth comfortably with braces and clear aligners.",
-    image: "/images/services/braces.png",
+      "Modern orthodontic solutions for properly aligned teeth and improved bite.",
+
+    benefits: [
+      "Straight Teeth",
+      "Comfortable Treatment",
+      "Improved Confidence",
+    ],
   },
+
   {
     id: 5,
     title: "Teeth Whitening",
     description:
-      "Professional whitening treatments for a brighter and healthier smile.",
-    image: "/images/services/whitening.png",
+      "Professional whitening procedures to brighten your smile safely and effectively.",
+
+    benefits: [
+      "Brighter Smile",
+      "Safe Procedure",
+      "Quick Results",
+    ],
   },
+
   {
     id: 6,
-    title: "Pediatric Dentistry",
+    title: "General Dentistry",
     description:
-      "Comprehensive dental care specially designed for children.",
-    image: "/images/services/pediatric.png",
-  },
-  {
-    id: 7,
-    title: "Cosmetic Dentistry",
-    description:
-      "Enhance the beauty of your smile with modern cosmetic procedures.",
-    image: "/images/services/cosmetic.png",
-  },
-  {
-    id: 8,
-    title: "Facial Aesthetic Treatments",
-    description:
-      "Advanced facial aesthetic procedures to enhance your natural beauty.",
-    image: "/images/services/facial.png",
+      "Comprehensive preventive and restorative dental care for patients of all ages.",
+
+    benefits: [
+      "Routine Checkups",
+      "Preventive Care",
+      "Healthy Smile",
+    ],
   },
 ];
 
-export default services;
+export const facialServices = [
+  {
+    id: 1,
+    title: "HydraFacial",
+    description:
+      "A deep cleansing and hydrating facial treatment that leaves your skin refreshed and glowing.",
+
+    benefits: [
+      "Instant Glow",
+      "Deep Hydration",
+      "No Downtime",
+    ],
+  },
+
+  {
+    id: 2,
+    title: "Chemical Peel",
+    description:
+      "Professional skin resurfacing treatment to improve texture, tone and pigmentation.",
+
+    benefits: [
+      "Smooth Skin",
+      "Brighter Complexion",
+      "Reduced Pigmentation",
+    ],
+  },
+
+  {
+    id: 3,
+    title: "PRP Therapy",
+    description:
+      "Platelet Rich Plasma therapy for natural skin rejuvenation and hair restoration.",
+
+    benefits: [
+      "Natural Healing",
+      "Skin Rejuvenation",
+      "Hair Growth Support",
+    ],
+  },
+
+  {
+    id: 4,
+    title: "GFC Hair Therapy",
+    description:
+      "Growth Factor Concentrate therapy designed to reduce hair fall and promote healthier hair growth.",
+
+    benefits: [
+      "Reduces Hair Fall",
+      "Stimulates Growth",
+      "Advanced Technology",
+    ],
+  },
+
+  {
+    id: 5,
+    title: "Lip Pigmentation Treatment",
+    description:
+      "Advanced treatment to restore natural lip colour and improve lip appearance.",
+
+    benefits: [
+      "Natural Lip Tone",
+      "Enhanced Appearance",
+      "Safe Procedure",
+    ],
+  },
+
+  {
+    id: 6,
+    title: "Skin Rejuvenation",
+    description:
+      "Modern facial aesthetic procedures to refresh, brighten and rejuvenate your skin.",
+
+    benefits: [
+      "Youthful Skin",
+      "Healthy Glow",
+      "Minimal Downtime",
+    ],
+  },
+];
