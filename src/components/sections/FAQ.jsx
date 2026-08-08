@@ -3,7 +3,7 @@ import faq from "../../data/faq";
 import { FaChevronDown } from "react-icons/fa";
 
 function FAQ() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(-1);
 
   return (
     <section
@@ -61,32 +61,69 @@ function FAQ() {
                 onClick={() =>
                   setActive(active === index ? -1 : index)
                 }
-                className="flex w-full items-center justify-between p-6 text-left"
+                className="
+                  flex
+                  w-full
+                  items-center
+                  justify-between
+                  gap-6
+                  p-6
+                  text-left
+                  transition-colors
+                  duration-300
+                  hover:bg-slate-50
+                "
               >
 
-                <h3 className="text-lg font-semibold">
+                <h3
+                  className={`
+                    text-lg
+                    font-semibold
+                    transition-colors
+                    duration-300
+                    ${active === index
+                      ? "text-blue-700"
+                      : "text-slate-900"
+                    }
+                  `}
+                >
                   {item.question}
                 </h3>
 
                 <FaChevronDown
-                  className={`transition duration-300 ${
-                    active === index ? "rotate-180" : ""
-                  }`}
+                  className={`
+                    shrink-0
+                    transition-all
+                    duration-300
+                    ${active === index
+                      ? "rotate-180 text-blue-700"
+                      : "text-slate-500"
+                    }
+                  `}
                 />
 
               </button>
 
-              {active === index && (
-
-                <div className="px-6 pb-6">
-
-                  <p className="leading-7 text-slate-600">
-                    {item.answer}
-                  </p>
-
+              <div
+                className={`
+                  grid
+                  transition-all
+                  duration-300
+                  ease-in-out
+                  ${active === index
+                    ? "grid-rows-[1fr] opacity-100"
+                    : "grid-rows-[0fr] opacity-0"
+                  }
+                `}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-6 pb-6">
+                    <p className="leading-7 text-slate-600">
+                      {item.answer}
+                    </p>
+                  </div>
                 </div>
-
-              )}
+              </div>
 
             </div>
 

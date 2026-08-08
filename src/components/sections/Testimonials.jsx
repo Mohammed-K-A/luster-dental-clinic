@@ -19,6 +19,18 @@ function Testimonials() {
     );
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) =>
+        prev === testimonials.length - 1
+          ? 0
+          : prev + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const showNext = () => {
     setCurrentIndex((prev) =>
       prev === testimonials.length - 1
@@ -191,8 +203,7 @@ function Testimonials() {
                 rounded-full
                 transition-all
                 duration-300
-                ${
-                  currentIndex === index
+                ${currentIndex === index
                   ? "w-8 bg-blue-700"
                   : "w-2.5 bg-slate-300"
                 }
