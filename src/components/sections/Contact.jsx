@@ -1,4 +1,4 @@
-import { bookingWhatsappLink } from "../../data/clinic";
+import { clinic, bookingWhatsappLink } from "../../data/clinic";
 
 import {
   FaPhoneAlt,
@@ -59,6 +59,8 @@ function Contact() {
 
           <div className="space-y-6">
 
+            {/* Address */}
+
             <div className="flex items-start gap-5 rounded-3xl bg-slate-50 p-6 shadow-sm">
 
               <FaMapMarkerAlt
@@ -72,11 +74,13 @@ function Contact() {
                 </h3>
 
                 <p className="mt-2 text-slate-600">
-                  First Floor, KVM Complex, Kuttippuram-Thrissur Rd, Valayamkulam, Kerala
+                  {clinic.address}
                 </p>
               </div>
 
             </div>
+
+            {/* Phone */}
 
             <div className="flex items-start gap-5 rounded-3xl bg-slate-50 p-6 shadow-sm">
 
@@ -92,7 +96,7 @@ function Contact() {
                 </h3>
 
                 <a
-                  href="tel:+918089650707"
+                  href={`tel:${clinic.phone}`}
                   className="mt-2 block text-slate-600"
                 >
                   +91 73561 96707
@@ -101,6 +105,9 @@ function Contact() {
               </div>
 
             </div>
+
+            {/* Email */}
+
 
             <div className="flex items-start gap-5 rounded-3xl bg-slate-50 p-6 shadow-sm">
 
@@ -116,15 +123,18 @@ function Contact() {
                 </h3>
 
                 <a
-                  href="mailto:mylusterdc@gmail.com"
+                  href={`mailto:${clinic.email}`}
                   className="mt-2 block text-slate-600"
                 >
-                  mylusterdc@gmail.com
+                  {clinic.email}
                 </a>
 
               </div>
 
             </div>
+
+            {/* Working Hours */}
+
 
             <div className="flex items-start gap-5 rounded-3xl bg-slate-50 p-6 shadow-sm">
 
@@ -154,7 +164,7 @@ function Contact() {
             <div className="flex flex-wrap gap-4 pt-4">
 
               <a
-                href="tel:+917356196707"
+                href={`tel:${clinic.phone}`}
                 className="
                   rounded-full
                   bg-blue-700

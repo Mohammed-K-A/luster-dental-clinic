@@ -1,7 +1,60 @@
+import { useEffect, useState } from "react";
 import gallery from "../../data/gallery";
-import { FaExpand } from "react-icons/fa";
+import { FaExpand, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 function Gallery() {
+
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const showPrevious = (e) => {
+    e.stopPropagation();
+
+    const newIndex =
+      selectedIndex === 0
+        ? gallery.length - 1
+        : selectedIndex - 1;
+
+    setSelectedIndex(newIndex);
+    setSelectedImage(gallery[newIndex]);
+  };
+
+  const showNext = (e) => {
+    e.stopPropagation();
+
+    const newIndex =
+      selectedIndex === gallery.length - 1
+        ? 0
+        : selectedIndex + 1;
+
+    setSelectedIndex(newIndex);
+    setSelectedImage(gallery[newIndex]);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (!selectedImage) return;
+
+      if (event.key === "Escape") {
+        setSelectedImage(null);
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPrevious(event);
+      }
+
+      if (event.key === "ArrowRight") {
+        showNext(event);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedImage, selectedIndex]);
+
   return (
     <section
       id="gallery"
@@ -52,9 +105,16 @@ function Gallery() {
 
             <div
               key={item.id}
+              onClick={() => {
+                setSelectedImage(item);
+                setSelectedIndex(
+                  gallery.findIndex((image) => image.id === item.id)
+                );
+              }}
               className="
                 group
                 relative
+                cursor-pointer
                 overflow-hidden
                 rounded-[32px]
                 shadow-md
@@ -108,6 +168,116 @@ function Gallery() {
           ))}
 
         </div>
+
+        {selectedImage && (
+
+          <div
+            className="
+            fixed
+            inset-0
+            z-[100]
+            flex
+            items-center
+            justify-center
+            bg-black/90
+            p-6
+          "
+            onClick={() => setSelectedImage(null)}
+          >
+
+            {/* Close */}
+
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="
+              absolute
+              right-6
+              top-6
+              z-10
+              flex
+              h-12
+              w-12
+              items-center
+              justify-center
+              rounded-full
+              bg-white/10
+              text-white
+              transition-all
+              hover:bg-white/20
+            "
+              aria-label="Close gallery"
+            >
+              <FaTimes size={22} />
+            </button>
+
+
+            <button
+              onClick={showPrevious}
+              className="
+                absolute
+                left-4
+                top-1/2
+                flex
+                h-12
+                w-12
+                -translate-y-1/2
+                items-center
+                justify-center
+                rounded-full
+                bg-white/10
+                text-white
+                transition-all
+                hover:bg-white/20
+                md:left-8
+              "
+              aria-label="Previous image"
+            >
+              <FaChevronLeft size={22} />
+            </button>
+
+
+            {/* Image */}
+
+            <img
+              src={selectedImage.image}
+              alt={selectedImage.title}
+              className="
+                max-h-[85vh]
+                max-w-[90vw]
+                rounded-2xl
+                object-contain
+                shadow-2xl
+              "
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            <button
+              onClick={showNext}
+              className="
+                absolute
+                right-4
+                top-1/2
+                flex
+                h-12
+                w-12
+                -translate-y-1/2
+                items-center
+                justify-center
+                rounded-full
+                bg-white/10
+                text-white
+                transition-all
+                hover:bg-white/20
+                md:right-8
+              "
+              aria-label="Next image"
+            >
+              <FaChevronRight size={22} />
+            </button>
+
+          </div>
+
+        )}
 
       </div>
     </section>

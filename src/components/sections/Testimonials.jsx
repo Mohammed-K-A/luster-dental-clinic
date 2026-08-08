@@ -1,7 +1,32 @@
+import { useEffect, useState } from "react";
 import testimonials from "../../data/testimonials";
-import { FaQuoteLeft } from "react-icons/fa";
+import {
+  FaQuoteLeft,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
+
 
 function Testimonials() {
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const showPrevious = () => {
+    setCurrentIndex((prev) =>
+      prev === 0
+        ? testimonials.length - 1
+        : prev - 1
+    );
+  };
+
+  const showNext = () => {
+    setCurrentIndex((prev) =>
+      prev === testimonials.length - 1
+        ? 0
+        : prev + 1
+    );
+  };
+
   return (
     <section
       id="testimonials"
@@ -46,50 +71,134 @@ function Testimonials() {
 
         {/* Cards */}
 
-        <div className="mt-20 grid gap-8 md:grid-cols-3">
+        <div className="relative mx-auto mt-20 max-w-4xl">
 
-          {testimonials.map((item) => (
+          {/* Testimonial Card */}
 
-            <div
-              key={item.id}
-              className="
-                rounded-[32px]
-                bg-slate-50
-                p-8
-                shadow-md
-                transition-all
-                duration-300
-                hover:-translate-y-2
-                hover:shadow-xl
-              "
-            >
+          <div
+            className="
+              rounded-[32px]
+              bg-slate-50
+              p-10
+              text-center
+              shadow-md
+              transition-all
+              duration-500
+              md:p-14
+            "
+          >
 
-              <FaQuoteLeft
-                className="text-blue-700"
-                size={34}
-              />
+            <FaQuoteLeft
+              className="mx-auto text-blue-700"
+              size={40}
+            />
 
-              <p className="mt-6 text-yellow-500 text-lg">
-                ⭐⭐⭐⭐⭐
+            {/* Rating */}
+
+            <p className="mt-6 text-lg tracking-widest text-yellow-500">
+              ★★★★★
+            </p>
+
+            {/* Review */}
+
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-9 text-slate-600">
+              "{testimonials[currentIndex].review}"
+            </p>
+
+            {/* Patient */}
+
+            <div className="mt-8">
+
+              <h3 className="text-xl font-bold">
+                {testimonials[currentIndex].name}
+              </h3>
+
+              <p className="mt-1 text-slate-500">
+                Happy Patient
               </p>
-
-              <p className="mt-6 leading-8 text-slate-600">
-                "{item.review}"
-              </p>
-
-              <div className="mt-8">
-
-                <h3 className="text-xl font-bold">
-                  {item.name}
-                </h3>
-
-                <p className="text-slate-500">
-                  Happy Patient
-                </p>
-
-              </div>
 
             </div>
+
+          </div>
+
+
+          {/* Previous */}
+
+          <button
+            onClick={showPrevious}
+            className="
+              absolute
+              left-0
+              top-1/2
+              flex
+              h-12
+              w-12
+              -translate-x-6
+              -translate-y-1/2
+              items-center
+              justify-center
+              rounded-full
+              bg-white
+              text-blue-700
+              shadow-lg
+              transition-all
+              hover:scale-110
+            "
+            aria-label="Previous testimonial"
+          >
+            <FaChevronLeft />
+          </button>
+
+
+          {/* Next */}
+
+          <button
+            onClick={showNext}
+            className="
+              absolute
+              right-0
+              top-1/2
+              flex
+              h-12
+              w-12
+              translate-x-6
+              -translate-y-1/2
+              items-center
+              justify-center
+              rounded-full
+              bg-white
+              text-blue-700
+              shadow-lg
+              transition-all
+              hover:scale-110
+            "
+            aria-label="Next testimonial"
+          >
+            <FaChevronRight />
+          </button>
+
+        </div>
+
+        <div className="mt-8 flex justify-center gap-2">
+
+          {testimonials.map((_, index) => (
+
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`
+                h-2.5
+                rounded-full
+                transition-all
+                duration-300
+                ${
+                  currentIndex === index
+                  ? "w-8 bg-blue-700"
+                  : "w-2.5 bg-slate-300"
+                }
+              `}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
 
           ))}
 

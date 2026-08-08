@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaWhatsapp, FaPhoneAlt, FaArrowUp } from "react-icons/fa";
+import { clinic, enquiryWhatsappLink } from "../../data/clinic";
 
 function FloatingButtons() {
   const [showTop, setShowTop] = useState(false);
@@ -26,7 +27,7 @@ function FloatingButtons() {
       {/* Call Button (Left) */}
 
       <a
-        href="tel:+917356196707"
+        href={`tel:${clinic.phone}`}
         className="
           fixed
           bottom-6
@@ -80,7 +81,7 @@ function FloatingButtons() {
         {/* WhatsApp */}
 
         <a
-          href="https://wa.me/918891396707"
+          href={enquiryWhatsappLink}
           target="_blank"
           rel="noopener noreferrer"
           className="
