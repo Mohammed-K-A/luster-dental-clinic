@@ -1,13 +1,27 @@
 import doctors from "../../data/doctors";
 import { FaArrowRight } from "react-icons/fa6";
+import { bookingWhatsappLink } from "../../data/clinic";
 
 function Doctors() {
   return (
     <section
       id="doctors"
-      className="bg-white py-28"
+      className="
+        bg-white 
+        py-20
+        sm:py-24
+        lg:py-28
+      "
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div
+        className="
+          mx-auto 
+          w-full
+          max-w-7xl 
+          px-5
+          sm:px-6
+        "
+      >
 
         {/* Heading */}
 
@@ -18,26 +32,36 @@ function Doctors() {
               inline-flex
               rounded-full
               bg-blue-100
-              px-5
-              py-2
-              text-sm
+              px-4
+              py-1
+              text-xs
               font-semibold
               uppercase
-              tracking-[0.2em]
+              tracking-[0.3em]
               text-blue-700
+              sm:px-5
+              sm:py-1.5
+              sm:text-sm
             "
           >
             Meet Our Doctors
           </p>
 
           <h2
-            className="mt-6 text-5xl font-bold"
+            className="
+              mt-5
+              text-4xl
+              font-bold
+              leading-tight
+              sm:mt-6
+              sm:text-5xl
+            "
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Experienced Dental Experts
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
             Our experienced dentists combine expertise, compassion,
             and advanced technology to provide exceptional dental care.
           </p>
@@ -46,7 +70,17 @@ function Doctors() {
 
         {/* Doctor Cards */}
 
-        <div className="mt-20 grid gap-10 lg:grid-cols-2">
+        <div
+          className="
+            mt-12
+            grid
+            gap-6
+            sm:mt-16
+            sm:gap-8
+            lg:mt-20
+            lg:grid-cols-2
+          "
+        >
 
           {doctors.map((doctor) => (
 
@@ -73,12 +107,14 @@ function Doctors() {
                   src={doctor.image}
                   alt={doctor.name}
                   className="
-                    h-[480px]
+                    h-[360px]
                     w-full
                     object-cover
                     transition-transform
                     duration-700
                     group-hover:scale-105
+                    sm:h-[420px]
+                    lg:h-[480px]
                   "
                 />
 
@@ -86,42 +122,48 @@ function Doctors() {
 
               {/* Content */}
 
-              <div className="p-8">
+              <div className="p-6 sm:p-8">
 
                 <span
                   className="
+                    inline-flex
                     rounded-full
                     bg-blue-100
-                    px-4
-                    py-2
-                    text-sm
+                    px-3
+                    py-1.5
+                    text-xs
                     font-semibold
                     text-blue-700
+                    sm:px-4
+                    sm:py-2
+                    sm:text-sm
                   "
                 >
                   {doctor.qualification}
                 </span>
 
-                <h3 className="mt-5 text-3xl font-bold">
+                <h3 className="mt-4 text-2xl font-bold sm:mt-5 sm:text-3xl">
                   {doctor.name}
                 </h3>
 
-                <p className="mt-3 text-lg font-medium text-blue-700">
+                <p className="mt-2 text-base font-medium text-blue-700 sm:mt-3 sm:text-lg">
                   {doctor.specialization}
                 </p>
 
-                <p className="mt-2 text-slate-500">
+                <p className="mt-2 text-sm text-slate-500 sm:text-base">
                   {doctor.experience}
                 </p>
 
-                <p className="mt-6 leading-8 text-slate-600">
+                <p className="mt-5 text-sm leading-7 text-slate-600 sm:mt-6 sm:text-base sm:leading-8">
                   Dedicated to delivering personalized dental care,
                   ensuring patient comfort, precision treatment,
                   and long-term oral health.
                 </p>
 
                 <a
-                  href="#contact"
+                  href={bookingWhatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="
                     mt-8
                     inline-flex

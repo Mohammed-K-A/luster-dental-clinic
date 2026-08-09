@@ -13,9 +13,22 @@ function Treatments() {
   return (
     <section
       id="treatments"
-      className="bg-slate-50 py-28"
+      className="
+        bg-slate-50
+        py-20
+        sm:py-24
+        lg:py-28
+      "
     >
-      <div className="mx-auto w-full max-w-7xl px-6">
+      <div
+        className="
+          mx-auto
+          w-full
+          max-w-7xl
+          px-5
+          sm:px-6
+        "
+      >
 
         {/* Heading */}
 
@@ -26,20 +39,30 @@ function Treatments() {
               inline-flex
               rounded-full
               bg-blue-100
-              px-5
+              px-4
               py-2
-              text-sm
+              text-xs
               font-semibold
               uppercase
-              tracking-[0.2em]
+              tracking-[0.15em]
               text-blue-700
+              sm:px-5
+              sm:text-sm
+              sm:tracking-[0.2em]
             "
           >
             Our Treatments
           </p>
 
           <h2
-            className="mt-6 text-5xl font-bold"
+            className="
+              mt-5
+              text-4xl
+              font-bold
+              leading-tight
+              sm:text-5xl
+              lg:mt-6
+            "
             style={{ fontFamily: "var(--font-heading)" }}
           >
             {activeTab === "dental"
@@ -47,7 +70,7 @@ function Treatments() {
               : "Facial Aesthetic Treatments"}
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
             {activeTab === "dental"
               ? "Comprehensive dental treatments to restore oral health, improve function, and create confident smiles."
               : "Advanced facial aesthetic treatments designed to enhance your natural beauty, rejuvenate your skin, and boost your confidence."}
@@ -57,13 +80,13 @@ function Treatments() {
 
         {/* Treatment Tabs */}
 
-        <div className="mt-14 mb-12 flex justify-center">
+        <div className="mt-10 mb-10 flex justify-center sm:mt-14 sm:mb-12">
 
-          <div className="flex rounded-full bg-slate-100 p-2 shadow-sm">
+          <div className="flex w-full max-w-md rounded-3xl bg-slate-100 p-2 shadow-sm sm:w-auto sm:max-w-none sm:rounded-full">
 
             <button
               onClick={() => setActiveTab("dental")}
-              className={`rounded-full px-8 py-3 font-semibold transition-all duration-300 ${activeTab === "dental"
+              className={`rounded-full flex-1 px-4 py-3 text-sm sm:flex-none sm:px-8 sm:text-base font-semibold transition-all duration-300 ${activeTab === "dental"
                 ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg"
                 : "text-slate-600 hover:text-blue-700"
                 }`}
@@ -73,7 +96,7 @@ function Treatments() {
 
             <button
               onClick={() => setActiveTab("facial")}
-              className={`rounded-full px-8 py-3 font-semibold transition-all duration-300 ${activeTab === "facial"
+              className={`rounded-full flex-1 px-4 py-3 text-sm sm:flex-none sm:px-8 sm:text-base font-semibold transition-all duration-300 ${activeTab === "facial"
                 ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-white shadow-lg"
                 : "text-slate-600 hover:text-amber-600"
                 }`}
@@ -90,11 +113,14 @@ function Treatments() {
         <div
           key={activeTab}
           className="
-            mt-20
+            mt-12
             grid
             items-stretch
-            gap-8
+            gap-6
+            sm:mt-16
+            sm:gap-8
             md:grid-cols-2
+            lg:mt-20
             lg:grid-cols-3
             animate-fade
           "
@@ -127,11 +153,11 @@ function Treatments() {
                 }
               `}
             >
-              
+
 
               {/* Content */}
 
-              <div className="flex h-full flex-col p-10">
+              <div className="flex h-full flex-col p-7 sm:p-8 lg:p-10">
 
                 {/* Icon */}
 
@@ -161,25 +187,24 @@ function Treatments() {
 
                 {/* Title */}
 
-                <h3 className="mt-2 text-2xl font-bold">
+                <h3 className="mt-2 text-xl font-bold sm:text-2xl">
                   {service.title}
                 </h3>
 
                 {/* Description */}
 
-                <p className="mt-6 leading-8 text-slate-600">
+                <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
                   {service.description}
                 </p>
 
                 {/* Benefits */}
 
-                <ul className="mt-8 space-y-4">
-
+                <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
                   {service.benefits.map((item, index) => (
 
                     <li
                       key={index}
-                      className="flex items-center gap-3 text-slate-600"
+                      className="flex items-start gap-3 text-sm leading-6 text-slate-600 sm:text-base"
                     >
 
                       <span

@@ -8,9 +8,14 @@ function FAQ() {
   return (
     <section
       id="faq"
-      className="bg-slate-50 py-28"
+      className="
+        bg-slate-50
+        py-20
+        sm:py-24
+        lg:py-28
+      "
     >
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto w-full max-w-5xl px-5 sm:px-6">
 
         {/* Heading */}
 
@@ -21,26 +26,36 @@ function FAQ() {
               inline-flex
               rounded-full
               bg-blue-100
-              px-5
+              px-4
               py-2
-              text-sm
+              text-xs
               font-semibold
               uppercase
-              tracking-[0.2em]
+              tracking-[0.15em]
               text-blue-700
+              sm:px-5
+              sm:text-sm
+              sm:tracking-[0.2em]
             "
           >
             Frequently Asked Questions
           </p>
 
           <h2
-            className="mt-6 text-5xl font-bold"
+            className="
+              mt-5
+              text-4xl
+              font-bold
+              leading-tight
+              sm:mt-6
+              sm:text-5xl
+            "
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Got Questions?
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
             Here are some of the most common questions our patients ask.
           </p>
 
@@ -48,7 +63,7 @@ function FAQ() {
 
         {/* Accordion */}
 
-        <div className="mt-16 space-y-5">
+        <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-5">
 
           {faq.map((item, index) => (
 
@@ -66,21 +81,25 @@ function FAQ() {
                   w-full
                   items-center
                   justify-between
-                  gap-6
-                  p-6
+                  gap-4
+                  p-5
                   text-left
                   transition-colors
                   duration-300
                   hover:bg-slate-50
+                  sm:gap-6
+                  sm:p-6
                 "
               >
 
                 <h3
                   className={`
-                    text-lg
+                    text-base
                     font-semibold
+                    leading-6
                     transition-colors
                     duration-300
+                    sm:text-lg
                     ${active === index
                       ? "text-blue-700"
                       : "text-slate-900"
@@ -117,8 +136,8 @@ function FAQ() {
                 `}
               >
                 <div className="overflow-hidden">
-                  <div className="px-6 pb-6">
-                    <p className="leading-7 text-slate-600">
+                  <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+                    <p className="text-sm leading-7 text-slate-600 sm:text-base">
                       {item.answer}
                     </p>
                   </div>

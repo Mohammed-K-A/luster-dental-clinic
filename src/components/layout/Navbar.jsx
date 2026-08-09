@@ -43,7 +43,7 @@ function Navbar() {
                 >
                     {/* Logo */}
 
-                    <div className="flex justify-center">
+                    <div className="flex min-w-0 justify-start lg:justify-center">
                         <a
                             href="#home"
                             className="flex items-center gap-2 sm:gap-3 lg:gap-5 transition-transform duration-300 hover:scale-[1.03]"
@@ -69,7 +69,10 @@ function Navbar() {
                                         text-[var(--primary-dark)]
                                         transition-all
                                         duration-300
-                                        ${scrolled ? "text-[2rem]" : "text-3xl"}
+                                        ${scrolled
+                                            ? "text-2xl sm:text-[2rem]"
+                                            : "text-2xl sm:text-3xl"
+                                        }
                                     `}
                                     style={{ fontFamily: "var(--font-heading)" }}
                                 >
@@ -78,15 +81,16 @@ function Navbar() {
 
                                 <p
                                     className={`
-                                        hidden
-                                        sm:block
                                         mt-1
                                         uppercase
-                                        tracking-[0.18em]
+                                        tracking-[0.08em]
                                         text-slate-500
                                         transition-all
                                         duration-300
-                                        ${scrolled ? "text-[9px]" : "text-[10px]"}
+                                        text-[7px]
+                                        sm:text-[9px]
+                                        lg:tracking-[0.18em]
+                                        lg:text-[10px]
                                     `}
                                 >
                                     Dental & Facial Aesthetic Clinic

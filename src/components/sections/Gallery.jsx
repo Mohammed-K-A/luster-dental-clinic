@@ -58,9 +58,14 @@ function Gallery() {
   return (
     <section
       id="gallery"
-      className="bg-slate-50 py-28"
+      className="
+        bg-slate-50
+        py-20
+        sm:py-24
+        lg:py-28
+      "
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6">
 
         {/* Heading */}
 
@@ -84,13 +89,20 @@ function Gallery() {
           </p>
 
           <h2
-            className="mt-6 text-5xl font-bold"
+            className="
+              mt-5
+              text-4xl
+              font-bold
+              leading-tight
+              sm:mt-6
+              sm:text-5xl
+            "
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Explore Our Clinic
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
             Discover our modern facilities, advanced dental technology,
             comfortable treatment rooms and welcoming environment.
           </p>
@@ -99,7 +111,18 @@ function Gallery() {
 
         {/* Gallery */}
 
-        <div className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          className="
+            mt-12
+            grid
+            gap-5
+            sm:mt-16
+            sm:gap-8
+            md:grid-cols-2
+            lg:mt-20
+            lg:grid-cols-3
+          "
+        >
 
           {gallery.map((item) => (
 
@@ -125,12 +148,14 @@ function Gallery() {
                 src={item.image}
                 alt={item.title}
                 className="
-                  h-80
+                  h-64
                   w-full
                   object-cover
                   transition-transform
                   duration-700
                   group-hover:scale-110
+                  sm:h-72
+                  lg:h-80
                 "
               />
 
@@ -157,7 +182,7 @@ function Gallery() {
                   size={28}
                 />
 
-                <h3 className="mt-5 text-2xl font-semibold text-white">
+                <h3 className="mt-4 px-4 text-xl font-semibold text-center text-white sm:mt-5 sm:text-2xl">
                   {item.title}
                 </h3>
 
@@ -242,11 +267,13 @@ function Gallery() {
               src={selectedImage.image}
               alt={selectedImage.title}
               className="
-                max-h-[85vh]
-                max-w-[90vw]
+                max-h-[75vh]
+                max-w-[88vw]
                 rounded-2xl
                 object-contain
                 shadow-2xl
+                sm:max-h-[85vh]
+                sm:max-w-[90vw]
               "
               onClick={(e) => e.stopPropagation()}
             />

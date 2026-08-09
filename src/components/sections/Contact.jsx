@@ -12,9 +12,14 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="bg-white py-28"
+      className="
+        bg-white
+        py-20
+        sm:py-24
+        lg:py-28
+      "
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6">
 
         {/* Heading */}
 
@@ -38,13 +43,20 @@ function Contact() {
           </p>
 
           <h2
-            className="mt-6 text-5xl font-bold"
+            className="
+              mt-5
+              text-4xl
+              font-bold
+              leading-tight
+              sm:mt-6
+              sm:text-5xl
+            "
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Book Your Consultation
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
             Get in touch with us today and let our experienced team help
             you achieve a healthier, brighter smile.
           </p>
@@ -53,7 +65,18 @@ function Contact() {
 
         {/* Content */}
 
-        <div className="mt-20 grid gap-12 lg:grid-cols-2">
+        <div
+          className="
+            mt-12
+            grid
+            gap-8
+            sm:mt-16
+            sm:gap-10
+            lg:mt-20
+            lg:grid-cols-2
+            lg:gap-12
+          "
+        >
 
           {/* Left */}
 
@@ -61,7 +84,17 @@ function Contact() {
 
             {/* Address */}
 
-            <div className="flex items-start gap-5 rounded-3xl bg-slate-50 p-6 shadow-sm">
+            <div className="
+              flex
+              items-start
+              gap-4
+              rounded-3xl
+              bg-slate-50
+              p-5
+              shadow-sm
+              sm:gap-5
+              sm:p-6
+            ">
 
               <FaMapMarkerAlt
                 className="mt-1 text-blue-700"
@@ -73,7 +106,7 @@ function Contact() {
                   Address
                 </h3>
 
-                <p className="mt-2 text-slate-600">
+                <p className="mt-2 break-words text-sm leading-7 text-slate-600 sm:text-base">
                   {clinic.address}
                 </p>
               </div>
@@ -124,7 +157,7 @@ function Contact() {
 
                 <a
                   href={`mailto:${clinic.email}`}
-                  className="mt-2 block text-slate-600"
+                  className="mt-2 block break-all text-sm text-slate-600 sm:text-base"
                 >
                   {clinic.email}
                 </a>
@@ -161,17 +194,24 @@ function Contact() {
 
             {/* Buttons */}
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:flex-wrap sm:gap-4">
 
               <a
                 href={`tel:${clinic.phone}`}
                 className="
+                  inline-flex
+                  items-center
+                  justify-center
                   rounded-full
                   bg-blue-700
                   px-8
                   py-4
                   font-semibold
                   text-white
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:bg-blue-800
                 "
               >
                 Call Now
@@ -182,20 +222,20 @@ function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-    inline-flex
-    items-center
-    gap-2
-    rounded-full
-    bg-green-600
-    px-8
-    py-4
-    font-semibold
-    text-white
-    transition-all
-    duration-300
-    hover:-translate-y-1
-    hover:bg-green-700
-  "
+                  inline-flex
+                  items-center
+                  gap-2
+                  rounded-full
+                  bg-green-600
+                  px-8
+                  py-4
+                  font-semibold
+                  text-white
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:bg-green-700
+                "
               >
                 <FaWhatsapp />
 
@@ -209,13 +249,28 @@ function Contact() {
 
           {/* Map */}
 
-          <div className="overflow-hidden rounded-[32px] shadow-xl">
+          <div
+            className="
+              overflow-hidden
+              rounded-[28px]
+              shadow-xl
+              sm:rounded-[32px]
+            "
+          >
 
             <iframe
               title="Luster Dental Clinic"
-              src="https://www.google.com/maps/embed?pb="
-              className="h-[650px] w-full border-0"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.997942909173!2d76.05026409999999!3d10.734641400000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7bffdf5648923%3A0xb6b324d452fcbe0a!2sLUSTER%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1786276127435!5m2!1sen!2sin"
+              className="
+                h-[400px]
+                w-full
+                border-0
+                sm:h-[500px]
+                lg:h-[650px]
+              "
               loading="lazy"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
             ></iframe>
 
           </div>
