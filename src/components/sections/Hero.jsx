@@ -4,7 +4,70 @@ import { bookingWhatsappLink } from "../../data/clinic";
 
 function Hero() {
 
-  
+  const typingTexts = [
+    "Smile With Confidence.",
+    "Glow With Confidence.",
+    "Live With Confidence.",
+  ];
+
+  const [displayText, setDisplayText] = useState("");
+  const [textIndex, setTextIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    let index = 0;
+    let deleting = false;
+    let timeout;
+
+    const currentText = typingTexts[textIndex];
+
+    const animateText = () => {
+      if (!deleting) {
+        // Typing
+        setDisplayText(currentText.slice(0, index + 1));
+        index++;
+
+        if (index === currentText.length) {
+          setIsTyping(false);
+
+          // Pause after completing the phrase
+          timeout = setTimeout(() => {
+            deleting = true;
+            setIsTyping(true);
+            animateText();
+          }, 1800);
+
+          return;
+        }
+
+        timeout = setTimeout(animateText, 80);
+      } else {
+        // Deleting
+        setDisplayText(currentText.slice(0, index - 1));
+        index--;
+
+        if (index === 0) {
+          deleting = false;
+
+          const nextIndex =
+            (textIndex + 1) % typingTexts.length;
+
+          setTextIndex(nextIndex);
+
+          // Small pause before next phrase
+          timeout = setTimeout(animateText, 400);
+
+          return;
+        }
+
+        timeout = setTimeout(animateText, 45);
+      }
+    };
+
+    animateText();
+
+    return () => clearTimeout(timeout);
+  }, [textIndex]);
 
   return (
     <section
@@ -107,8 +170,33 @@ function Hero() {
           >
             Reveal Your Natural Beauty.
 
-            <span className="block bg-gradient-to-r from-amber-500 via-yellow-500 to-blue-700 bg-clip-text text-transparent">
-              Smile With Confidence.
+            <span
+              className="
+                block
+                bg-gradient-to-r
+                from-amber-500
+                via-yellow-500
+                to-blue-700
+                bg-clip-text
+                text-transparent
+              "
+            >
+              {displayText}
+
+              {isTyping && (
+                <span
+                  className="
+                    ml-1
+                    inline-block
+                    h-[0.85em]
+                    w-[2px]
+                    translate-y-[0.08em]
+                    bg-blue-700
+                    align-middle
+                    animate-pulse
+                  "
+                />
+              )}
             </span>
           </motion.h1>
 
