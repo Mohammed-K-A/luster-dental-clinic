@@ -15,7 +15,7 @@ function FAQ() {
         lg:py-28
       "
     >
-      <div className="mx-auto w-full max-w-5xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
 
         {/* Heading */}
 
@@ -63,7 +63,7 @@ function FAQ() {
 
         {/* Accordion */}
 
-        <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-5">
+        <div className="mx-auto mt-12 max-w-5xl space-y-4 sm:mt-16 sm:space-y-5">
 
           {faq.map((item, index) => (
 

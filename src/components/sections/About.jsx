@@ -18,11 +18,11 @@ function About() {
           w-full
           max-w-7xl
           items-center
-          gap-14
+          gap-12
           px-5
           sm:px-6
           lg:grid-cols-2
-          lg:gap-20
+          lg:gap-16
           lg:px-8
         "
       >

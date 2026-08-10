@@ -30,7 +30,7 @@ function Hero() {
 
       <div className="absolute right-0 top-20 h-96 w-96 rounded-full bg-cyan-200/20 blur-3xl"></div>
 
-      <div className="relative z-7 mx-auto grid w-full max-w-8xl items-center gap-20 px-5 sm:px-6 lg:grid-cols-2 lg:gap-14">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
 
         {/* Left Content */}
 
