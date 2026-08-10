@@ -28,18 +28,18 @@ function Navbar() {
             <div className="mx-auto w-full max-w-[1550px] px-6">
                 <nav
                     className={`
-                    grid
-                    grid-cols-[1fr_auto]
-                    items-center
-                    transition-all
-                    duration-300
-                    lg:grid-cols-[400px_1fr_360px]
+                        grid
+                        grid-cols-[1fr_auto]
+                        items-center
+                        transition-all
+                        duration-300
+                        lg:grid-cols-[minmax(260px,1fr)_auto_minmax(260px,1fr)]
 
-                    ${scrolled
-                            ? "h-[76px] rounded-b-3xl bg-white/90 shadow-2xl border-b border-slate-200 px-10"
-                            : "h-[80px] rounded-[999px] bg-white/30 border border-slate-200/70 shadow-xl backdrop-blur-xl pl-6 pr-10"
+                        ${scrolled
+                            ? "h-[76px] rounded-b-3xl bg-white/90 shadow-2xl border-b border-slate-200 px-6 sm:px-8 lg:px-10"
+                            : "h-[80px] rounded-[999px] bg-white/30 border border-slate-200/70 shadow-xl backdrop-blur-xl px-5 sm:px-6 lg:px-8"
                         }
-                `}
+                    `}
                 >
                     {/* Logo */}
 

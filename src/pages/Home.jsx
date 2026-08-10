@@ -20,8 +20,8 @@ function Home() {
     <main>
 
       <Hero/>
-      <About/>
       <Treatments/>
+      <About/>
       <WhyChooseUs/>
       <Doctors/>
       <Gallery/>

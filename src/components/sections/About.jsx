@@ -23,6 +23,7 @@ function About() {
           sm:px-6
           lg:grid-cols-2
           lg:gap-20
+          lg:px-8
         "
       >
 
@@ -108,30 +109,29 @@ function About() {
             "
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Caring For
-            <span className="block text-blue-700">
-              Every Smile
+            Enhancing Your Natural Beauty
+            <span className="block bg-gradient-to-r from-amber-500 to-blue-700 bg-clip-text text-transparent">
+              With Confidence
             </span>
           </h2>
 
           <p className="mt-6 text-base leading-7 text-slate-600 sm:mt-8 sm:text-lg sm:leading-8">
             At Luster Dental & Facial Aesthetic Clinic,
-            we believe confidence begins with a healthy
-            smile and radiant skin.
+            we believe confidence begins with feeling good about
+            your smile, skin, and overall appearance.
           </p>
 
           <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
-            Our experienced team provides advanced dental
-            care alongside modern facial aesthetic
-            treatments in a comfortable, patient-focused
-            environment.
+            Our experienced team provides modern facial aesthetic
+            treatments alongside advanced dental care in a comfortable,
+            patient-focused environment.
           </p>
 
           <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
-            Whether you visit us for routine dental care,
-            cosmetic dentistry, or facial rejuvenation,
-            our goal is to deliver exceptional care using
-            the latest technology.
+            Whether you visit us for facial rejuvenation, skin care,
+            cosmetic dentistry, or routine dental care, our goal is to
+            deliver exceptional results and a comfortable experience
+            using modern technology and personalized treatment.
           </p>
 
           {/* Statistics */}

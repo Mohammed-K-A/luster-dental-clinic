@@ -8,7 +8,7 @@ import { Sparkles } from "lucide-react";
 
 function Treatments() {
 
-  const [activeTab, setActiveTab] = useState("dental");
+  const [activeTab, setActiveTab] = useState("facial");
 
   return (
     <section
@@ -27,6 +27,7 @@ function Treatments() {
           max-w-7xl
           px-5
           sm:px-6
+          lg:px-8
         "
       >
 
@@ -65,15 +66,15 @@ function Treatments() {
             "
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            {activeTab === "dental"
-              ? "Complete Dental Care"
-              : "Facial Aesthetic Treatments"}
+            {activeTab === "facial"
+              ? "Facial Aesthetic Treatments"
+              : "Complete Dental Care"}
           </h2>
 
           <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
-            {activeTab === "dental"
-              ? "Comprehensive dental treatments to restore oral health, improve function, and create confident smiles."
-              : "Advanced facial aesthetic treatments designed to enhance your natural beauty, rejuvenate your skin, and boost your confidence."}
+            {activeTab === "facial"
+              ? "Advanced facial aesthetic treatments designed to enhance your natural beauty, rejuvenate your skin, and boost your confidence."
+              : "Comprehensive dental treatments to restore oral health, improve function, and create confident smiles."}
           </p>
 
         </div>
@@ -85,16 +86,6 @@ function Treatments() {
           <div className="flex w-full max-w-md rounded-3xl bg-slate-100 p-2 shadow-sm sm:w-auto sm:max-w-none sm:rounded-full">
 
             <button
-              onClick={() => setActiveTab("dental")}
-              className={`rounded-full flex-1 px-4 py-3 text-sm sm:flex-none sm:px-8 sm:text-base font-semibold transition-all duration-300 ${activeTab === "dental"
-                ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg"
-                : "text-slate-600 hover:text-blue-700"
-                }`}
-            >
-              🦷 Dental Care
-            </button>
-
-            <button
               onClick={() => setActiveTab("facial")}
               className={`rounded-full flex-1 px-4 py-3 text-sm sm:flex-none sm:px-8 sm:text-base font-semibold transition-all duration-300 ${activeTab === "facial"
                 ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-white shadow-lg"
@@ -102,6 +93,16 @@ function Treatments() {
                 }`}
             >
               ✨ Facial Aesthetics
+            </button>
+
+            <button
+              onClick={() => setActiveTab("dental")}
+              className={`rounded-full flex-1 px-4 py-3 text-sm sm:flex-none sm:px-8 sm:text-base font-semibold transition-all duration-300 ${activeTab === "dental"
+                ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg"
+                : "text-slate-600 hover:text-blue-700"
+                }`}
+            >
+              🦷 Dental Care
             </button>
 
           </div>

@@ -4,12 +4,12 @@ const navigation = [
     label: "Home",
   },
   {
-    id: "about",
-    label: "About",
-  },
-  {
     id: "treatments",
     label: "Treatments",
+  },
+  {
+    id: "about",
+    label: "About",
   },
   {
     id: "doctors",

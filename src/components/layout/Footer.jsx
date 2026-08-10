@@ -46,9 +46,9 @@ function Footer() {
             />
 
             <p className="mt-5 text-sm leading-7 text-slate-400 sm:mt-6 sm:text-base sm:leading-8">
-              Providing advanced dental and facial aesthetic care with
-              modern technology, compassionate service and personalized
-              treatment for every patient.
+              Providing modern facial aesthetic treatments alongside advanced dental
+              care, with compassionate service and personalized treatment
+              for every patient.
             </p>
 
           </div>
@@ -133,12 +133,12 @@ function Footer() {
 
             <ul className="mt-5 space-y-3 text-sm text-slate-400 sm:mt-6 sm:space-y-4 sm:text-base">
 
-              <li>Dental Implants</li>
-              <li>Root Canal</li>
-              <li>Smile Designing</li>
-              <li>Teeth Whitening</li>
-              <li>Braces & Aligners</li>
               <li>Facial Aesthetics</li>
+              <li>HydraFacial</li>
+              <li>Chemical Peel</li>
+              <li>PRP Therapy</li>
+              <li>Skin Rejuvenation</li>
+              <li>Dental Care</li>
 
             </ul>
 

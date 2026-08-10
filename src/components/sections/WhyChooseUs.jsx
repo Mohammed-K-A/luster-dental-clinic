@@ -12,13 +12,13 @@ const features = [
     icon: <FaUserMd size={28} />,
     title: "Experienced Doctors",
     description:
-      "Our highly qualified dentists provide personalized treatment with years of clinical expertise.",
+      "Our experienced clinical team provides personalized dental and facial aesthetic care with a focus on safety, precision, and patient comfort.",
   },
   {
     icon: <FaTeeth size={28} />,
     title: "Advanced Technology",
     description:
-      "Modern equipment and digital dentistry ensure precise diagnosis and comfortable treatment.",
+      "Modern equipment and treatment techniques support precise, comfortable care across both facial aesthetics and dentistry.",
   },
   {
     icon: <FaShieldAlt size={28} />,
@@ -42,7 +42,7 @@ const features = [
     icon: <FaAward size={28} />,
     title: "Trusted Care",
     description:
-      "Committed to delivering quality dental and facial aesthetic treatments you can trust.",
+      "Committed to delivering quality facial aesthetic and dental treatments you can trust.",
   },
 ];
 
@@ -57,7 +57,7 @@ function WhyChooseUs() {
         lg:py-28
       "
     >
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
 
         {/* Heading */}
 
@@ -98,7 +98,7 @@ function WhyChooseUs() {
             "
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Experience Dentistry
+            Advanced Care
             <br />
             With Confidence
           </h2>
@@ -119,7 +119,8 @@ function WhyChooseUs() {
             "
           >
             We combine clinical excellence, modern technology and compassionate
-            care to provide a comfortable dental experience for every patient.
+            care across facial aesthetics and dentistry, creating a comfortable
+            experience tailored to every patient.
           </p>
 
         </div>

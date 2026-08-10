@@ -19,7 +19,7 @@ function Contact() {
         lg:py-28
       "
     >
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
 
         {/* Heading */}
 
@@ -58,7 +58,7 @@ function Contact() {
 
           <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
             Get in touch with us today and let our experienced team help
-            you achieve a healthier, brighter smile.
+            you achieve radiant skin, enhanced confidence, and a healthier, brighter smile.
           </p>
 
         </div>

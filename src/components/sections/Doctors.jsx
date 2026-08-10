@@ -20,6 +20,7 @@ function Doctors() {
           max-w-7xl 
           px-5
           sm:px-6
+          lg:px-8
         "
       >
 
@@ -58,12 +59,12 @@ function Doctors() {
             "
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Experienced Dental Experts
+            Experienced Dental & Aesthetic Experts
           </h2>
 
           <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
-            Our experienced dentists combine expertise, compassion,
-            and advanced technology to provide exceptional dental care.
+            Our experienced clinical team combines expertise, compassion,
+            and modern technology to provide exceptional dental and facial aesthetic care.
           </p>
 
         </div>
@@ -155,9 +156,8 @@ function Doctors() {
                 </p>
 
                 <p className="mt-5 text-sm leading-7 text-slate-600 sm:mt-6 sm:text-base sm:leading-8">
-                  Dedicated to delivering personalized dental care,
-                  ensuring patient comfort, precision treatment,
-                  and long-term oral health.
+                  Dedicated to delivering personalized care with attention to patient comfort,
+                  precision treatment, natural-looking results, and long-term wellbeing.
                 </p>
 
                 <a

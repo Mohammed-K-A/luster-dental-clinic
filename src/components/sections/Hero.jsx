@@ -21,6 +21,8 @@ function Hero() {
         lg:pt-36
       "
     >
+    
+      
 
       {/* Background Blur */}
 
@@ -28,7 +30,7 @@ function Hero() {
 
       <div className="absolute right-0 top-20 h-96 w-96 rounded-full bg-cyan-200/20 blur-3xl"></div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-5 sm:px-6 lg:grid-cols-2 lg:gap-14">
+      <div className="relative z-7 mx-auto grid w-full max-w-8xl items-center gap-20 px-5 sm:px-6 lg:grid-cols-2 lg:gap-14">
 
         {/* Left Content */}
 
@@ -53,26 +55,26 @@ function Hero() {
             "
             style={{ fontFamily: "var(--font-heading)" }}
           >
-            Healthy Smiles.
+            Reveal Your Natural Beauty.
 
-            <span className="block bg-gradient-to-r from-blue-700 to-amber-500 bg-clip-text text-transparent">
-              Radiant Confidence.
+            <span className="block bg-gradient-to-r from-amber-500 via-yellow-500 to-blue-700 bg-clip-text text-transparent">
+              Smile With Confidence.
             </span>
           </h1>
 
           <h2
             className="mt-5 text-xl font-semibold leading-snug text-slate-700 sm:text-2xl lg:mt-6 lg:text-3xl"
           >
-            Advanced Dental & Facial Aesthetic Care
+            Advanced Facial Aesthetic & Dental Care
             <br />
             Under One Roof
           </h2>
 
           <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:mt-8 sm:text-lg sm:leading-8">
-            At Luster Dental & Facial Aesthetic Clinic, we combine
-            advanced dentistry with modern facial aesthetic treatments,
-            helping you achieve a healthy smile, glowing skin, and
-            renewed confidence through personalized care.
+            At Luster Dental & Facial Aesthetic Clinic, we bring modern facial
+            aesthetic treatments and advanced dental care together, helping
+            you achieve radiant skin, enhanced features, a healthy smile,
+            and renewed confidence through personalized care.
           </p>
 
           {/* Buttons */}
@@ -141,13 +143,13 @@ function Hero() {
 
             <div className="rounded-2xl bg-white p-5 shadow-sm">
               <h3 className="font-semibold">
-                🦷 Advanced Dental Care
+                ✨ Advanced Facial Aesthetics
               </h3>
             </div>
 
             <div className="rounded-2xl bg-white p-5 shadow-sm">
               <h3 className="font-semibold">
-                ✨ Facial Aesthetic Experts
+                🦷 Advanced Dental Care
               </h3>
             </div>
 

@@ -15,7 +15,7 @@ function FAQ() {
         lg:py-28
       "
     >
-      <div className="mx-auto w-full max-w-5xl px-5 sm:px-6">
+      <div className="mx-auto w-full max-w-5xl px-5 sm:px-6 lg:px-8">
 
         {/* Heading */}
 
