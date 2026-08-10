@@ -7,7 +7,6 @@ import { FaTooth } from "react-icons/fa6";
 import { Sparkles } from "lucide-react";
 
 function Treatments() {
-
   const [activeTab, setActiveTab] = useState("facial");
 
   return (
@@ -47,6 +46,7 @@ function Treatments() {
               uppercase
               tracking-[0.15em]
               text-blue-700
+              animate-luster-fade-up
               sm:px-5
               sm:text-sm
               sm:tracking-[0.2em]
@@ -61,6 +61,8 @@ function Treatments() {
               text-4xl
               font-bold
               leading-tight
+              animate-luster-fade-up
+              animate-delay-100
               sm:text-5xl
               lg:mt-6
             "
@@ -71,7 +73,21 @@ function Treatments() {
               : "Complete Dental Care"}
           </h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+          <p
+            className="
+              mx-auto
+              mt-5
+              max-w-3xl
+              text-base
+              leading-7
+              text-slate-600
+              animate-luster-fade-up
+              animate-delay-200
+              sm:mt-6
+              sm:text-lg
+              sm:leading-8
+            "
+          >
             {activeTab === "facial"
               ? "Advanced facial aesthetic treatments designed to enhance your natural beauty, rejuvenate your skin, and boost your confidence."
               : "Comprehensive dental treatments to restore oral health, improve function, and create confident smiles."}
@@ -79,28 +95,81 @@ function Treatments() {
 
         </div>
 
+
         {/* Treatment Tabs */}
 
-        <div className="mt-10 mb-10 flex justify-center sm:mt-14 sm:mb-12">
+        <div
+          className="
+            mt-10
+            mb-10
+            flex
+            justify-center
+            animate-luster-fade-up
+            animate-delay-300
+            sm:mt-14
+            sm:mb-12
+          "
+        >
 
-          <div className="flex w-full max-w-md rounded-3xl bg-slate-100 p-2 shadow-sm sm:w-auto sm:max-w-none sm:rounded-full">
+          <div
+            className="
+              flex
+              w-full
+              max-w-md
+              rounded-3xl
+              bg-slate-100
+              p-2
+              shadow-sm
+              sm:w-auto
+              sm:max-w-none
+              sm:rounded-full
+            "
+          >
 
             <button
               onClick={() => setActiveTab("facial")}
-              className={`rounded-full flex-1 px-4 py-3 text-sm sm:flex-none sm:px-8 sm:text-base font-semibold transition-all duration-300 ${activeTab === "facial"
-                ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-white shadow-lg"
-                : "text-slate-600 hover:text-amber-600"
-                }`}
+              className={`
+                rounded-full
+                flex-1
+                px-4
+                py-3
+                text-sm
+                sm:flex-none
+                sm:px-8
+                sm:text-base
+                font-semibold
+                transition-all
+                duration-300
+                ${
+                  activeTab === "facial"
+                    ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-white shadow-lg"
+                    : "text-slate-600 hover:text-amber-600"
+                }
+              `}
             >
               ✨ Facial Aesthetics
             </button>
 
             <button
               onClick={() => setActiveTab("dental")}
-              className={`rounded-full flex-1 px-4 py-3 text-sm sm:flex-none sm:px-8 sm:text-base font-semibold transition-all duration-300 ${activeTab === "dental"
-                ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg"
-                : "text-slate-600 hover:text-blue-700"
-                }`}
+              className={`
+                rounded-full
+                flex-1
+                px-4
+                py-3
+                text-sm
+                sm:flex-none
+                sm:px-8
+                sm:text-base
+                font-semibold
+                transition-all
+                duration-300
+                ${
+                  activeTab === "dental"
+                    ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg"
+                    : "text-slate-600 hover:text-blue-700"
+                }
+              `}
             >
               🦷 Dental Care
             </button>
@@ -108,6 +177,7 @@ function Treatments() {
           </div>
 
         </div>
+
 
         {/* Cards */}
 
@@ -123,14 +193,13 @@ function Treatments() {
             md:grid-cols-2
             lg:mt-20
             lg:grid-cols-3
-            animate-fade
           "
         >
 
           {(activeTab === "dental"
             ? dentalServices
             : facialServices
-          ).map((service) => (
+          ).map((service, index) => (
 
             <div
               key={service.id}
@@ -147,14 +216,29 @@ function Treatments() {
                 duration-500
                 hover:-translate-y-2
                 hover:shadow-2xl
+                animate-luster-fade-up
 
-                ${activeTab === "dental"
-                  ? "border-blue-100 hover:border-blue-300"
-                  : "border-amber-100 hover:border-amber-300"
+                ${
+                  index === 0
+                    ? "animate-delay-100"
+                    : index === 1
+                    ? "animate-delay-200"
+                    : index === 2
+                    ? "animate-delay-300"
+                    : index === 3
+                    ? "animate-delay-400"
+                    : index === 4
+                    ? "animate-delay-500"
+                    : "animate-delay-600"
+                }
+
+                ${
+                  activeTab === "dental"
+                    ? "border-blue-100 hover:border-blue-300"
+                    : "border-amber-100 hover:border-amber-300"
                 }
               `}
             >
-
 
               {/* Content */}
 
@@ -172,10 +256,14 @@ function Treatments() {
                     justify-center
                     rounded-2xl
                     text-3xl
+                    transition-transform
+                    duration-500
+                    group-hover:scale-105
 
-                    ${activeTab === "dental"
-                      ? "bg-blue-100 text-blue-700"
-                      : "bg-amber-100 text-amber-700"
+                    ${
+                      activeTab === "dental"
+                        ? "bg-blue-100 text-blue-700"
+                        : "bg-amber-100 text-amber-700"
                     }
                   `}
                 >
@@ -186,11 +274,13 @@ function Treatments() {
                   )}
                 </div>
 
+
                 {/* Title */}
 
                 <h3 className="mt-2 text-xl font-bold sm:text-2xl">
                   {service.title}
                 </h3>
+
 
                 {/* Description */}
 
@@ -198,14 +288,24 @@ function Treatments() {
                   {service.description}
                 </p>
 
+
                 {/* Benefits */}
 
                 <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
+
                   {service.benefits.map((item, index) => (
 
                     <li
                       key={index}
-                      className="flex items-start gap-3 text-sm leading-6 text-slate-600 sm:text-base"
+                      className="
+                        flex
+                        items-start
+                        gap-3
+                        text-sm
+                        leading-6
+                        text-slate-600
+                        sm:text-base
+                      "
                     >
 
                       <span

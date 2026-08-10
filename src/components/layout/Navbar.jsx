@@ -25,7 +25,12 @@ function Navbar() {
                 ${scrolled ? "top-0" : "top-4"}
             `}
         >
-            <div className="mx-auto w-full max-w-[1550px] px-6">
+            <div
+                className={`w-full transition-all duration-300 ${scrolled
+                        ? "px-0"
+                        : "mx-auto max-w-[1550px] px-6"
+                    }`}
+            >
                 <nav
                     className={`
                         grid

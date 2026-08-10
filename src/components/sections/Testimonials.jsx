@@ -95,7 +95,7 @@ function Testimonials() {
 
         {/* Cards */}
 
-        <div className="relative mx-auto mt-12 max-w-4xl sm:mt-16 lg:mt-20">
+        <div className="relative mx-auto mt-12 max-w-4xl px-10 sm:mt-16 sm:px-0 lg:mt-20">
 
           {/* Testimonial Card */}
 
@@ -154,11 +154,11 @@ function Testimonials() {
             onClick={showPrevious}
             className="
               absolute
-              left-2
+              left-0
               top-1/2
               flex
-              h-10
-              w-10
+              h-9
+              w-9
               -translate-y-1/2
               items-center
               justify-center
@@ -185,11 +185,11 @@ function Testimonials() {
             onClick={showNext}
             className="
               absolute
-              right-2
+              right-0
               top-1/2
               flex
-              h-10
-              w-10
+              h-9
+              w-9
               -translate-y-1/2
               items-center
               justify-center
