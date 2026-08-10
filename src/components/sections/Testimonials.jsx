@@ -39,7 +39,6 @@ function Testimonials() {
     <section
       id="testimonials"
       className="
-        bg-white
         py-20
         sm:py-24
         lg:py-28

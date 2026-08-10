@@ -31,7 +31,6 @@ function Contact() {
     <section
       id="contact"
       className="
-        bg-white
         py-20
         sm:py-24
         lg:py-28

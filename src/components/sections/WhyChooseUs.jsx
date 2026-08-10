@@ -52,7 +52,6 @@ function WhyChooseUs() {
     <section
       id="why-us"
       className="
-        bg-white
         py-20
         sm:py-24
         lg:py-28

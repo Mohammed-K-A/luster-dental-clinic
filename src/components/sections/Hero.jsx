@@ -1,7 +1,11 @@
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { bookingWhatsappLink } from "../../data/clinic";
 
 function Hero() {
+
+  
+
   return (
     <section
       id="home"
@@ -10,11 +14,7 @@ function Hero() {
         flex
         min-h-screen
         items-center
-        overflow-hidden
-        bg-gradient-to-br
-        from-white
-        via-blue-50
-        to-white
+        overflow-hidden 
         pt-40
         pb-20
         sm:pt-44
@@ -25,49 +25,7 @@ function Hero() {
 
       {/* Background Blur */}
 
-      <motion.div
-        className="
-          absolute
-          -left-32
-          top-32
-          h-80
-          w-80
-          rounded-full
-          bg-blue-200/30
-          blur-3xl
-        "
-        animate={{
-          y: [0, -12, 0],
-          x: [0, 8, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
 
-      <motion.div
-        className="
-          absolute
-          right-0
-          top-20
-          h-96
-          w-96
-          rounded-full
-          bg-cyan-200/20
-          blur-3xl
-        "
-        animate={{
-          y: [0, 14, 0],
-          x: [0, -8, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
 
 
       {/* Main Content */}

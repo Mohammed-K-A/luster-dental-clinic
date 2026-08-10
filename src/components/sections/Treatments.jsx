@@ -26,7 +26,6 @@ function Treatments() {
     <section
       id="treatments"
       className="
-        bg-slate-50
         py-20
         sm:py-24
         lg:py-28

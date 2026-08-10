@@ -8,7 +8,6 @@ function Doctors() {
     <section
       id="doctors"
       className="
-        bg-white
         py-20
         sm:py-24
         lg:py-28
