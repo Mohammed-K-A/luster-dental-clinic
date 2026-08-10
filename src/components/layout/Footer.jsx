@@ -10,11 +10,52 @@ import {
   FaFacebookF,
 } from "react-icons/fa";
 
+import { motion } from "motion/react";
+
 function Footer() {
+  const fadeUp = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const socialItem = {
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
     <footer className="bg-slate-900 text-white">
 
-      <div
+      <motion.div
         className="
           mx-auto
           w-full
@@ -24,6 +65,10 @@ function Footer() {
           sm:px-6
           sm:py-20
         "
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={staggerContainer}
       >
 
         <div
@@ -37,26 +82,66 @@ function Footer() {
 
           {/* Logo / About */}
 
-          <div>
+          <motion.div variants={fadeUp}>
 
-            <img
-              src={logo}
-              alt="Luster Dental Clinic"
-              className="h-16 w-auto sm:h-20"
-            />
+            {/* Brand */}
 
-            <p className="mt-5 text-sm leading-7 text-slate-400 sm:mt-6 sm:text-base sm:leading-8">
+            <div className="flex items-center gap-3 sm:gap-4">
+
+              <img
+                src={logo}
+                alt="Luster Dental Clinic"
+                className="h-16 w-16 object-contain sm:h-20 sm:w-20"
+              />
+
+              <div>
+
+                <h2
+                  className="
+                    text-3xl
+                    leading-none
+                    text-white
+                    sm:text-4xl
+                  "
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  Luster
+                </h2>
+
+                <p
+                  className="
+                    mt-1
+                    uppercase
+                    tracking-[0.08em]
+                    text-slate-400
+                    text-[7px]
+                    sm:text-[9px]
+                    lg:tracking-[0.16em]
+                    lg:text-[10px]
+                  "
+                >
+                  Dental & Facial Aesthetic Clinic
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* Description */}
+
+            <p className="mt-5 max-w-sm text-sm leading-7 text-slate-400 sm:mt-6 sm:text-base sm:leading-8">
               Providing modern facial aesthetic treatments alongside advanced dental
               care, with compassionate service and personalized treatment
               for every patient.
             </p>
 
-          </div>
+          </motion.div>
 
 
           {/* Quick Links */}
 
-          <div>
+          <motion.div variants={fadeUp}>
 
             <h3 className="text-lg font-semibold sm:text-xl">
               Quick Links
@@ -120,12 +205,12 @@ function Footer() {
 
             </ul>
 
-          </div>
+          </motion.div>
 
 
           {/* Treatments */}
 
-          <div>
+          <motion.div variants={fadeUp}>
 
             <h3 className="text-lg font-semibold sm:text-xl">
               Treatments
@@ -142,12 +227,12 @@ function Footer() {
 
             </ul>
 
-          </div>
+          </motion.div>
 
 
           {/* Contact */}
 
-          <div>
+          <motion.div variants={fadeUp}>
 
             <h3 className="text-lg font-semibold sm:text-xl">
               Contact
@@ -219,15 +304,26 @@ function Footer() {
 
             {/* Social Media */}
 
-            <div className="mt-7 flex gap-3 sm:mt-8 sm:gap-4">
+            <motion.div
+              className="mt-7 flex gap-3 sm:mt-8 sm:gap-4"
+              variants={staggerContainer}
+            >
 
               {/* Facebook */}
 
-              <a
+              <motion.a
+                variants={socialItem}
                 href="https://www.facebook.com/profile.php?id=61566852566840"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
+                whileHover={{
+                  scale: 1.1,
+                  y: -2,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
                 className="
                   flex
                   h-10
@@ -236,22 +332,27 @@ function Footer() {
                   justify-center
                   rounded-full
                   bg-blue-700
-                  transition-all
-                  duration-300
-                  hover:scale-110
                 "
               >
                 <FaFacebookF />
-              </a>
+              </motion.a>
 
 
               {/* Instagram */}
 
-              <a
+              <motion.a
+                variants={socialItem}
                 href="https://www.instagram.com/luster.clinic"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
+                whileHover={{
+                  scale: 1.1,
+                  y: -2,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
                 className="
                   flex
                   h-10
@@ -260,22 +361,27 @@ function Footer() {
                   justify-center
                   rounded-full
                   bg-pink-600
-                  transition-all
-                  duration-300
-                  hover:scale-110
                 "
               >
                 <FaInstagram />
-              </a>
+              </motion.a>
 
 
               {/* WhatsApp */}
 
-              <a
+              <motion.a
+                variants={socialItem}
                 href={enquiryWhatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
+                whileHover={{
+                  scale: 1.1,
+                  y: -2,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
                 className="
                   flex
                   h-10
@@ -284,26 +390,39 @@ function Footer() {
                   justify-center
                   rounded-full
                   bg-green-600
-                  transition-all
-                  duration-300
-                  hover:scale-110
                 "
               >
                 <FaWhatsapp />
-              </a>
+              </motion.a>
 
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
 
         </div>
 
-      </div>
+      </motion.div>
 
 
       {/* Bottom */}
 
-      <div className="border-t border-slate-800">
+      <motion.div
+        className="border-t border-slate-800"
+        initial={{
+          opacity: 0,
+        }}
+        whileInView={{
+          opacity: 1,
+        }}
+        viewport={{
+          once: true,
+          amount: 0.3,
+        }}
+        transition={{
+          duration: 0.8,
+          delay: 0.2,
+        }}
+      >
 
         <div
           className="
@@ -329,7 +448,7 @@ function Footer() {
 
         </div>
 
-      </div>
+      </motion.div>
 
     </footer>
   );

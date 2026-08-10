@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+
 import faq from "../../data/faq";
 import { FaChevronDown } from "react-icons/fa";
 
@@ -17,11 +19,23 @@ function FAQ() {
     >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
 
-        {/* Heading */}
+        {/* =========================
+            HEADING
+        ========================== */}
 
-        <div className="text-center">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          {/* Section Label */}
 
-          <p
+          <motion.p
             className="
               inline-flex
               rounded-full
@@ -37,11 +51,21 @@ function FAQ() {
               sm:text-sm
               sm:tracking-[0.2em]
             "
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1,
+            }}
           >
             Frequently Asked Questions
-          </p>
+          </motion.p>
 
-          <h2
+
+          {/* Heading */}
+
+          <motion.h2
             className="
               mt-5
               text-4xl
@@ -51,28 +75,100 @@ function FAQ() {
               sm:text-5xl
             "
             style={{ fontFamily: "var(--font-heading)" }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             Got Questions?
-          </h2>
+          </motion.h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+
+          {/* Description */}
+
+          <motion.p
+            className="
+              mx-auto
+              mt-5
+              max-w-3xl
+              text-base
+              leading-7
+              text-slate-600
+              sm:mt-6
+              sm:text-lg
+              sm:leading-8
+            "
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.25,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             Here are some of the most common questions our patients ask.
-          </p>
+          </motion.p>
+        </motion.div>
 
-        </div>
 
-        {/* Accordion */}
+        {/* =========================
+            FAQ ACCORDION
+        ========================== */}
 
-        <div className="mx-auto mt-12 max-w-5xl space-y-4 sm:mt-16 sm:space-y-5">
+        <div
+          className="
+            mx-auto
+            mt-12
+            max-w-5xl
+            space-y-4
+            sm:mt-16
+            sm:space-y-5
+          "
+        >
 
           {faq.map((item, index) => (
 
-            <div
+            <motion.div
               key={index}
-              className="overflow-hidden rounded-3xl border border-slate-200 bg-white"
+              className="
+                overflow-hidden
+                rounded-3xl
+                border
+                border-slate-200
+                bg-white
+              "
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.15,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.08,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{
+                y: -2,
+                boxShadow:
+                  "0 12px 30px rgba(15, 23, 42, 0.07)",
+              }}
             >
 
-              <button
+              {/* Question */}
+
+              <motion.button
                 onClick={() =>
                   setActive(active === index ? -1 : index)
                 }
@@ -84,67 +180,121 @@ function FAQ() {
                   gap-4
                   p-5
                   text-left
-                  transition-colors
-                  duration-300
-                  hover:bg-slate-50
                   sm:gap-6
                   sm:p-6
                 "
+                whileTap={{
+                  scale: 0.99,
+                }}
               >
 
-                <h3
-                  className={`
+                <motion.h3
+                  className="
                     text-base
                     font-semibold
                     leading-6
-                    transition-colors
-                    duration-300
                     sm:text-lg
-                    ${active === index
-                      ? "text-blue-700"
-                      : "text-slate-900"
-                    }
-                  `}
+                  "
+                  animate={{
+                    color:
+                      active === index
+                        ? "#2563EB"
+                        : "#0F172A",
+                  }}
+                  transition={{
+                    duration: 0.25,
+                  }}
                 >
                   {item.question}
-                </h3>
+                </motion.h3>
 
-                <FaChevronDown
-                  className={`
-                    shrink-0
-                    transition-all
-                    duration-300
-                    ${active === index
-                      ? "rotate-180 text-blue-700"
-                      : "text-slate-500"
-                    }
-                  `}
-                />
 
-              </button>
+                {/* Chevron */}
 
-              <div
-                className={`
-                  grid
-                  transition-all
-                  duration-300
-                  ease-in-out
-                  ${active === index
-                    ? "grid-rows-[1fr] opacity-100"
-                    : "grid-rows-[0fr] opacity-0"
-                  }
-                `}
-              >
-                <div className="overflow-hidden">
-                  <div className="px-5 pb-5 sm:px-6 sm:pb-6">
-                    <p className="text-sm leading-7 text-slate-600 sm:text-base">
-                      {item.answer}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                <motion.span
+                  className="shrink-0"
+                  animate={{
+                    rotate: active === index ? 180 : 0,
+                    color:
+                      active === index
+                        ? "#2563EB"
+                        : "#64748B",
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <FaChevronDown />
+                </motion.span>
 
-            </div>
+              </motion.button>
+
+
+              {/* Answer */}
+
+              <AnimatePresence initial={false}>
+
+                {active === index && (
+
+                  <motion.div
+                    initial={{
+                      height: 0,
+                      opacity: 0,
+                    }}
+                    animate={{
+                      height: "auto",
+                      opacity: 1,
+                    }}
+                    exit={{
+                      height: 0,
+                      opacity: 0,
+                    }}
+                    transition={{
+                      height: {
+                        duration: 0.35,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                      opacity: {
+                        duration: 0.25,
+                      },
+                    }}
+                  >
+
+                    <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+
+                      <motion.p
+                        className="
+                          text-sm
+                          leading-7
+                          text-slate-600
+                          sm:text-base
+                        "
+                        initial={{
+                          opacity: 0,
+                          y: -8,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          y: 0,
+                        }}
+                        transition={{
+                          duration: 0.3,
+                          delay: 0.08,
+                        }}
+                      >
+                        {item.answer}
+                      </motion.p>
+
+                    </div>
+
+                  </motion.div>
+
+                )}
+
+              </AnimatePresence>
+
+            </motion.div>
 
           ))}
 

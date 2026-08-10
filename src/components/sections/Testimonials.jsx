@@ -1,43 +1,39 @@
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+
 import testimonials from "../../data/testimonials";
+
 import {
   FaQuoteLeft,
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
 
-
 function Testimonials() {
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const showPrevious = () => {
     setCurrentIndex((prev) =>
-      prev === 0
-        ? testimonials.length - 1
-        : prev - 1
+      prev === 0 ? testimonials.length - 1 : prev - 1
     );
   };
 
+  const showNext = () => {
+    setCurrentIndex((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  // Auto slide
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) =>
-        prev === testimonials.length - 1
-          ? 0
-          : prev + 1
+        prev === testimonials.length - 1 ? 0 : prev + 1
       );
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
-
-  const showNext = () => {
-    setCurrentIndex((prev) =>
-      prev === testimonials.length - 1
-        ? 0
-        : prev + 1
-    );
-  };
 
   return (
     <section
@@ -51,11 +47,23 @@ function Testimonials() {
     >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
 
-        {/* Heading */}
+        {/* =========================
+            HEADING
+        ========================== */}
 
-        <div className="text-center">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          {/* Section Label */}
 
-          <p
+          <motion.p
             className="
               inline-flex
               rounded-full
@@ -68,11 +76,20 @@ function Testimonials() {
               tracking-[0.2em]
               text-blue-700
             "
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1,
+            }}
           >
             Testimonials
-          </p>
+          </motion.p>
 
-          <h2
+          {/* Heading */}
+
+          <motion.h2
             className="
               mt-5
               text-4xl
@@ -82,75 +99,214 @@ function Testimonials() {
               sm:text-5xl
             "
             style={{ fontFamily: "var(--font-heading)" }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             What Our Patients Say
-          </h2>
+          </motion.h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+          {/* Description */}
+
+          <motion.p
+            className="
+              mx-auto
+              mt-5
+              max-w-3xl
+              text-base
+              leading-7
+              text-slate-600
+              sm:mt-6
+              sm:text-lg
+              sm:leading-8
+            "
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.25,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             Our patients trust us for compassionate care,
             advanced treatment and outstanding results.
-          </p>
+          </motion.p>
+        </motion.div>
 
-        </div>
 
-        {/* Cards */}
+        {/* =========================
+            TESTIMONIAL CARD
+        ========================== */}
 
-        <div className="relative mx-auto mt-12 max-w-4xl px-10 sm:mt-16 sm:px-0 lg:mt-20">
+        <motion.div
+          className="
+            relative
+            mx-auto
+            mt-12
+            max-w-4xl
+            px-10
+            sm:mt-16
+            sm:px-0
+            lg:mt-20
+          "
+          initial={{ opacity: 0, y: 45 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{
+            duration: 0.8,
+            delay: 0.15,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
 
-          {/* Testimonial Card */}
+          {/* Card */}
 
-          <div
+          <motion.div
             className="
               rounded-[28px]
               bg-slate-50
               p-7
               text-center
               shadow-md
-              transition-all
-              duration-500
               sm:rounded-[32px]
               sm:p-10
               md:p-14
             "
+            whileHover={{
+              y: -4,
+              boxShadow:
+                "0 20px 45px rgba(15, 23, 42, 0.10)",
+            }}
+            transition={{
+              duration: 0.4,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
 
-            <FaQuoteLeft
-              className="mx-auto text-blue-700"
-              size={32}
-            />
+            {/* Quote Icon */}
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.7 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.6,
+                delay: 0.35,
+                type: "spring",
+                stiffness: 180,
+                damping: 15,
+              }}
+            >
+              <FaQuoteLeft
+                className="mx-auto text-blue-700"
+                size={32}
+              />
+            </motion.div>
+
 
             {/* Rating */}
 
-            <p className="mt-5 text-base tracking-[0.2em] text-yellow-500 sm:mt-6 sm:text-lg">
+            <motion.p
+              className="
+                mt-5
+                text-base
+                tracking-[0.2em]
+                text-yellow-500
+                sm:mt-6
+                sm:text-lg
+              "
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.6,
+                delay: 0.45,
+              }}
+            >
               ★★★★★
-            </p>
+            </motion.p>
 
-            {/* Review */}
 
-            <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-slate-600 sm:mt-8 sm:text-lg sm:leading-9">
-              "{testimonials[currentIndex].review}"
-            </p>
+            {/* =========================
+                CHANGING TESTIMONIAL
+            ========================== */}
 
-            {/* Patient */}
+            <div className="relative mt-7 min-h-[150px] sm:mt-8 sm:min-h-[165px]">
 
-            <div className="mt-7 sm:mt-8">
+              <AnimatePresence mode="wait">
 
-              <h3 className="text-xl font-bold">
-                {testimonials[currentIndex].name}
-              </h3>
+                <motion.div
+                  key={currentIndex}
+                  initial={{
+                    opacity: 0,
+                    y: 18,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -18,
+                  }}
+                  transition={{
+                    duration: 0.45,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="absolute inset-x-0 top-0"
+                >
 
-              <p className="mt-1 text-slate-500">
-                Happy Patient
-              </p>
+                  {/* Review */}
+
+                  <p
+                    className="
+                      mx-auto
+                      max-w-2xl
+                      text-base
+                      leading-7
+                      text-slate-600
+                      sm:text-lg
+                      sm:leading-9
+                    "
+                  >
+                    "{testimonials[currentIndex].review}"
+                  </p>
+
+
+                  {/* Patient */}
+
+                  <div className="mt-7 sm:mt-8">
+
+                    <h3 className="text-xl font-bold">
+                      {testimonials[currentIndex].name}
+                    </h3>
+
+                    <p className="mt-1 text-slate-500">
+                      Happy Patient
+                    </p>
+
+                  </div>
+
+                </motion.div>
+
+              </AnimatePresence>
 
             </div>
 
-          </div>
+          </motion.div>
 
 
-          {/* Previous */}
+          {/* =========================
+              PREVIOUS BUTTON
+          ========================== */}
 
-          <button
+          <motion.button
             onClick={showPrevious}
             className="
               absolute
@@ -166,22 +322,32 @@ function Testimonials() {
               bg-white
               text-blue-700
               shadow-lg
-              transition-all
-              hover:scale-110
-              sm:left-0
               sm:h-12
               sm:w-12
               sm:-translate-x-6
             "
             aria-label="Previous testimonial"
+            whileHover={{
+              scale: 1.1,
+              boxShadow:
+                "0 10px 25px rgba(15, 23, 42, 0.15)",
+            }}
+            whileTap={{
+              scale: 0.92,
+            }}
+            transition={{
+              duration: 0.2,
+            }}
           >
             <FaChevronLeft />
-          </button>
+          </motion.button>
 
 
-          {/* Next */}
+          {/* =========================
+              NEXT BUTTON
+          ========================== */}
 
-          <button
+          <motion.button
             onClick={showNext}
             className="
               absolute
@@ -197,43 +363,84 @@ function Testimonials() {
               bg-white
               text-blue-700
               shadow-lg
-              transition-all
-              hover:scale-110
-              sm:right-0
               sm:h-12
               sm:w-12
               sm:translate-x-6
             "
             aria-label="Next testimonial"
+            whileHover={{
+              scale: 1.1,
+              boxShadow:
+                "0 10px 25px rgba(15, 23, 42, 0.15)",
+            }}
+            whileTap={{
+              scale: 0.92,
+            }}
+            transition={{
+              duration: 0.2,
+            }}
           >
             <FaChevronRight />
-          </button>
+          </motion.button>
 
-        </div>
+        </motion.div>
 
-        <div className="mt-7 flex justify-center gap-2 sm:mt-8">
+
+        {/* =========================
+            DOTS
+        ========================== */}
+
+        <motion.div
+          className="
+            mt-7
+            flex
+            justify-center
+            gap-2
+            sm:mt-8
+          "
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.5,
+            delay: 0.4,
+          }}
+        >
 
           {testimonials.map((_, index) => (
 
-            <button
+            <motion.button
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`
                 h-2.5
                 rounded-full
-                transition-all
-                duration-300
-                ${currentIndex === index
-                  ? "w-8 bg-blue-700"
-                  : "w-2.5 bg-slate-300"
+                ${
+                  currentIndex === index
+                    ? "w-8 bg-blue-700"
+                    : "w-2.5 bg-slate-300"
                 }
               `}
               aria-label={`Go to testimonial ${index + 1}`}
+              animate={{
+                width: currentIndex === index ? 32 : 10,
+                opacity: currentIndex === index ? 1 : 0.7,
+              }}
+              transition={{
+                duration: 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{
+                scale: 1.15,
+              }}
+              whileTap={{
+                scale: 0.9,
+              }}
             />
 
           ))}
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

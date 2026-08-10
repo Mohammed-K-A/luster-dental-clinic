@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import gallery from "../../data/gallery";
-import { FaExpand, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  FaExpand,
+  FaTimes,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 
 function Gallery() {
-
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -69,9 +74,17 @@ function Gallery() {
 
         {/* Heading */}
 
-        <div className="text-center">
-
-          <p
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          <motion.p
             className="
               inline-flex
               rounded-full
@@ -84,11 +97,18 @@ function Gallery() {
               tracking-[0.2em]
               text-blue-700
             "
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+            }}
           >
             Clinic Gallery
-          </p>
+          </motion.p>
 
-          <h2
+          <motion.h2
             className="
               mt-5
               text-4xl
@@ -98,20 +118,48 @@ function Gallery() {
               sm:text-5xl
             "
             style={{ fontFamily: "var(--font-heading)" }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             Explore Our Clinic
-          </h2>
+          </motion.h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+          <motion.p
+            className="
+              mx-auto
+              mt-5
+              max-w-3xl
+              text-base
+              leading-7
+              text-slate-600
+              sm:mt-6
+              sm:text-lg
+              sm:leading-8
+            "
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             Discover our modern facilities, advanced dental technology,
             comfortable treatment rooms and welcoming environment.
-          </p>
+          </motion.p>
+        </motion.div>
 
-        </div>
 
         {/* Gallery */}
 
-        <div
+        <motion.div
           className="
             mt-12
             grid
@@ -122,17 +170,53 @@ function Gallery() {
             lg:mt-20
             lg:grid-cols-3
           "
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.15,
+          }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.12,
+              },
+            },
+          }}
         >
-
           {gallery.map((item) => (
-
-            <div
+            <motion.div
               key={item.id}
               onClick={() => {
                 setSelectedImage(item);
                 setSelectedIndex(
-                  gallery.findIndex((image) => image.id === item.id)
+                  gallery.findIndex(
+                    (image) => image.id === item.id
+                  )
                 );
+              }}
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 45,
+                  scale: 0.97,
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                },
+              }}
+              transition={{
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{
+                y: -6,
+                transition: {
+                  duration: 0.3,
+                },
               }}
               className="
                 group
@@ -143,25 +227,31 @@ function Gallery() {
                 shadow-md
               "
             >
+              {/* Image */}
 
-              <img
+              <motion.img
                 src={item.image}
                 alt={item.title}
                 className="
                   h-64
                   w-full
                   object-cover
-                  transition-transform
-                  duration-700
-                  group-hover:scale-110
                   sm:h-72
                   lg:h-80
                 "
+                whileHover={{
+                  scale: 1.08,
+                }}
+                transition={{
+                  duration: 0.7,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               />
+
 
               {/* Overlay */}
 
-              <div
+              <motion.div
                 className="
                   absolute
                   inset-0
@@ -170,141 +260,269 @@ function Gallery() {
                   items-center
                   justify-center
                   bg-blue-900/70
-                  opacity-0
-                  transition-all
-                  duration-500
-                  group-hover:opacity-100
                 "
+                initial={{
+                  opacity: 0,
+                }}
+                whileHover={{
+                  opacity: 1,
+                }}
+                transition={{
+                  duration: 0.35,
+                  ease: "easeOut",
+                }}
               >
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    scale: 0.7,
+                    y: 10,
+                  }}
+                  whileHover={{
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    duration: 0.35,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <FaExpand
+                    className="text-white"
+                    size={28}
+                  />
+                </motion.div>
 
-                <FaExpand
-                  className="text-white"
-                  size={28}
-                />
-
-                <h3 className="mt-4 px-4 text-xl font-semibold text-center text-white sm:mt-5 sm:text-2xl">
+                <motion.h3
+                  className="
+                    mt-4
+                    px-4
+                    text-center
+                    text-xl
+                    font-semibold
+                    text-white
+                    sm:mt-5
+                    sm:text-2xl
+                  "
+                  initial={{
+                    opacity: 0,
+                    y: 10,
+                  }}
+                  whileHover={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    duration: 0.35,
+                    delay: 0.05,
+                  }}
+                >
                   {item.title}
-                </h3>
-
-              </div>
-
-            </div>
-
+                </motion.h3>
+              </motion.div>
+            </motion.div>
           ))}
+        </motion.div>
 
-        </div>
 
-        {selectedImage && (
+        {/* Fullscreen Gallery */}
 
-          <div
-            className="
-            fixed
-            inset-0
-            z-[100]
-            flex
-            items-center
-            justify-center
-            bg-black/90
-            p-6
-          "
-            onClick={() => setSelectedImage(null)}
-          >
-
-            {/* Close */}
-
-            <button
+        <AnimatePresence>
+          {selectedImage && (
+            <motion.div
+              className="
+                fixed
+                inset-0
+                z-[100]
+                flex
+                items-center
+                justify-center
+                bg-black/90
+                p-6
+              "
               onClick={() => setSelectedImage(null)}
-              className="
-              absolute
-              right-6
-              top-6
-              z-10
-              flex
-              h-12
-              w-12
-              items-center
-              justify-center
-              rounded-full
-              bg-white/10
-              text-white
-              transition-all
-              hover:bg-white/20
-            "
-              aria-label="Close gallery"
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              exit={{
+                opacity: 0,
+              }}
+              transition={{
+                duration: 0.3,
+              }}
             >
-              <FaTimes size={22} />
-            </button>
+
+              {/* Close Button */}
+
+              <motion.button
+                onClick={() => setSelectedImage(null)}
+                className="
+                  absolute
+                  right-6
+                  top-6
+                  z-10
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/10
+                  text-white
+                  transition-colors
+                  hover:bg-white/20
+                "
+                aria-label="Close gallery"
+                initial={{
+                  opacity: 0,
+                  scale: 0.8,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                whileHover={{
+                  scale: 1.1,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
+              >
+                <FaTimes size={22} />
+              </motion.button>
 
 
-            <button
-              onClick={showPrevious}
-              className="
-                absolute
-                left-4
-                top-1/2
-                flex
-                h-12
-                w-12
-                -translate-y-1/2
-                items-center
-                justify-center
-                rounded-full
-                bg-white/10
-                text-white
-                transition-all
-                hover:bg-white/20
-                md:left-8
-              "
-              aria-label="Previous image"
-            >
-              <FaChevronLeft size={22} />
-            </button>
+              {/* Previous Button */}
+
+              <motion.button
+                onClick={showPrevious}
+                className="
+                  absolute
+                  left-4
+                  top-1/2
+                  flex
+                  h-12
+                  w-12
+                  -translate-y-1/2
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/10
+                  text-white
+                  transition-colors
+                  hover:bg-white/20
+                  md:left-8
+                "
+                aria-label="Previous image"
+                initial={{
+                  opacity: 0,
+                  x: -20,
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                whileHover={{
+                  scale: 1.1,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
+              >
+                <FaChevronLeft size={22} />
+              </motion.button>
 
 
-            {/* Image */}
+              {/* Image */}
 
-            <img
-              src={selectedImage.image}
-              alt={selectedImage.title}
-              className="
-                max-h-[75vh]
-                max-w-[88vw]
-                rounded-2xl
-                object-contain
-                shadow-2xl
-                sm:max-h-[85vh]
-                sm:max-w-[90vw]
-              "
-              onClick={(e) => e.stopPropagation()}
-            />
+              <motion.img
+                key={selectedImage.id}
+                src={selectedImage.image}
+                alt={selectedImage.title}
+                className="
+                  max-h-[75vh]
+                  max-w-[88vw]
+                  rounded-2xl
+                  object-contain
+                  shadow-2xl
+                  sm:max-h-[85vh]
+                  sm:max-w-[90vw]
+                "
+                onClick={(e) => e.stopPropagation()}
+                initial={{
+                  opacity: 0,
+                  scale: 0.9,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.95,
+                }}
+                transition={{
+                  duration: 0.45,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              />
 
-            <button
-              onClick={showNext}
-              className="
-                absolute
-                right-4
-                top-1/2
-                flex
-                h-12
-                w-12
-                -translate-y-1/2
-                items-center
-                justify-center
-                rounded-full
-                bg-white/10
-                text-white
-                transition-all
-                hover:bg-white/20
-                md:right-8
-              "
-              aria-label="Next image"
-            >
-              <FaChevronRight size={22} />
-            </button>
 
-          </div>
+              {/* Next Button */}
 
-        )}
+              <motion.button
+                onClick={showNext}
+                className="
+                  absolute
+                  right-4
+                  top-1/2
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/10
+                  text-white
+                  transition-colors
+                  hover:bg-white/20
+                  md:right-8
+                "
+                aria-label="Next image"
+                initial={{
+                  opacity: 0,
+                  x: 20,
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                whileHover={{
+                  scale: 1.1,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
+              >
+                <FaChevronRight size={22} />
+              </motion.button>
+
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </section>

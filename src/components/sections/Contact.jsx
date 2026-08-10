@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 import { clinic, bookingWhatsappLink } from "../../data/clinic";
 
 import {
@@ -9,6 +11,22 @@ import {
 } from "react-icons/fa";
 
 function Contact() {
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      x: -35,
+    },
+    visible: (index) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
+  };
+
   return (
     <section
       id="contact"
@@ -21,11 +39,24 @@ function Contact() {
     >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
 
-        {/* Heading */}
+        {/* =========================
+            HEADING
+        ========================== */}
 
-        <div className="text-center">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
 
-          <p
+          {/* Section Label */}
+
+          <motion.p
             className="
               inline-flex
               rounded-full
@@ -38,11 +69,21 @@ function Contact() {
               tracking-[0.2em]
               text-blue-700
             "
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: 0.1,
+            }}
           >
             Contact Us
-          </p>
+          </motion.p>
 
-          <h2
+
+          {/* Heading */}
+
+          <motion.h2
             className="
               mt-5
               text-4xl
@@ -52,18 +93,53 @@ function Contact() {
               sm:text-5xl
             "
             style={{ fontFamily: "var(--font-heading)" }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             Book Your Consultation
-          </h2>
+          </motion.h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+
+          {/* Description */}
+
+          <motion.p
+            className="
+              mx-auto
+              mt-5
+              max-w-3xl
+              text-base
+              leading-7
+              text-slate-600
+              sm:mt-6
+              sm:text-lg
+              sm:leading-8
+            "
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.7,
+              delay: 0.25,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
             Get in touch with us today and let our experienced team help
-            you achieve radiant skin, enhanced confidence, and a healthier, brighter smile.
-          </p>
+            you achieve radiant skin, enhanced confidence, and a healthier,
+            brighter smile.
+          </motion.p>
 
-        </div>
+        </motion.div>
 
-        {/* Content */}
+
+        {/* =========================
+            CONTENT
+        ========================== */}
 
         <div
           className="
@@ -78,26 +154,43 @@ function Contact() {
           "
         >
 
-          {/* Left */}
+          {/* =========================
+              LEFT
+          ========================== */}
 
           <div className="space-y-6">
 
             {/* Address */}
 
-            <div className="
-              flex
-              items-start
-              gap-4
-              rounded-3xl
-              bg-slate-50
-              p-5
-              shadow-sm
-              sm:gap-5
-              sm:p-6
-            ">
+            <motion.div
+              custom={0}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              whileHover={{
+                y: -3,
+                boxShadow:
+                  "0 14px 30px rgba(15, 23, 42, 0.08)",
+              }}
+              className="
+                flex
+                items-start
+                gap-4
+                rounded-3xl
+                bg-slate-50
+                p-5
+                shadow-sm
+                sm:gap-5
+                sm:p-6
+              "
+            >
 
               <FaMapMarkerAlt
-                className="mt-1 text-blue-700"
+                className="mt-1 shrink-0 text-blue-700"
                 size={22}
               />
 
@@ -111,14 +204,38 @@ function Contact() {
                 </p>
               </div>
 
-            </div>
+            </motion.div>
+
 
             {/* Phone */}
 
-            <div className="flex items-start gap-5 rounded-3xl bg-slate-50 p-6 shadow-sm">
+            <motion.div
+              custom={1}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              whileHover={{
+                y: -3,
+                boxShadow:
+                  "0 14px 30px rgba(15, 23, 42, 0.08)",
+              }}
+              className="
+                flex
+                items-start
+                gap-5
+                rounded-3xl
+                bg-slate-50
+                p-6
+                shadow-sm
+              "
+            >
 
               <FaPhoneAlt
-                className="mt-1 text-blue-700"
+                className="mt-1 shrink-0 text-blue-700"
                 size={20}
               />
 
@@ -130,22 +247,52 @@ function Contact() {
 
                 <a
                   href={`tel:${clinic.phone}`}
-                  className="mt-2 block text-slate-600"
+                  className="
+                    mt-2
+                    block
+                    text-slate-600
+                    transition-colors
+                    duration-300
+                    hover:text-blue-700
+                  "
                 >
                   +91 73561 96707
                 </a>
 
               </div>
 
-            </div>
+            </motion.div>
+
 
             {/* Email */}
 
-
-            <div className="flex items-start gap-5 rounded-3xl bg-slate-50 p-6 shadow-sm">
+            <motion.div
+              custom={2}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              whileHover={{
+                y: -3,
+                boxShadow:
+                  "0 14px 30px rgba(15, 23, 42, 0.08)",
+              }}
+              className="
+                flex
+                items-start
+                gap-5
+                rounded-3xl
+                bg-slate-50
+                p-6
+                shadow-sm
+              "
+            >
 
               <FaEnvelope
-                className="mt-1 text-blue-700"
+                className="mt-1 shrink-0 text-blue-700"
                 size={20}
               />
 
@@ -157,22 +304,55 @@ function Contact() {
 
                 <a
                   href={`mailto:${clinic.email}`}
-                  className="mt-2 block break-all text-sm text-slate-600 sm:text-base"
+                  className="
+                    mt-2
+                    block
+                    break-all
+                    text-sm
+                    text-slate-600
+                    transition-colors
+                    duration-300
+                    hover:text-blue-700
+                    sm:text-base
+                  "
                 >
                   {clinic.email}
                 </a>
 
               </div>
 
-            </div>
+            </motion.div>
+
 
             {/* Working Hours */}
 
-
-            <div className="flex items-start gap-5 rounded-3xl bg-slate-50 p-6 shadow-sm">
+            <motion.div
+              custom={3}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              whileHover={{
+                y: -3,
+                boxShadow:
+                  "0 14px 30px rgba(15, 23, 42, 0.08)",
+              }}
+              className="
+                flex
+                items-start
+                gap-5
+                rounded-3xl
+                bg-slate-50
+                p-6
+                shadow-sm
+              "
+            >
 
               <FaClock
-                className="mt-1 text-blue-700"
+                className="mt-1 shrink-0 text-blue-700"
                 size={20}
               />
 
@@ -190,13 +370,45 @@ function Contact() {
 
               </div>
 
-            </div>
+            </motion.div>
 
-            {/* Buttons */}
 
-            <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:flex-wrap sm:gap-4">
+            {/* =========================
+                BUTTONS
+            ========================== */}
 
-              <a
+            <motion.div
+              className="
+                flex
+                flex-col
+                gap-3
+                pt-4
+                sm:flex-row
+                sm:flex-wrap
+                sm:gap-4
+              "
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.4,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+
+              {/* Call Now */}
+
+              <motion.a
                 href={`tel:${clinic.phone}`}
                 className="
                   inline-flex
@@ -208,16 +420,27 @@ function Contact() {
                   py-4
                   font-semibold
                   text-white
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:bg-blue-800
                 "
+                whileHover={{
+                  y: -3,
+                  scale: 1.02,
+                  boxShadow:
+                    "0 12px 25px rgba(37, 99, 235, 0.25)",
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
+                transition={{
+                  duration: 0.2,
+                }}
               >
                 Call Now
-              </a>
+              </motion.a>
 
-              <a
+
+              {/* WhatsApp */}
+
+              <motion.a
                 href={bookingWhatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -233,32 +456,65 @@ function Contact() {
                   py-4
                   font-semibold
                   text-white
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:bg-green-700
                   sm:w-auto
                 "
+                whileHover={{
+                  y: -3,
+                  scale: 1.02,
+                  boxShadow:
+                    "0 12px 25px rgba(22, 163, 74, 0.25)",
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
+                transition={{
+                  duration: 0.2,
+                }}
               >
                 <FaWhatsapp />
 
                 Book via WhatsApp
 
-              </a>
+              </motion.a>
 
-            </div>
+            </motion.div>
 
           </div>
 
-          {/* Map */}
 
-          <div
+          {/* =========================
+              GOOGLE MAP
+          ========================== */}
+
+          <motion.div
             className="
               overflow-hidden
               rounded-[28px]
               shadow-xl
               sm:rounded-[32px]
             "
+            initial={{
+              opacity: 0,
+              x: 40,
+              scale: 0.97,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            whileHover={{
+              scale: 1.01,
+            }}
           >
 
             <iframe
@@ -276,7 +532,7 @@ function Contact() {
               referrerPolicy="strict-origin-when-cross-origin"
             ></iframe>
 
-          </div>
+          </motion.div>
 
         </div>
 

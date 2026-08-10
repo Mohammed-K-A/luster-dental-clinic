@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import doctors from "../../data/doctors";
 import { FaArrowRight } from "react-icons/fa6";
 import { bookingWhatsappLink } from "../../data/clinic";
@@ -7,7 +8,7 @@ function Doctors() {
     <section
       id="doctors"
       className="
-        bg-white 
+        bg-white
         py-20
         sm:py-24
         lg:py-28
@@ -15,20 +16,40 @@ function Doctors() {
     >
       <div
         className="
-          mx-auto 
+          mx-auto
           w-full
-          max-w-7xl 
+          max-w-7xl
           px-5
           sm:px-6
           lg:px-8
         "
       >
 
-        {/* Heading */}
+        {/* =========================================
+            HEADING
+        ========================================= */}
 
         <div className="text-center">
 
-          <p
+          {/* Section Label */}
+
+          <motion.p
+            initial={{
+              opacity: 0,
+              y: 18,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+            }}
             className="
               inline-flex
               rounded-full
@@ -46,9 +67,29 @@ function Doctors() {
             "
           >
             Meet Our Doctors
-          </p>
+          </motion.p>
 
-          <h2
+
+          {/* Heading */}
+
+          <motion.h2
+            initial={{
+              opacity: 0,
+              y: 22,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.1,
+              ease: "easeOut",
+            }}
             className="
               mt-5
               text-4xl
@@ -57,21 +98,74 @@ function Doctors() {
               sm:mt-6
               sm:text-5xl
             "
-            style={{ fontFamily: "var(--font-heading)" }}
+            style={{
+              fontFamily: "var(--font-heading)",
+            }}
           >
             Experienced Dental & Aesthetic Experts
-          </h2>
+          </motion.h2>
 
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+
+          {/* Description */}
+
+          <motion.p
+            initial={{
+              opacity: 0,
+              y: 18,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.2,
+              ease: "easeOut",
+            }}
+            className="
+              mx-auto
+              mt-5
+              max-w-3xl
+              text-base
+              leading-7
+              text-slate-600
+              sm:mt-6
+              sm:text-lg
+              sm:leading-8
+            "
+          >
             Our experienced clinical team combines expertise, compassion,
-            and modern technology to provide exceptional dental and facial aesthetic care.
-          </p>
+            and modern technology to provide exceptional dental and facial
+            aesthetic care.
+          </motion.p>
 
         </div>
 
-        {/* Doctor Cards */}
 
-        <div
+        {/* =========================================
+            DOCTOR CARDS
+        ========================================= */}
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.15,
+          }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.25,
+              },
+            },
+          }}
           className="
             mt-12
             grid
@@ -85,35 +179,75 @@ function Doctors() {
 
           {doctors.map((doctor) => (
 
-            <div
+            <motion.div
               key={doctor.id}
+              variants={{
+                hidden: {
+                  opacity: 0,
+                  y: 35,
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.7,
+                    ease: "easeOut",
+                  },
+                },
+              }}
+              whileHover={{
+                y: -8,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                },
+              }}
               className="
                 group
                 overflow-hidden
                 rounded-[32px]
                 bg-slate-50
                 shadow-md
-                transition-all
+                transition-shadow
                 duration-500
-                hover:-translate-y-2
                 hover:shadow-2xl
               "
             >
 
-              {/* Image */}
+              {/* =========================================
+                  IMAGE
+              ========================================= */}
 
               <div className="overflow-hidden">
 
-                <img
+                <motion.img
                   src={doctor.image}
                   alt={doctor.name}
+                  initial={{
+                    scale: 1.04,
+                  }}
+                  whileInView={{
+                    scale: 1,
+                  }}
+                  viewport={{
+                    once: true,
+                    amount: 0.2,
+                  }}
+                  transition={{
+                    duration: 0.9,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    transition: {
+                      duration: 0.7,
+                      ease: "easeOut",
+                    },
+                  }}
                   className="
                     h-[360px]
                     w-full
                     object-cover
-                    transition-transform
-                    duration-700
-                    group-hover:scale-105
                     sm:h-[420px]
                     lg:h-[480px]
                   "
@@ -121,11 +255,31 @@ function Doctors() {
 
               </div>
 
-              {/* Content */}
+
+              {/* =========================================
+                  CONTENT
+              ========================================= */}
 
               <div className="p-6 sm:p-8">
 
-                <span
+                {/* Qualification */}
+
+                <motion.span
+                  initial={{
+                    opacity: 0,
+                    x: -10,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.2,
+                  }}
                   className="
                     inline-flex
                     rounded-full
@@ -141,29 +295,46 @@ function Doctors() {
                   "
                 >
                   {doctor.qualification}
-                </span>
+                </motion.span>
+
+
+                {/* Name */}
 
                 <h3 className="mt-4 text-2xl font-bold sm:mt-5 sm:text-3xl">
                   {doctor.name}
                 </h3>
 
+
+                {/* Specialization */}
+
                 <p className="mt-2 text-base font-medium text-blue-700 sm:mt-3 sm:text-lg">
                   {doctor.specialization}
                 </p>
+
+
+                {/* Experience */}
 
                 <p className="mt-2 text-sm text-slate-500 sm:text-base">
                   {doctor.experience}
                 </p>
 
+
+                {/* Description */}
+
                 <p className="mt-5 text-sm leading-7 text-slate-600 sm:mt-6 sm:text-base sm:leading-8">
-                  Dedicated to delivering personalized care with attention to patient comfort,
-                  precision treatment, natural-looking results, and long-term wellbeing.
+                  Dedicated to delivering personalized care with attention
+                  to patient comfort, precision treatment, natural-looking
+                  results, and long-term wellbeing.
                 </p>
 
-                <a
+
+                {/* CTA */}
+
+                <motion.a
                   href={bookingWhatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  whileHover="hover"
                   className="
                     mt-8
                     inline-flex
@@ -171,24 +342,33 @@ function Doctors() {
                     gap-2
                     font-semibold
                     text-blue-700
-                    transition-all
-                    duration-300
-                    group-hover:gap-4
                   "
                 >
                   Book Consultation
 
-                  <FaArrowRight />
+                  <motion.span
+                    variants={{
+                      hover: {
+                        x: 5,
+                      },
+                    }}
+                    transition={{
+                      duration: 0.25,
+                      ease: "easeOut",
+                    }}
+                  >
+                    <FaArrowRight />
+                  </motion.span>
 
-                </a>
+                </motion.a>
 
               </div>
 
-            </div>
+            </motion.div>
 
           ))}
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

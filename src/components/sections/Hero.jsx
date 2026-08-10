@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { bookingWhatsappLink } from "../../data/clinic";
 
 function Hero() {
@@ -24,10 +25,52 @@ function Hero() {
 
       {/* Background Blur */}
 
-      <div className="absolute -left-32 top-32 h-80 w-80 rounded-full bg-blue-200/30 blur-3xl"></div>
+      <motion.div
+        className="
+          absolute
+          -left-32
+          top-32
+          h-80
+          w-80
+          rounded-full
+          bg-blue-200/30
+          blur-3xl
+        "
+        animate={{
+          y: [0, -12, 0],
+          x: [0, 8, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
-      <div className="absolute right-0 top-20 h-96 w-96 rounded-full bg-cyan-200/20 blur-3xl"></div>
+      <motion.div
+        className="
+          absolute
+          right-0
+          top-20
+          h-96
+          w-96
+          rounded-full
+          bg-cyan-200/20
+          blur-3xl
+        "
+        animate={{
+          y: [0, 14, 0],
+          x: [0, -8, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
+
+      {/* Main Content */}
 
       <div
         className="
@@ -53,7 +96,7 @@ function Hero() {
 
           {/* Welcome Badge */}
 
-          <p
+          <motion.p
             className="
               inline-flex
               rounded-full
@@ -65,19 +108,24 @@ function Hero() {
               uppercase
               tracking-[0.15em]
               text-blue-700
-              animate-luster-fade-up
               sm:px-5
               sm:text-sm
               sm:tracking-[0.2em]
             "
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              ease: "easeOut",
+            }}
           >
             Welcome to Luster Dental Clinic
-          </p>
+          </motion.p>
 
 
           {/* Main Heading */}
 
-          <h1
+          <motion.h1
             className="
               mt-6
               max-w-2xl
@@ -86,85 +134,105 @@ function Hero() {
               leading-[1.08]
               tracking-tight
               text-slate-900
-              animate-luster-fade-up
-              animate-delay-100
               sm:text-5xl
               lg:mt-6
               lg:text-7xl
             "
             style={{ fontFamily: "var(--font-heading)" }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.1,
+              ease: "easeOut",
+            }}
           >
             Reveal Your Natural Beauty.
 
             <span className="block bg-gradient-to-r from-amber-500 via-yellow-500 to-blue-700 bg-clip-text text-transparent">
               Smile With Confidence.
             </span>
-          </h1>
+          </motion.h1>
 
 
           {/* Subheading */}
 
-          <h2
+          <motion.h2
             className="
               mt-5
               text-xl
               font-semibold
               leading-snug
               text-slate-700
-              animate-luster-fade-up
-              animate-delay-200
               sm:text-2xl
               lg:mt-6
               lg:text-3xl
             "
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.2,
+              ease: "easeOut",
+            }}
           >
             Advanced Facial Aesthetic & Dental Care
             <br />
             Under One Roof
-          </h2>
+          </motion.h2>
 
 
           {/* Description */}
 
-          <p
+          <motion.p
             className="
               mt-6
               max-w-xl
               text-base
               leading-7
               text-slate-600
-              animate-luster-fade-up
-              animate-delay-300
               sm:mt-8
               sm:text-lg
               sm:leading-8
             "
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.3,
+              ease: "easeOut",
+            }}
           >
             At Luster Dental & Facial Aesthetic Clinic, we bring modern facial
             aesthetic treatments and advanced dental care together, helping
             you achieve radiant skin, enhanced features, a healthy smile,
             and renewed confidence through personalized care.
-          </p>
+          </motion.p>
 
 
           {/* Buttons */}
 
-          <div
+          <motion.div
             className="
               mt-8
               flex
               flex-col
               gap-3
-              animate-luster-fade-up
-              animate-delay-400
               sm:mt-10
               sm:flex-row
               sm:flex-wrap
               sm:gap-5
             "
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: 0.4,
+              ease: "easeOut",
+            }}
           >
 
-            <a
+            <motion.a
               href={bookingWhatsappLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -182,18 +250,25 @@ function Hero() {
                 font-semibold
                 text-white
                 shadow-lg
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:shadow-xl
                 sm:w-auto
               "
+              whileHover={{
+                y: -3,
+                scale: 1.02,
+                boxShadow: "0 12px 25px rgba(37, 99, 235, 0.25)",
+              }}
+              whileTap={{
+                scale: 0.98,
+              }}
+              transition={{
+                duration: 0.2,
+              }}
             >
               Book Consultation
-            </a>
+            </motion.a>
 
 
-            <a
+            <motion.a
               href="#treatments"
               className="
                 inline-flex
@@ -208,71 +283,120 @@ function Hero() {
                 py-3.5
                 font-semibold
                 text-slate-800
-                transition-all
-                duration-300
-                hover:border-blue-700
-                hover:text-blue-700
-                hover:shadow-lg
                 sm:w-auto
               "
+              whileHover={{
+                y: -3,
+                scale: 1.02,
+              }}
+              whileTap={{
+                scale: 0.98,
+              }}
+              transition={{
+                duration: 0.2,
+              }}
             >
               View Treatments
-            </a>
+            </motion.a>
 
-          </div>
+          </motion.div>
 
 
           {/* Features */}
 
-          <div
+          <motion.div
             className="
               mt-10
               grid
               gap-4
-              animate-luster-fade-up
-              animate-delay-500
               sm:mt-12
               sm:grid-cols-3
             "
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                  delayChildren: 0.5,
+                },
+              },
+            }}
           >
 
-            <div className="rounded-2xl bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <h3 className="font-semibold">
-                ✨ Advanced Facial Aesthetics
-              </h3>
-            </div>
+            {[
+              "✨ Advanced Facial Aesthetics",
+              "🦷 Advanced Dental Care",
+              "❤️ Personalized Treatment",
+            ].map((feature) => (
 
+              <motion.div
+                key={feature}
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 20,
+                  },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                  },
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  y: -4,
+                  transition: {
+                    duration: 0.2,
+                  },
+                }}
+                className="
+                  rounded-2xl
+                  bg-white
+                  p-5
+                  shadow-sm
+                  transition-shadow
+                  duration-300
+                  hover:shadow-md
+                "
+              >
+                <h3 className="font-semibold">
+                  {feature}
+                </h3>
+              </motion.div>
 
-            <div className="rounded-2xl bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <h3 className="font-semibold">
-                🦷 Advanced Dental Care
-              </h3>
-            </div>
+            ))}
 
-
-            <div className="rounded-2xl bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <h3 className="font-semibold">
-                ❤️ Personalized Treatment
-              </h3>
-            </div>
-
-          </div>
+          </motion.div>
 
         </div>
 
 
-        {/* Right */}
+        {/* Right Image */}
 
-        <div
-          className="
-            flex
-            justify-center
-            animate-luster-scale-in
-            animate-delay-300
-          "
+        <motion.div
+          className="flex justify-center"
+          initial={{
+            opacity: 0,
+            scale: 0.94,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 1,
+            delay: 0.25,
+            ease: "easeOut",
+          }}
         >
 
-          <img
+          <motion.img
             src="/images/hero/hero.png"
             alt="Luster Dental Clinic"
             className="
@@ -283,17 +407,21 @@ function Hero() {
               border-4
               border-white
               shadow-2xl
-              transition-transform
-              duration-700
-              hover:scale-[1.02]
               sm:mt-6
               sm:max-w-xl
               lg:mt-0
               lg:max-w-2xl
             "
+            whileHover={{
+              scale: 1.015,
+            }}
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+            }}
           />
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

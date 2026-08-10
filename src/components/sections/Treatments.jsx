@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   dentalServices,
   facialServices,
@@ -8,6 +9,18 @@ import { Sparkles } from "lucide-react";
 
 function Treatments() {
   const [activeTab, setActiveTab] = useState("facial");
+
+  const isFacial = activeTab === "facial";
+
+  const heading = isFacial
+    ? "Facial Aesthetic Treatments"
+    : "Complete Dental Care";
+
+  const description = isFacial
+    ? "Advanced facial aesthetic treatments designed to enhance your natural beauty, rejuvenate your skin, and boost your confidence."
+    : "Comprehensive dental treatments to restore oral health, improve function, and create confident smiles.";
+
+  const services = isFacial ? facialServices : dentalServices;
 
   return (
     <section
@@ -30,11 +43,22 @@ function Treatments() {
         "
       >
 
-        {/* Heading */}
+        {/* =========================================
+            HEADING
+        ========================================= */}
 
         <div className="text-center">
 
-          <p
+          {/* Section Label */}
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.6,
+              ease: "easeOut",
+            }}
             className="
               inline-flex
               rounded-full
@@ -46,66 +70,106 @@ function Treatments() {
               uppercase
               tracking-[0.15em]
               text-blue-700
-              animate-luster-fade-up
               sm:px-5
               sm:text-sm
               sm:tracking-[0.2em]
             "
           >
             Our Treatments
-          </p>
+          </motion.p>
 
-          <h2
-            className="
-              mt-5
-              text-4xl
-              font-bold
-              leading-tight
-              animate-luster-fade-up
-              animate-delay-100
-              sm:text-5xl
-              lg:mt-6
-            "
-            style={{ fontFamily: "var(--font-heading)" }}
-          >
-            {activeTab === "facial"
-              ? "Facial Aesthetic Treatments"
-              : "Complete Dental Care"}
-          </h2>
 
-          <p
-            className="
-              mx-auto
-              mt-5
-              max-w-3xl
-              text-base
-              leading-7
-              text-slate-600
-              animate-luster-fade-up
-              animate-delay-200
-              sm:mt-6
-              sm:text-lg
-              sm:leading-8
-            "
-          >
-            {activeTab === "facial"
-              ? "Advanced facial aesthetic treatments designed to enhance your natural beauty, rejuvenate your skin, and boost your confidence."
-              : "Comprehensive dental treatments to restore oral health, improve function, and create confident smiles."}
-          </p>
+          {/* Dynamic Heading + Description */}
+
+          <AnimatePresence mode="wait">
+
+            <motion.div
+              key={activeTab}
+              initial={{
+                opacity: 0,
+                y: 18,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                y: -12,
+              }}
+              transition={{
+                duration: 0.4,
+                ease: "easeOut",
+              }}
+            >
+
+              <h2
+                className="
+                  mt-5
+                  text-4xl
+                  font-bold
+                  leading-tight
+                  sm:text-5xl
+                  lg:mt-6
+                "
+                style={{
+                  fontFamily: "var(--font-heading)",
+                }}
+              >
+                {heading}
+              </h2>
+
+
+              <p
+                className="
+                  mx-auto
+                  mt-5
+                  max-w-3xl
+                  text-base
+                  leading-7
+                  text-slate-600
+                  sm:mt-6
+                  sm:text-lg
+                  sm:leading-8
+                "
+              >
+                {description}
+              </p>
+
+            </motion.div>
+
+          </AnimatePresence>
 
         </div>
 
 
-        {/* Treatment Tabs */}
+        {/* =========================================
+            TREATMENT TABS
+        ========================================= */}
 
-        <div
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 15,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
+          transition={{
+            duration: 0.6,
+            delay: 0.15,
+            ease: "easeOut",
+          }}
           className="
             mt-10
             mb-10
             flex
             justify-center
-            animate-luster-fade-up
-            animate-delay-300
             sm:mt-14
             sm:mb-12
           "
@@ -126,22 +190,25 @@ function Treatments() {
             "
           >
 
+            {/* Facial */}
+
             <button
               onClick={() => setActiveTab("facial")}
               className={`
-                rounded-full
                 flex-1
+                rounded-full
                 px-4
                 py-3
                 text-sm
-                sm:flex-none
-                sm:px-8
-                sm:text-base
                 font-semibold
                 transition-all
                 duration-300
+                sm:flex-none
+                sm:px-8
+                sm:text-base
+
                 ${
-                  activeTab === "facial"
+                  isFacial
                     ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-white shadow-lg"
                     : "text-slate-600 hover:text-amber-600"
                 }
@@ -150,22 +217,26 @@ function Treatments() {
               ✨ Facial Aesthetics
             </button>
 
+
+            {/* Dental */}
+
             <button
               onClick={() => setActiveTab("dental")}
               className={`
-                rounded-full
                 flex-1
+                rounded-full
                 px-4
                 py-3
                 text-sm
-                sm:flex-none
-                sm:px-8
-                sm:text-base
                 font-semibold
                 transition-all
                 duration-300
+                sm:flex-none
+                sm:px-8
+                sm:text-base
+
                 ${
-                  activeTab === "dental"
+                  !isFacial
                     ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg"
                     : "text-slate-600 hover:text-blue-700"
                 }
@@ -176,163 +247,201 @@ function Treatments() {
 
           </div>
 
-        </div>
+        </motion.div>
 
 
-        {/* Cards */}
+        {/* =========================================
+            TREATMENT CARDS
+        ========================================= */}
 
-        <div
-          key={activeTab}
-          className="
-            mt-12
-            grid
-            items-stretch
-            gap-6
-            sm:mt-16
-            sm:gap-8
-            md:grid-cols-2
-            lg:mt-20
-            lg:grid-cols-3
-          "
-        >
+        <AnimatePresence mode="wait">
 
-          {(activeTab === "dental"
-            ? dentalServices
-            : facialServices
-          ).map((service, index) => (
+          <motion.div
+            key={activeTab}
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            exit={{
+              opacity: 0,
+              y: -15,
+            }}
+            transition={{
+              duration: 0.45,
+              ease: "easeOut",
+            }}
+            className="
+              mt-12
+              grid
+              items-stretch
+              gap-6
+              sm:mt-16
+              sm:gap-8
+              md:grid-cols-2
+              lg:mt-20
+              lg:grid-cols-3
+            "
+          >
 
-            <div
-              key={service.id}
-              className={`
-                group
-                flex
-                min-h-[340px]
-                flex-col
-                rounded-[30px]
-                border
-                bg-white
-                p-1
-                transition-all
-                duration-500
-                hover:-translate-y-2
-                hover:shadow-2xl
-                animate-luster-fade-up
+            {services.map((service, index) => (
 
-                ${
-                  index === 0
-                    ? "animate-delay-100"
-                    : index === 1
-                    ? "animate-delay-200"
-                    : index === 2
-                    ? "animate-delay-300"
-                    : index === 3
-                    ? "animate-delay-400"
-                    : index === 4
-                    ? "animate-delay-500"
-                    : "animate-delay-600"
-                }
+              <motion.div
+                key={service.id}
+                initial={{
+                  opacity: 0,
+                  y: 25,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.45,
+                  delay: index * 0.08,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  y: -8,
+                  transition: {
+                    duration: 0.25,
+                  },
+                }}
+                className={`
+                  group
+                  flex
+                  min-h-[340px]
+                  flex-col
+                  rounded-[30px]
+                  border
+                  bg-white
+                  p-1
+                  transition-shadow
+                  duration-500
+                  hover:shadow-2xl
 
-                ${
-                  activeTab === "dental"
-                    ? "border-blue-100 hover:border-blue-300"
-                    : "border-amber-100 hover:border-amber-300"
-                }
-              `}
-            >
+                  ${
+                    isFacial
+                      ? "border-amber-100 hover:border-amber-300"
+                      : "border-blue-100 hover:border-blue-300"
+                  }
+                `}
+              >
 
-              {/* Content */}
+                {/* Card Content */}
 
-              <div className="flex h-full flex-col p-7 sm:p-8 lg:p-10">
+                <div className="flex h-full flex-col p-7 sm:p-8 lg:p-10">
 
-                {/* Icon */}
+                  {/* Icon */}
 
-                <div
-                  className={`
-                    mb-6
-                    flex
-                    h-16
-                    w-16
-                    items-center
-                    justify-center
-                    rounded-2xl
-                    text-3xl
-                    transition-transform
-                    duration-500
-                    group-hover:scale-105
+                  <motion.div
+                    whileHover={{
+                      scale: 1.08,
+                      rotate: 3,
+                    }}
+                    transition={{
+                      duration: 0.25,
+                    }}
+                    className={`
+                      mb-6
+                      flex
+                      h-16
+                      w-16
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      text-3xl
 
-                    ${
-                      activeTab === "dental"
-                        ? "bg-blue-100 text-blue-700"
-                        : "bg-amber-100 text-amber-700"
-                    }
-                  `}
-                >
-                  {activeTab === "dental" ? (
-                    <FaTooth size={30} />
-                  ) : (
-                    <Sparkles size={30} />
-                  )}
+                      ${
+                        isFacial
+                          ? "bg-amber-100 text-amber-700"
+                          : "bg-blue-100 text-blue-700"
+                      }
+                    `}
+                  >
+                    {isFacial ? (
+                      <Sparkles size={30} />
+                    ) : (
+                      <FaTooth size={30} />
+                    )}
+                  </motion.div>
+
+
+                  {/* Title */}
+
+                  <h3 className="mt-2 text-xl font-bold sm:text-2xl">
+                    {service.title}
+                  </h3>
+
+
+                  {/* Description */}
+
+                  <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+                    {service.description}
+                  </p>
+
+
+                  {/* Benefits */}
+
+                  <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
+
+                    {service.benefits.map((item, benefitIndex) => (
+
+                      <motion.li
+                        key={benefitIndex}
+                        initial={{
+                          opacity: 0,
+                          x: -8,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          x: 0,
+                        }}
+                        transition={{
+                          duration: 0.3,
+                          delay: 0.15 + benefitIndex * 0.05,
+                        }}
+                        className="
+                          flex
+                          items-start
+                          gap-3
+                          text-sm
+                          leading-6
+                          text-slate-600
+                          sm:text-base
+                        "
+                      >
+
+                        <span
+                          className={
+                            isFacial
+                              ? "font-bold text-amber-700"
+                              : "font-bold text-blue-700"
+                          }
+                        >
+                          ✓
+                        </span>
+
+                        {item}
+
+                      </motion.li>
+
+                    ))}
+
+                  </ul>
+
                 </div>
 
+              </motion.div>
 
-                {/* Title */}
+            ))}
 
-                <h3 className="mt-2 text-xl font-bold sm:text-2xl">
-                  {service.title}
-                </h3>
+          </motion.div>
 
-
-                {/* Description */}
-
-                <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
-                  {service.description}
-                </p>
-
-
-                {/* Benefits */}
-
-                <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
-
-                  {service.benefits.map((item, index) => (
-
-                    <li
-                      key={index}
-                      className="
-                        flex
-                        items-start
-                        gap-3
-                        text-sm
-                        leading-6
-                        text-slate-600
-                        sm:text-base
-                      "
-                    >
-
-                      <span
-                        className={
-                          activeTab === "dental"
-                            ? "font-bold text-blue-700"
-                            : "font-bold text-amber-700"
-                        }
-                      >
-                        ✓
-                      </span>
-
-                      {item}
-
-                    </li>
-
-                  ))}
-
-                </ul>
-
-              </div>
-
-            </div>
-
-          ))}
-
-        </div>
+        </AnimatePresence>
 
       </div>
     </section>
