@@ -169,13 +169,16 @@ function Testimonials() {
 
           <motion.div
             className="
+              min-h-[470px]
               rounded-[28px]
               bg-slate-50
               p-7
               text-center
               shadow-md
+              sm:min-h-[480px]
               sm:rounded-[32px]
               sm:p-10
+              md:min-h-[500px]
               md:p-14
             "
             whileHover={{
@@ -237,7 +240,7 @@ function Testimonials() {
                 CHANGING TESTIMONIAL
             ========================== */}
 
-            <div className="relative mt-7 min-h-[150px] sm:mt-8 sm:min-h-[165px]">
+            <div className="relative mt-7 sm:mt-8">
 
               <AnimatePresence mode="wait">
 
@@ -259,7 +262,6 @@ function Testimonials() {
                     duration: 0.45,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="absolute inset-x-0 top-0"
                 >
 
                   {/* Review */}
@@ -281,7 +283,7 @@ function Testimonials() {
 
                   {/* Patient */}
 
-                  <div className="mt-7 sm:mt-8">
+                  <div className="mt-6 sm:mt-8">
 
                     <h3 className="text-xl font-bold">
                       {testimonials[currentIndex].name}
@@ -415,10 +417,9 @@ function Testimonials() {
               className={`
                 h-2.5
                 rounded-full
-                ${
-                  currentIndex === index
-                    ? "w-8 bg-blue-700"
-                    : "w-2.5 bg-slate-300"
+                ${currentIndex === index
+                  ? "w-8 bg-blue-700"
+                  : "w-2.5 bg-slate-300"
                 }
               `}
               aria-label={`Go to testimonial ${index + 1}`}
