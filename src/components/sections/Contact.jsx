@@ -223,7 +223,9 @@ function Contact() {
                 rel="noopener noreferrer"
                 className="
                   inline-flex
+                  w-full
                   items-center
+                  justify-center
                   gap-2
                   rounded-full
                   bg-green-600
@@ -235,6 +237,7 @@ function Contact() {
                   duration-300
                   hover:-translate-y-1
                   hover:bg-green-700
+                  sm:w-auto
                 "
               >
                 <FaWhatsapp />
