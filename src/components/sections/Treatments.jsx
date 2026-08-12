@@ -4,8 +4,7 @@ import {
   dentalServices,
   facialServices,
 } from "../../data/services";
-import { FaTooth } from "react-icons/fa6";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Smile } from "lucide-react";
 
 function Treatments() {
   const [activeTab, setActiveTab] = useState("facial");
@@ -20,7 +19,9 @@ function Treatments() {
     ? "Advanced facial aesthetic treatments designed to enhance your natural beauty, rejuvenate your skin, and boost your confidence."
     : "Comprehensive dental treatments to restore oral health, improve function, and create confident smiles.";
 
-  const services = isFacial ? facialServices : dentalServices;
+  const services = isFacial
+    ? facialServices
+    : dentalServices;
 
   return (
     <section
@@ -44,16 +45,25 @@ function Treatments() {
 
         {/* =========================================
             HEADING
-        ========================================= */}
+        ========================================== */}
 
         <div className="text-center">
 
           {/* Section Label */}
 
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            initial={{
+              opacity: 0,
+              y: 15,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
             transition={{
               duration: 0.6,
               ease: "easeOut",
@@ -118,7 +128,6 @@ function Treatments() {
                 {heading}
               </h2>
 
-
               <p
                 className="
                   mx-auto
@@ -144,7 +153,7 @@ function Treatments() {
 
         {/* =========================================
             TREATMENT TABS
-        ========================================= */}
+        ========================================== */}
 
         <motion.div
           initial={{
@@ -189,7 +198,7 @@ function Treatments() {
             "
           >
 
-            {/* Facial */}
+            {/* Facial Aesthetics */}
 
             <button
               onClick={() => setActiveTab("facial")}
@@ -206,18 +215,24 @@ function Treatments() {
                 sm:px-8
                 sm:text-base
 
-                ${
-                  isFacial
-                    ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-white shadow-lg"
-                    : "text-slate-600 hover:text-amber-600"
+                ${isFacial
+                  ? "bg-gradient-to-r from-amber-500 to-yellow-500 text-white shadow-lg"
+                  : "text-slate-600 hover:text-amber-600"
                 }
               `}
             >
-              ✨ Facial Aesthetics
+              <span className="inline-flex items-center justify-center gap-2">
+                <Sparkles
+                  size={18}
+                  strokeWidth={2}
+                />
+
+                Facial Aesthetics
+              </span>
             </button>
 
 
-            {/* Dental */}
+            {/* Dental Care */}
 
             <button
               onClick={() => setActiveTab("dental")}
@@ -234,14 +249,20 @@ function Treatments() {
                 sm:px-8
                 sm:text-base
 
-                ${
-                  !isFacial
-                    ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg"
-                    : "text-slate-600 hover:text-blue-700"
+                ${!isFacial
+                  ? "bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg"
+                  : "text-slate-600 hover:text-blue-700"
                 }
               `}
             >
-              🦷 Dental Care
+              <span className="inline-flex items-center justify-center gap-2">
+                <Smile
+                  size={18}
+                  strokeWidth={2}
+                />
+
+                Dental Care
+              </span>
             </button>
 
           </div>
@@ -251,7 +272,7 @@ function Treatments() {
 
         {/* =========================================
             TREATMENT CARDS
-        ========================================= */}
+        ========================================== */}
 
         <AnimatePresence mode="wait">
 
@@ -274,14 +295,14 @@ function Treatments() {
               ease: "easeOut",
             }}
             className="
-              mt-12
+              mt-10
               grid
               items-stretch
               gap-6
-              sm:mt-16
+              sm:mt-14
               sm:gap-8
               md:grid-cols-2
-              lg:mt-20
+              lg:mt-16
               lg:grid-cols-3
             "
           >
@@ -304,133 +325,213 @@ function Treatments() {
                   ease: "easeOut",
                 }}
                 whileHover={{
-                  y: -8,
+                  y: -6,
                   transition: {
-                    duration: 0.25,
+                    duration: 0.2,
+                    ease: "easeOut",
                   },
                 }}
                 className={`
                   group
                   flex
-                  min-h-[340px]
+                  min-h-[600px]
                   flex-col
+                  overflow-hidden
                   rounded-[30px]
                   border
-                  bg-white
-                  p-1
-                  transition-shadow
-                  duration-500
-                  hover:shadow-2xl
+                  bg-white/80
+                  shadow-sm
+                  backdrop-blur-sm
+                  transition-all
+                  duration-300
 
-                  ${
-                    isFacial
-                      ? "border-amber-100 hover:border-amber-300"
-                      : "border-blue-100 hover:border-blue-300"
+                  ${isFacial
+                    ? `
+                        border-amber-100
+                        hover:border-amber-300
+                        hover:shadow-[0_20px_45px_rgba(245,158,11,0.16)]
+                      `
+                    : `
+                        border-blue-100
+                        hover:border-blue-300
+                        hover:shadow-[0_20px_45px_rgba(37,99,235,0.16)]
+                      `
                   }
                 `}
               >
 
-                {/* Card Content */}
+                {/* =================================
+                    TREATMENT IMAGE
+                ================================== */}
 
-                <div className="flex h-full flex-col p-7 sm:p-8 lg:p-10">
+                <div
+                  className="
+                    relative
+                    flex
+                    h-60
+                    w-full
+                    items-center
+                    justify-center
+                    overflow-hidden
+                    bg-slate-50
+                    p-3
+                    sm:h-64
+                    sm:p-4
+                  "
+                >
 
-                  {/* Icon */}
+                  <motion.img
+                    src={service.image}
+                    alt={`${service.title} treatment at Luster Dental & Facial Aesthetic Clinic`}
+                    loading="lazy"
+                    className="
+                      h-full
+                      w-full
+                      object-contain
+                      transition-transform
+                      duration-700
+                      ease-out
+                      group-hover:scale-[1.04]
+                    "
+                  />
 
-                  <motion.div
-                    whileHover={{
-                      scale: 1.08,
-                      rotate: 3,
-                    }}
-                    transition={{
-                      duration: 0.25,
-                    }}
+                  {/* Soft Image Overlay */}
+
+                  <div
                     className={`
-                      mb-6
-                      flex
-                      h-16
-                      w-16
-                      items-center
-                      justify-center
-                      rounded-2xl
-                      text-3xl
+                      pointer-events-none
+                      absolute
+                      inset-0
+                      transition-opacity
+                      duration-500
 
-                      ${
-                        isFacial
-                          ? "bg-amber-100 text-amber-700"
-                          : "bg-blue-100 text-blue-700"
+                      ${isFacial
+                        ? "bg-gradient-to-t from-amber-500/5 via-transparent to-white/10"
+                        : "bg-gradient-to-t from-blue-500/5 via-transparent to-white/10"
                       }
                     `}
-                  >
-                    {isFacial ? (
-                      <Sparkles size={30} />
-                    ) : (
-                      <FaTooth size={30} />
-                    )}
-                  </motion.div>
+                  />
 
+                </div>
+
+
+                {/* =================================
+                    CARD CONTENT
+                ================================== */}
+
+                <div
+                  className="
+                    flex
+                    flex-1
+                    flex-col
+                    p-7
+                    sm:p-8
+                  "
+                >
 
                   {/* Title */}
 
-                  <h3 className="mt-2 text-xl font-bold sm:text-2xl">
+                  <h3
+                    className={`
+                      min-h-[58px]
+                      text-xl
+                      font-bold
+                      transition-colors
+                      duration-300
+                      sm:text-2xl
+
+                      ${isFacial
+                        ? "group-hover:text-amber-700"
+                        : "group-hover:text-blue-700"
+                      }
+                    `}
+                  >
                     {service.title}
                   </h3>
 
 
                   {/* Description */}
 
-                  <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+                  <p
+                    className="
+                      mt-4
+                      text-base
+                      leading-7
+                      text-slate-600
+                      sm:mt-5
+                      sm:text-lg
+                      sm:leading-8
+                    "
+                  >
                     {service.description}
                   </p>
 
 
                   {/* Benefits */}
 
-                  <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
+                  <ul
+                    className="
+                      mt-7
+                      space-y-3
+                      sm:mt-8
+                      sm:space-y-4
+                    "
+                  >
 
-                    {service.benefits.map((item, benefitIndex) => (
+                    {service.benefits.map(
+                      (item, benefitIndex) => (
 
-                      <motion.li
-                        key={benefitIndex}
-                        initial={{
-                          opacity: 0,
-                          x: -8,
-                        }}
-                        animate={{
-                          opacity: 1,
-                          x: 0,
-                        }}
-                        transition={{
-                          duration: 0.3,
-                          delay: 0.15 + benefitIndex * 0.05,
-                        }}
-                        className="
-                          flex
-                          items-start
-                          gap-3
-                          text-sm
-                          leading-6
-                          text-slate-600
-                          sm:text-base
-                        "
-                      >
-
-                        <span
-                          className={
-                            isFacial
-                              ? "font-bold text-amber-700"
-                              : "font-bold text-blue-700"
-                          }
+                        <motion.li
+                          key={benefitIndex}
+                          initial={{
+                            opacity: 0,
+                            x: -8,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            x: 0,
+                          }}
+                          transition={{
+                            duration: 0.3,
+                            delay:
+                              0.15 +
+                              benefitIndex * 0.05,
+                          }}
+                          className="
+                            flex
+                            items-start
+                            gap-3
+                            text-sm
+                            leading-6
+                            text-slate-600
+                            sm:text-base
+                          "
                         >
-                          ✓
-                        </span>
 
-                        {item}
+                          <span
+                            className={`
+                              mt-0.5
+                              font-bold
+                              ${isFacial
+                                ? "text-amber-600"
+                                : "text-blue-700"
+                              }
+                            `}
+                          >
+                            ✓
+                          </span>
 
-                      </motion.li>
+                          {item}
 
-                    ))}
+                        </motion.li>
+
+                      )
+                    )}
 
                   </ul>
+
+
+
 
                 </div>
 

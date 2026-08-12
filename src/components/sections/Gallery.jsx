@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import gallery from "../../data/gallery";
 import {
@@ -12,6 +13,10 @@ function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  /* =========================================
+      SHOW PREVIOUS IMAGE
+  ========================================== */
+
   const showPrevious = (e) => {
     e.stopPropagation();
 
@@ -24,6 +29,11 @@ function Gallery() {
     setSelectedImage(gallery[newIndex]);
   };
 
+
+  /* =========================================
+      SHOW NEXT IMAGE
+  ========================================== */
+
   const showNext = (e) => {
     e.stopPropagation();
 
@@ -35,6 +45,11 @@ function Gallery() {
     setSelectedIndex(newIndex);
     setSelectedImage(gallery[newIndex]);
   };
+
+
+  /* =========================================
+      KEYBOARD CONTROLS
+  ========================================== */
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -60,6 +75,7 @@ function Gallery() {
     };
   }, [selectedImage, selectedIndex]);
 
+
   return (
     <section
       id="gallery"
@@ -69,20 +85,48 @@ function Gallery() {
         lg:py-28
       "
     >
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
 
-        {/* Heading */}
+      {/* =====================================================
+          MAIN GALLERY CONTAINER
+      ====================================================== */}
+
+      <div
+        className="
+          mx-auto
+          w-full
+          max-w-7xl
+          px-5
+          sm:px-6
+          lg:px-8
+        "
+      >
+
+        {/* =====================================================
+            HEADING
+        ====================================================== */}
 
         <motion.div
           className="text-center"
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          initial={{
+            opacity: 0,
+            y: 35,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.3,
+          }}
           transition={{
             duration: 0.7,
             ease: [0.22, 1, 0.36, 1],
           }}
         >
+
+          {/* Section Label */}
+
           <motion.p
             className="
               inline-flex
@@ -96,9 +140,17 @@ function Gallery() {
               tracking-[0.2em]
               text-blue-700
             "
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
             transition={{
               duration: 0.6,
               ease: "easeOut",
@@ -106,6 +158,9 @@ function Gallery() {
           >
             Clinic Gallery
           </motion.p>
+
+
+          {/* Heading */}
 
           <motion.h2
             className="
@@ -116,10 +171,20 @@ function Gallery() {
               sm:mt-6
               sm:text-5xl
             "
-            style={{ fontFamily: "var(--font-heading)" }}
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            style={{
+              fontFamily: "var(--font-heading)",
+            }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
             transition={{
               duration: 0.7,
               delay: 0.1,
@@ -128,6 +193,9 @@ function Gallery() {
           >
             Explore Our Clinic
           </motion.h2>
+
+
+          {/* Description */}
 
           <motion.p
             className="
@@ -141,9 +209,17 @@ function Gallery() {
               sm:text-lg
               sm:leading-8
             "
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
             transition={{
               duration: 0.7,
               delay: 0.2,
@@ -153,18 +229,22 @@ function Gallery() {
             Discover our modern facilities, advanced dental technology,
             comfortable treatment rooms and welcoming environment.
           </motion.p>
+
         </motion.div>
 
 
-        {/* Gallery */}
+        {/* =====================================================
+            GALLERY GRID
+        ====================================================== */}
 
         <motion.div
           className="
             mt-12
             grid
-            gap-5
+            grid-cols-2
+            gap-3
             sm:mt-16
-            sm:gap-8
+            sm:gap-6
             md:grid-cols-2
             lg:mt-20
             lg:grid-cols-3
@@ -177,6 +257,7 @@ function Gallery() {
           }}
           variants={{
             hidden: {},
+
             visible: {
               transition: {
                 staggerChildren: 0.12,
@@ -184,39 +265,49 @@ function Gallery() {
             },
           }}
         >
+
           {gallery.map((item) => (
+
             <motion.div
               key={item.id}
+
               onClick={() => {
                 setSelectedImage(item);
+
                 setSelectedIndex(
                   gallery.findIndex(
                     (image) => image.id === item.id
                   )
                 );
               }}
+
               variants={{
                 hidden: {
                   opacity: 0,
                   y: 45,
                   scale: 0.97,
                 },
+
                 visible: {
                   opacity: 1,
                   y: 0,
                   scale: 1,
                 },
               }}
+
               transition={{
                 duration: 0.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
+
               whileHover={{
                 y: -6,
+
                 transition: {
                   duration: 0.3,
                 },
               }}
+
               className="
                 group
                 relative
@@ -226,21 +317,27 @@ function Gallery() {
                 shadow-md
               "
             >
-              {/* Image */}
+
+              {/* =================================================
+                  GALLERY IMAGE
+              ================================================== */}
 
               <motion.img
                 src={item.image}
                 alt={item.title}
+
                 className="
-                  h-64
+                  h-44
                   w-full
                   object-cover
-                  sm:h-72
+                  sm:h-60
                   lg:h-80
                 "
+
                 whileHover={{
                   scale: 1.08,
                 }}
+
                 transition={{
                   duration: 0.7,
                   ease: [0.22, 1, 0.36, 1],
@@ -248,7 +345,9 @@ function Gallery() {
               />
 
 
-              {/* Overlay */}
+              {/* =================================================
+                  HOVER OVERLAY
+              ================================================== */}
 
               <motion.div
                 className="
@@ -260,38 +359,51 @@ function Gallery() {
                   justify-center
                   bg-blue-900/70
                 "
+
                 initial={{
                   opacity: 0,
                 }}
+
                 whileHover={{
                   opacity: 1,
                 }}
+
                 transition={{
                   duration: 0.35,
                   ease: "easeOut",
                 }}
               >
+
+                {/* Expand Icon */}
+
                 <motion.div
                   initial={{
                     opacity: 0,
                     scale: 0.7,
                     y: 10,
                   }}
+
                   whileHover={{
                     opacity: 1,
                     scale: 1,
                     y: 0,
                   }}
+
                   transition={{
                     duration: 0.35,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
+
                   <FaExpand
                     className="text-white"
                     size={28}
                   />
+
                 </motion.div>
+
+
+                {/* Image Title */}
 
                 <motion.h3
                   className="
@@ -304,14 +416,17 @@ function Gallery() {
                     sm:mt-5
                     sm:text-2xl
                   "
+
                   initial={{
                     opacity: 0,
                     y: 10,
                   }}
+
                   whileHover={{
                     opacity: 1,
                     y: 0,
                   }}
+
                   transition={{
                     duration: 0.35,
                     delay: 0.05,
@@ -319,21 +434,34 @@ function Gallery() {
                 >
                   {item.title}
                 </motion.h3>
+
               </motion.div>
+
             </motion.div>
+
           ))}
+
         </motion.div>
 
+      </div>
 
-        {/* Fullscreen Gallery */}
 
+      {/* =========================================================
+          FULLSCREEN GALLERY LIGHTBOX
+
+          IMPORTANT:
+          This is outside the max-width container and uses
+          z-[9999], so it will appear above the liquid glass navbar.
+      ========================================================== */}
+
+      {createPortal(
         <AnimatePresence>
           {selectedImage && (
             <motion.div
               className="
                 fixed
                 inset-0
-                z-[100]
+                z-[99999]
                 flex
                 items-center
                 justify-center
@@ -355,7 +483,9 @@ function Gallery() {
               }}
             >
 
-              {/* Close Button */}
+              {/* =========================================
+                  CLOSE BUTTON
+              ========================================== */}
 
               <motion.button
                 onClick={() => setSelectedImage(null)}
@@ -363,7 +493,7 @@ function Gallery() {
                   absolute
                   right-6
                   top-6
-                  z-10
+                  z-[100000]
                   flex
                   h-12
                   w-12
@@ -390,15 +520,14 @@ function Gallery() {
                 whileTap={{
                   scale: 0.9,
                 }}
-                transition={{
-                  duration: 0.3,
-                }}
               >
                 <FaTimes size={22} />
               </motion.button>
 
 
-              {/* Previous Button */}
+              {/* =========================================
+                  PREVIOUS BUTTON
+              ========================================== */}
 
               <motion.button
                 onClick={showPrevious}
@@ -406,6 +535,7 @@ function Gallery() {
                   absolute
                   left-4
                   top-1/2
+                  z-[100000]
                   flex
                   h-12
                   w-12
@@ -434,21 +564,22 @@ function Gallery() {
                 whileTap={{
                   scale: 0.9,
                 }}
-                transition={{
-                  duration: 0.3,
-                }}
               >
                 <FaChevronLeft size={22} />
               </motion.button>
 
 
-              {/* Image */}
+              {/* =========================================
+                  IMAGE
+              ========================================== */}
 
               <motion.img
                 key={selectedImage.id}
                 src={selectedImage.image}
                 alt={selectedImage.title}
                 className="
+                  relative
+                  z-[99999]
                   max-h-[75vh]
                   max-w-[88vw]
                   rounded-2xl
@@ -477,7 +608,9 @@ function Gallery() {
               />
 
 
-              {/* Next Button */}
+              {/* =========================================
+                  NEXT BUTTON
+              ========================================== */}
 
               <motion.button
                 onClick={showNext}
@@ -485,9 +618,11 @@ function Gallery() {
                   absolute
                   right-4
                   top-1/2
+                  z-[100000]
                   flex
                   h-12
                   w-12
+                  -translate-y-1/2
                   items-center
                   justify-center
                   rounded-full
@@ -512,18 +647,16 @@ function Gallery() {
                 whileTap={{
                   scale: 0.9,
                 }}
-                transition={{
-                  duration: 0.3,
-                }}
               >
                 <FaChevronRight size={22} />
               </motion.button>
 
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
 
-      </div>
     </section>
   );
 }

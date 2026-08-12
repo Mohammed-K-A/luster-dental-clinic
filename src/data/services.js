@@ -10,6 +10,8 @@ export const dentalServices = [
       "Long Lasting",
       "Safe Procedure",
     ],
+
+    image: "/images/dental/implant.png",
   },
 
   {
@@ -23,6 +25,8 @@ export const dentalServices = [
       "Tooth Saving",
       "Advanced Technology",
     ],
+
+    image: "/images/dental/root-canal.png",
   },
 
   {
@@ -36,6 +40,8 @@ export const dentalServices = [
       "Personalized Treatment",
       "Natural Results",
     ],
+
+    image: "/images/dental/smile-design.png",
   },
 
   {
@@ -49,6 +55,8 @@ export const dentalServices = [
       "Comfortable Treatment",
       "Improved Confidence",
     ],
+
+    image: "/images/dental/braces.png",
   },
 
   {
@@ -62,6 +70,8 @@ export const dentalServices = [
       "Safe Procedure",
       "Quick Results",
     ],
+
+    image: "/images/dental/whitening.png",
   },
 
   {
@@ -75,8 +85,11 @@ export const dentalServices = [
       "Preventive Care",
       "Healthy Smile",
     ],
+
+    image: "/images/dental/general.png",
   },
 ];
+
 
 export const facialServices = [
   {
@@ -90,6 +103,8 @@ export const facialServices = [
       "Deep Hydration",
       "No Downtime",
     ],
+
+    image: "/images/facial/hydrafacial.png",
   },
 
   {
@@ -103,6 +118,8 @@ export const facialServices = [
       "Brighter Complexion",
       "Reduced Pigmentation",
     ],
+
+    image: "/images/facial/chemical-peel.png",
   },
 
   {
@@ -116,6 +133,8 @@ export const facialServices = [
       "Skin Rejuvenation",
       "Hair Growth Support",
     ],
+
+    image: "/images/facial/prp.png",
   },
 
   {
@@ -129,6 +148,8 @@ export const facialServices = [
       "Stimulates Growth",
       "Advanced Technology",
     ],
+
+    image: "/images/facial/gfc.png",
   },
 
   {
@@ -142,6 +163,8 @@ export const facialServices = [
       "Enhanced Appearance",
       "Safe Procedure",
     ],
+
+    image: "/images/facial/lip.png",
   },
 
   {
@@ -155,5 +178,7 @@ export const facialServices = [
       "Healthy Glow",
       "Minimal Downtime",
     ],
+
+    image: "/images/facial/skin.png",
   },
 ];

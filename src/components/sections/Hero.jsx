@@ -1,9 +1,13 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { bookingWhatsappLink } from "../../data/clinic";
+import {
+  Sparkles,
+  Smile,
+  HeartHandshake,
+} from "lucide-react";
 
 function Hero() {
-
   const typingTexts = [
     "Smile With Confidence.",
     "Glow With Confidence.",
@@ -14,6 +18,10 @@ function Hero() {
   const [textIndex, setTextIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
 
+  /* =========================
+     TYPING ANIMATION
+  ========================== */
+
   useEffect(() => {
     let index = 0;
     let deleting = false;
@@ -23,14 +31,12 @@ function Hero() {
 
     const animateText = () => {
       if (!deleting) {
-        // Typing
         setDisplayText(currentText.slice(0, index + 1));
         index++;
 
         if (index === currentText.length) {
           setIsTyping(false);
 
-          // Pause after completing the phrase
           timeout = setTimeout(() => {
             deleting = true;
             setIsTyping(true);
@@ -42,7 +48,6 @@ function Hero() {
 
         timeout = setTimeout(animateText, 80);
       } else {
-        // Deleting
         setDisplayText(currentText.slice(0, index - 1));
         index--;
 
@@ -54,7 +59,6 @@ function Hero() {
 
           setTextIndex(nextIndex);
 
-          // Small pause before next phrase
           timeout = setTimeout(animateText, 400);
 
           return;
@@ -77,21 +81,68 @@ function Hero() {
         flex
         min-h-screen
         items-center
-        overflow-hidden 
+        overflow-hidden
         pt-40
         pb-20
         sm:pt-44
         sm:pb-24
         lg:pt-36
+        lg:min-h-[92vh]
       "
     >
 
-      {/* Background Blur */}
+      {/* =========================
+          BACKGROUND BLUR
+      ========================== */}
+
+      <motion.div
+        className="
+          absolute
+          -left-32
+          top-32
+          h-80
+          w-80
+          rounded-full
+          bg-blue-200/30
+          blur-3xl
+        "
+        animate={{
+          y: [0, -12, 0],
+          x: [0, 8, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <motion.div
+        className="
+          absolute
+          right-0
+          top-20
+          h-96
+          w-96
+          rounded-full
+          bg-cyan-200/20
+          blur-3xl
+        "
+        animate={{
+          y: [0, 14, 0],
+          x: [0, -8, 0],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
 
-
-
-      {/* Main Content */}
+      {/* =========================
+          MAIN CONTENT
+      ========================== */}
 
       <div
         className="
@@ -105,13 +156,15 @@ function Hero() {
           gap-12
           px-5
           sm:px-6
-          lg:grid-cols-2
-          lg:gap-16
+          lg:grid-cols-[1.1fr_0.9fr]
+          lg:gap-10
           lg:px-8
         "
       >
 
-        {/* Left Content */}
+        {/* =========================
+            LEFT CONTENT
+        ========================== */}
 
         <div>
 
@@ -133,8 +186,14 @@ function Hero() {
               sm:text-sm
               sm:tracking-[0.2em]
             "
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 0.7,
               ease: "easeOut",
@@ -149,7 +208,7 @@ function Hero() {
           <motion.h1
             className="
               mt-6
-              max-w-2xl
+              max-w-[800px]
               text-4xl
               font-bold
               leading-[1.08]
@@ -159,20 +218,35 @@ function Hero() {
               lg:mt-6
               lg:text-7xl
             "
-            style={{ fontFamily: "var(--font-heading)" }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            style={{
+              fontFamily: "var(--font-heading)",
+            }}
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 0.8,
               delay: 0.1,
               ease: "easeOut",
             }}
           >
+
+            {/* Static Heading */}
+
             Reveal Your Natural Beauty.
+
+            {/* Animated Heading */}
 
             <span
               className="
                 block
+                min-h-[1.08em]
+                whitespace-nowrap
                 bg-gradient-to-r
                 from-amber-500
                 via-yellow-500
@@ -182,6 +256,8 @@ function Hero() {
               "
             >
               {displayText}
+
+              {/* Cursor */}
 
               {isTyping && (
                 <span
@@ -198,10 +274,13 @@ function Hero() {
                 />
               )}
             </span>
+
           </motion.h1>
 
 
-          {/* Subheading */}
+          {/* =========================
+              SUBHEADING
+          ========================== */}
 
           <motion.h2
             className="
@@ -213,9 +292,16 @@ function Hero() {
               sm:text-2xl
               lg:mt-6
               lg:text-3xl
+              lg:whitespace-nowrap
             "
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 0.7,
               delay: 0.2,
@@ -241,22 +327,30 @@ function Hero() {
               sm:text-lg
               sm:leading-8
             "
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 0.7,
               delay: 0.3,
               ease: "easeOut",
             }}
           >
-            At Luster Dental & Facial Aesthetic Clinic, we bring modern facial
-            aesthetic treatments and advanced dental care together, helping
-            you achieve radiant skin, enhanced features, a healthy smile,
-            and renewed confidence through personalized care.
+            At Luster Dental & Facial Aesthetic Clinic, we bring modern
+            facial aesthetic treatments and advanced dental care together,
+            helping you achieve radiant skin, enhanced features, a healthy
+            smile, and renewed confidence through personalized care.
           </motion.p>
 
 
-          {/* Buttons */}
+          {/* =========================
+              BUTTONS
+          ========================== */}
 
           <motion.div
             className="
@@ -269,14 +363,22 @@ function Hero() {
               sm:flex-wrap
               sm:gap-5
             "
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
             transition={{
               duration: 0.7,
               delay: 0.4,
               ease: "easeOut",
             }}
           >
+
+            {/* Book Consultation */}
 
             <motion.a
               href={bookingWhatsappLink}
@@ -301,7 +403,8 @@ function Hero() {
               whileHover={{
                 y: -3,
                 scale: 1.02,
-                boxShadow: "0 12px 25px rgba(37, 99, 235, 0.25)",
+                boxShadow:
+                  "0 12px 25px rgba(37, 99, 235, 0.25)",
               }}
               whileTap={{
                 scale: 0.98,
@@ -313,6 +416,8 @@ function Hero() {
               Book Consultation
             </motion.a>
 
+
+            {/* View Treatments */}
 
             <motion.a
               href="#treatments"
@@ -347,84 +452,20 @@ function Hero() {
 
           </motion.div>
 
-
-          {/* Features */}
-
-          <motion.div
-            className="
-              mt-10
-              grid
-              gap-4
-              sm:mt-12
-              sm:grid-cols-3
-            "
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.1,
-                  delayChildren: 0.5,
-                },
-              },
-            }}
-          >
-
-            {[
-              "✨ Advanced Facial Aesthetics",
-              "🦷 Advanced Dental Care",
-              "❤️ Personalized Treatment",
-            ].map((feature) => (
-
-              <motion.div
-                key={feature}
-                variants={{
-                  hidden: {
-                    opacity: 0,
-                    y: 20,
-                  },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                  },
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeOut",
-                }}
-                whileHover={{
-                  y: -4,
-                  transition: {
-                    duration: 0.2,
-                  },
-                }}
-                className="
-                  rounded-2xl
-                  bg-white
-                  p-5
-                  shadow-sm
-                  transition-shadow
-                  duration-300
-                  hover:shadow-md
-                "
-              >
-                <h3 className="font-semibold">
-                  {feature}
-                </h3>
-              </motion.div>
-
-            ))}
-
-          </motion.div>
-
         </div>
 
 
-        {/* Right Image */}
+        {/* =========================
+            RIGHT IMAGE - GLASSMORPHISM
+        ========================== */}
 
         <motion.div
-          className="flex justify-center"
+          className="
+            flex
+            justify-center
+            lg:translate-x-12
+            xl:translate-x-12
+          "
           initial={{
             opacity: 0,
             scale: 0.94,
@@ -442,31 +483,234 @@ function Hero() {
           }}
         >
 
-          <motion.img
-            src="/images/hero/hero.png"
-            alt="Luster Dental Clinic"
+          {/* Glass Frame */}
+
+          <div
             className="
-              mt-4
+              relative
               w-full
               max-w-md
-              rounded-[28px]
-              border-4
-              border-white
-              shadow-2xl
-              sm:mt-6
+              rounded-[32px]
+              border
+              border-white/70
+              bg-white/20
+              p-2
+              shadow-[0_25px_60px_rgba(30,64,175,0.18)]
+              backdrop-blur-md
               sm:max-w-xl
-              lg:mt-0
+              sm:p-2.5
               lg:max-w-2xl
+              lg:rounded-[36px]
+              lg:p-3
             "
-            whileHover={{
-              scale: 1.015,
-            }}
-            transition={{
-              duration: 0.5,
-              ease: "easeOut",
-            }}
-          />
+          >
 
+            {/* Soft Glass Glow */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -inset-2
+                -z-10
+                rounded-[38px]
+                bg-blue-300/20
+                blur-2xl
+              "
+            />
+
+            {/* Image */}
+
+            <motion.img
+              src="/images/hero/hero.png"
+              alt="Luster Dental Clinic"
+              className="
+                relative
+                z-10
+                block
+                w-full
+                rounded-[25px]
+                border
+                border-white/60
+                object-cover
+                shadow-[0_15px_40px_rgba(15,23,42,0.12)]
+                sm:rounded-[28px]
+                lg:rounded-[30px]
+              "
+              whileHover={{
+                scale: 1.015,
+              }}
+              transition={{
+                duration: 0.5,
+                ease: "easeOut",
+              }}
+            />
+
+            {/* Glass Highlight */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                inset-x-6
+                top-3
+                z-20
+                h-px
+                rounded-full
+                bg-white/80
+                blur-[1px]
+              "
+            />
+
+          </div>
+
+        </motion.div>
+
+
+        {/* =========================
+            FEATURES
+            FULL WIDTH + CENTERED
+        ========================== */}
+
+        <motion.div
+          className="
+            col-span-1
+            mx-auto
+            mt-10
+            grid
+            w-full
+            max-w-[280px]
+            grid-cols-1
+            gap-4
+
+            sm:mt-12
+
+            md:max-w-[650px]
+            md:grid-cols-3
+            md:gap-6
+
+            lg:col-span-2
+            lg:mt-16
+            lg:max-w-[760px]
+            lg:gap-8
+          "
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.12,
+                delayChildren: 0.5,
+              },
+            },
+          }}
+        >
+          {[
+            {
+              icon: Sparkles,
+              title: "Advanced Facial Aesthetics",
+            },
+            {
+              icon: Smile,
+              title: "Advanced Dental Care",
+            },
+            {
+              icon: HeartHandshake,
+              title: "Personalized Treatment",
+            },
+          ].map((feature) => {
+            const Icon = feature.icon;
+
+            return (
+              <motion.div
+                key={feature.title}
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 18,
+                  },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                  },
+                }}
+                transition={{
+                  duration: 0.55,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                whileHover={{
+                  y: -2,
+                }}
+                className="
+                  group
+                  flex
+                  w-full
+                  items-center
+                  justify-start
+                  gap-3
+                  py-2
+                  transition-all
+                  duration-300
+                  md:justify-center
+                  md:gap-4
+                "
+              >
+
+                {/* Icon */}
+
+                <motion.div
+                  whileHover={{
+                    scale: 1.08,
+                    rotate: 3,
+                  }}
+                  transition={{
+                    duration: 0.25,
+                  }}
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-blue-50
+                    text-blue-700
+                    ring-1
+                    ring-blue-100
+                    transition-colors
+                    duration-300
+                    group-hover:bg-blue-100
+                  "
+                >
+                  <Icon
+                    size={21}
+                    strokeWidth={1.8}
+                  />
+                </motion.div>
+
+                {/* Text */}
+
+                <h3
+                  className="
+                    text-left
+                    text-sm
+                    font-semibold
+                    leading-5
+                    text-slate-700
+                    transition-colors
+                    duration-300
+                    group-hover:text-blue-700
+                    sm:text-base
+                  "
+                >
+                  {feature.title}
+                </h3>
+
+              </motion.div>
+            );
+          })}
         </motion.div>
 
       </div>
