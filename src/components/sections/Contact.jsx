@@ -1,22 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
-import { clinic, enquiryWhatsappLink } from "../../data/clinic";
+import { clinic } from "../../data/clinic";
 
 import {
   FaPhoneAlt,
   FaEnvelope,
   FaMapMarkerAlt,
   FaClock,
-  FaWhatsapp,
+  FaArrowRight,
 } from "react-icons/fa";
 
 function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    message: "",
-  });
+  const [highlightPhone, setHighlightPhone] = useState(false);
+
+  /* =========================================
+      HIGHLIGHT PHONE CARD
+  ========================================== */
+
+  useEffect(() => {
+    const handleHighlightPhone = () => {
+      const phoneCard = document.getElementById("contact-phone");
+
+      if (phoneCard) {
+        phoneCard.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+
+      setHighlightPhone(true);
+
+      const timer = setTimeout(() => {
+        setHighlightPhone(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    };
+
+    window.addEventListener(
+      "luster:highlight-phone",
+      handleHighlightPhone
+    );
+
+    return () => {
+      window.removeEventListener(
+        "luster:highlight-phone",
+        handleHighlightPhone
+      );
+    };
+  }, []);
+
 
   /* =========================================
       CARD ANIMATION
@@ -37,76 +71,6 @@ function Contact() {
         ease: [0.22, 1, 0.36, 1],
       },
     }),
-  };
-
-
-  /* =========================================
-      FORM INPUT
-  ========================================== */
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "phone") {
-      const numbersOnly = value
-        .replace(/\D/g, "")
-        .slice(0, 10);
-
-      setFormData((prev) => ({
-        ...prev,
-        phone: numbersOnly,
-      }));
-
-      return;
-    }
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-
-  /* =========================================
-      WHATSAPP APPOINTMENT
-  ========================================== */
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const name = formData.name.trim();
-    const phone = formData.phone.trim();
-    const message = formData.message.trim();
-
-    if (!name || !phone) {
-      alert("Please enter your name and mobile number.");
-      return;
-    }
-
-    if (phone.length !== 10) {
-      alert("Please enter a valid 10-digit mobile number.");
-      return;
-    }
-
-    const whatsappMessage = `
-Hello Luster Dental & Facial Aesthetic Clinic,
-
-I would like to book an appointment.
-
-Name: ${name}
-Mobile Number: ${phone}
-${message ? `Additional Message: ${message}` : ""}
-    `.trim();
-
-    // Luster Dental Clinic WhatsApp number
-    const whatsappNumber = "918891396707";
-
-    const whatsappUrl =
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-        whatsappMessage
-      )}`;
-
-    window.open(whatsappUrl, "_blank");
   };
 
 
@@ -281,7 +245,7 @@ ${message ? `Additional Message: ${message}` : ""}
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            Book Your Consultation
+            Get In Touch With Our Clinic
           </motion.h2>
 
 
@@ -316,9 +280,9 @@ ${message ? `Additional Message: ${message}` : ""}
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            Get in touch with us today and let our experienced team help
-            you achieve radiant skin, enhanced confidence, and a healthier,
-            brighter smile.
+            Have questions about a treatment or ready to schedule a
+            consultation? Call our clinic directly and our team will
+            be happy to assist you.
           </motion.p>
 
         </motion.div>
@@ -417,64 +381,69 @@ ${message ? `Additional Message: ${message}` : ""}
             </motion.div>
 
 
-            {/* Phone */}
+            {/* =========================================
+                PHONE
+            ========================================== */}
 
             <motion.div
-              custom={1}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{
-                once: true,
-                amount: 0.2,
-              }}
-              whileHover={{
-                y: -3,
-                boxShadow:
-                  "0 14px 30px rgba(15, 23, 42, 0.08)",
-              }}
-              className="
-                flex
-                min-h-[110px]
-                flex-1
-                items-start
-                gap-5
-                rounded-3xl
-                bg-slate-50
+              id="contact-phone"
+              className={`
+                rounded-2xl
+                border
+                bg-white
                 p-6
                 shadow-sm
-                transition-shadow
-                duration-300
-              "
+                transition-all
+                duration-500
+                ${highlightPhone
+                  ? "border-blue-500 shadow-[0_0_35px_rgba(37,99,235,0.35)] ring-4 ring-blue-100"
+                  : "border-slate-200"
+                }
+              `}
+              whileHover={{
+                y: -4,
+                boxShadow: "0 15px 35px rgba(15, 23, 42, 0.08)",
+              }}
             >
-
-              <FaPhoneAlt
-                className="mt-1 shrink-0 text-blue-700"
-                size={20}
-              />
-
-              <div>
-
-                <h3 className="font-semibold text-slate-800">
-                  Phone
-                </h3>
-
-                <a
-                  href="tel:+917356196707"
+              <div className="flex items-center gap-4">
+                <div
                   className="
-                    mt-2
-                    block
-                    text-slate-600
-                    transition-colors
-                    duration-300
-                    hover:text-blue-700
+                    flex
+                    h-12
+                    w-12
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-blue-50
+                    text-blue-700
                   "
                 >
-                  +91 73561 96707
-                </a>
+                  <FaPhoneAlt />
+                </div>
 
+                <div>
+                  <h3 className="text-base font-semibold text-slate-900">
+                    Phone
+                  </h3>
+
+                  <p className="mt-1 text-sm text-slate-600">
+                    <a
+                      href="tel:+918089650707"
+                      className="transition-colors hover:text-blue-700"
+                    >
+                      +91 80896 50707
+                    </a>
+                    <span className="mx-1">,</span>
+                    <a
+                      href="tel:+917356196707"
+                      className="transition-colors hover:text-blue-700"
+                    >
+                      +91 73561 96707
+                    </a>
+                  </p>
+                </div>
               </div>
-
             </motion.div>
 
 
@@ -598,7 +567,7 @@ ${message ? `Additional Message: ${message}` : ""}
 
 
           {/* =========================================
-              RIGHT - BOOK APPOINTMENT FORM
+              RIGHT - CALL TO ACTION
           ========================================== */}
 
           <motion.div
@@ -623,40 +592,24 @@ ${message ? `Additional Message: ${message}` : ""}
             }}
             className="
               relative
+              flex
+              min-h-[480px]
               h-full
               overflow-hidden
               rounded-[28px]
               border
               border-white/80
               bg-white/85
-              p-6
+              p-7
               shadow-[0_20px_60px_rgba(15,23,42,0.10)]
               backdrop-blur-xl
               sm:rounded-[32px]
-              sm:p-8
-              lg:p-9
+              sm:p-9
+              lg:p-10
             "
           >
 
-            {/* Glass Highlight */}
-
-            <div
-              className="
-                pointer-events-none
-                absolute
-                inset-x-8
-                top-0
-                h-[2px]
-                rounded-full
-                bg-gradient-to-r
-                from-transparent
-                via-white
-                to-transparent
-              "
-            />
-
-
-            {/* Green Glow */}
+            {/* Decorative Glow */}
 
             <div
               className="
@@ -664,263 +617,259 @@ ${message ? `Additional Message: ${message}` : ""}
                 absolute
                 -right-24
                 -top-24
-                h-56
-                w-56
+                h-64
+                w-64
                 rounded-full
-                bg-green-200/20
+                bg-blue-200/25
+                blur-3xl
+              "
+            />
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -bottom-24
+                -left-24
+                h-64
+                w-64
+                rounded-full
+                bg-cyan-200/20
                 blur-3xl
               "
             />
 
 
-            <div className="relative z-10 flex h-full flex-col">
+            <div
+              className="
+                relative
+                z-10
+                flex
+                w-full
+                flex-col
+                justify-center
+              "
+            >
 
-              {/* Form Heading */}
+              {/* Icon */}
 
               <div
                 className="
-                  mb-7
                   flex
+                  h-14
+                  w-14
                   items-center
-                  gap-3
-                  sm:mb-8
+                  justify-center
+                  rounded-2xl
+                  bg-blue-50
+                  text-blue-700
                 "
               >
-
-                <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-green-50
-                    text-green-600
-                  "
-                >
-                  <FaWhatsapp size={23} />
-                </div>
-
-                <h3
-                  className="
-                    text-2xl
-                    font-bold
-                    text-slate-800
-                    sm:text-3xl
-                  "
-                >
-                  Book Appointment
-                </h3>
-
+                <FaPhoneAlt size={24} />
               </div>
 
 
-              {/* =================================
-                  FORM
-              ================================== */}
+              {/* Heading */}
 
-              <form
-                onSubmit={handleSubmit}
+              <h3
                 className="
-                  flex
-                  flex-1
-                  flex-col
-                  space-y-5
+                  mt-7
+                  text-3xl
+                  font-bold
+                  leading-tight
+                  text-slate-900
+                  sm:text-4xl
+                "
+                style={{
+                  fontFamily: "var(--font-heading)",
+                }}
+              >
+                Ready to Get Started?
+              </h3>
+
+
+              {/* Description */}
+
+              <p
+                className="
+                  mt-4
+                  text-base
+                  leading-7
+                  text-slate-600
+                  sm:text-lg
+                  sm:leading-8
                 "
               >
-
-                {/* Full Name */}
-
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Full Name *"
-                  required
-                  autoComplete="name"
-                  className="
-                    h-16
-                    w-full
-                    rounded-2xl
-                    border
-                    border-slate-200
-                    bg-white/80
-                    px-5
-                    text-base
-                    text-slate-800
-                    outline-none
-                    transition-all
-                    duration-300
-                    placeholder:text-slate-400
-                    focus:border-blue-400
-                    focus:ring-4
-                    focus:ring-blue-100
-                    sm:text-lg
-                  "
-                />
+                Speak directly with our clinic team to discuss your
+                treatment, ask your questions, and schedule a
+                consultation.
+              </p>
 
 
-                {/* Mobile Number */}
+              {/* Call Options */}
 
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Mobile Number * (10 digits)"
-                  required
-                  inputMode="numeric"
-                  maxLength={10}
-                  autoComplete="tel"
-                  className="
-                    h-16
-                    w-full
-                    rounded-2xl
-                    border
-                    border-slate-200
-                    bg-white/80
-                    px-5
-                    text-base
-                    text-slate-800
-                    outline-none
-                    transition-all
-                    duration-300
-                    placeholder:text-slate-400
-                    focus:border-blue-400
-                    focus:ring-4
-                    focus:ring-blue-100
-                    sm:text-lg
-                  "
-                />
+              <div className="mt-8 space-y-4">
 
+                {/* Dental */}
 
-                {/* Additional Message */}
-
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Additional Message (Optional)"
-                  rows={4}
-                  className="
-                    w-full
-                    resize-none
-                    rounded-2xl
-                    border
-                    border-slate-200
-                    bg-white/80
-                    px-5
-                    py-5
-                    text-base
-                    leading-7
-                    text-slate-800
-                    outline-none
-                    transition-all
-                    duration-300
-                    placeholder:text-slate-400
-                    focus:border-blue-400
-                    focus:ring-4
-                    focus:ring-blue-100
-                    sm:text-lg
-                  "
-                />
-
-
-                {/* WhatsApp Button */}
-
-                <motion.button
-                  type="submit"
+                <motion.a
+                  href="tel:+918089650707"
                   whileHover={{
-                    y: -2,
+                    y: -3,
                     scale: 1.01,
                   }}
                   whileTap={{
                     scale: 0.98,
                   }}
                   className="
-                    mt-auto
                     flex
-                    min-h-[60px]
-                    w-full
                     items-center
-                    justify-center
-                    gap-3
+                    justify-between
+                    gap-4
                     rounded-2xl
-                    bg-gradient-to-r
-                    from-green-500
-                    to-green-600
+                    border
+                    border-blue-100
+                    bg-blue-50/70
                     px-5
-                    text-base
-                    font-bold
-                    text-white
-                    shadow-[0_12px_25px_rgba(22,163,74,0.20)]
-                    transition-shadow
+                    py-4
+                    transition-all
                     duration-300
-                    hover:shadow-[0_16px_35px_rgba(22,163,74,0.30)]
-                    sm:text-lg
+                    hover:border-blue-200
+                    hover:bg-blue-50
+                    hover:shadow-lg
                   "
                 >
 
-                  <FaWhatsapp size={24} />
+                  <div className="flex items-center gap-4">
 
-                  Book Appointment on WhatsApp
+                    <div
+                      className="
+                        flex
+                        h-11
+                        w-11
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-blue-700
+                        text-white
+                      "
+                    >
+                      <FaPhoneAlt size={16} />
+                    </div>
 
-                </motion.button>
+                    <div>
 
-              </form>
+                      <p className="text-sm font-semibold text-slate-500">
+                        🦷 Dental Clinic
+                      </p>
+
+                      <p className="mt-1 font-bold text-slate-800">
+                        +91 80896 50707
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                  <FaArrowRight
+                    className="shrink-0 text-blue-700"
+                    size={15}
+                  />
+
+                </motion.a>
 
 
-              {/* Contact Numbers */}
+                {/* Facial */}
+
+                <motion.a
+                  href="tel:+917356196707"
+                  whileHover={{
+                    y: -3,
+                    scale: 1.01,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  className="
+                    flex
+                    items-center
+                    justify-between
+                    gap-4
+                    rounded-2xl
+                    border
+                    border-amber-100
+                    bg-amber-50/60
+                    px-5
+                    py-4
+                    transition-all
+                    duration-300
+                    hover:border-amber-200
+                    hover:bg-amber-50
+                    hover:shadow-lg
+                  "
+                >
+
+                  <div className="flex items-center gap-4">
+
+                    <div
+                      className="
+                        flex
+                        h-11
+                        w-11
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-amber-500
+                        text-white
+                      "
+                    >
+                      <FaPhoneAlt size={16} />
+                    </div>
+
+                    <div>
+
+                      <p className="text-sm font-semibold text-slate-500">
+                        ✨ Facial Aesthetic Clinic
+                      </p>
+
+                      <p className="mt-1 font-bold text-slate-800">
+                        +91 73561 96707
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                  <FaArrowRight
+                    className="shrink-0 text-amber-600"
+                    size={15}
+                  />
+
+                </motion.a>
+
+              </div>
+
+
+              {/* Bottom Note */}
 
               <div
                 className="
                   mt-7
-                  flex
-                  flex-col
-                  items-center
-                  justify-center
-                  gap-3
-                  border-t
+                  rounded-2xl
+                  border
                   border-slate-100
-                  pt-6
+                  bg-slate-50/70
+                  px-5
+                  py-4
                   text-center
-                  text-sm
-                  font-medium
-                  text-slate-500
-                  sm:mt-8
-                  sm:flex-row
-                  sm:gap-8
-                  sm:text-base
                 "
               >
-
-                <a
-                  href="tel:+917356196707"
-                  className="
-                    transition-colors
-                    duration-300
-                    hover:text-blue-700
-                  "
-                >
-                  Call: +91 73561 96707
-                </a>
-
-                <a
-                  href={enquiryWhatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    transition-colors
-                    duration-300
-                    hover:text-green-600
-                  "
-                >
-                  WhatsApp: +91 88913 96707
-                </a>
-
+                <p className="text-sm leading-6 text-slate-500">
+                  Our team will guide you to the right treatment and
+                  help arrange your consultation.
+                </p>
               </div>
 
             </div>

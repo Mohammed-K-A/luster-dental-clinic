@@ -3,15 +3,16 @@ import {
   FaWhatsapp,
   FaPhoneAlt,
   FaArrowUp,
+  FaTimes,
 } from "react-icons/fa";
+import { enquiryWhatsappLink } from "../../data/clinic";
 import { motion, AnimatePresence } from "motion/react";
-import {
-  clinic,
-  enquiryWhatsappLink,
-} from "../../data/clinic";
+import { data } from "framer-motion/client";
 
 function FloatingButtons() {
   const [showTop, setShowTop] = useState(false);
+  const [showCallOptions, setShowCallOptions] = useState(false);
+  const [showWhatsappOptions, setShowWhatsappOptions] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,57 +37,266 @@ function FloatingButtons() {
     });
   };
 
+  const openWhatsapp = (number) => {
+    const whatsappMessage = `
+  Hello Luster Dental & Facial Aesthetic Clinic,
+
+  I would like to know about your treatments.
+    `.trim();
+
+    const whatsappUrl =
+      `https://wa.me/${number}?text=${encodeURIComponent(
+        whatsappMessage
+      )}`;
+
+    window.open(
+      whatsappUrl,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+    setShowWhatsappOptions(false);
+  };
+
   return (
     <>
       {/* =====================================================
-          CALL BUTTON
+          CALL BUTTON + CALL OPTIONS
       ====================================================== */}
 
-      <motion.a
-        href={`tel:${clinic.phone}`}
-        initial={{
-          opacity: 0,
-          x: -30,
-          scale: 0.8,
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-          scale: 1,
-        }}
-        transition={{
-          duration: 0.6,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        whileHover={{
-          scale: 1.1,
-          y: -2,
-          boxShadow:
-            "0 0 28px rgba(37, 99, 235, 0.7)",
-        }}
-        whileTap={{
-          scale: 0.92,
-        }}
+      <div
         className="
           fixed
           bottom-6
           left-6
           z-50
-          flex
-          h-14
-          w-14
-          items-center
-          justify-center
-          rounded-full
-          bg-blue-700
-          text-white
-          shadow-[0_0_18px_rgba(37,99,235,0.45)]
         "
-        aria-label="Call Luster Dental Clinic"
       >
-        <FaPhoneAlt size={20} />
-      </motion.a>
+        {/* Call Options */}
 
+        <AnimatePresence>
+          {showCallOptions && (
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 15,
+                scale: 0.95,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                y: 15,
+                scale: 0.95,
+              }}
+              transition={{
+                duration: 0.25,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="
+                absolute
+                bottom-[72px]
+                left-0
+                w-[270px]
+                overflow-hidden
+                rounded-3xl
+                border
+                border-white/70
+                bg-white/90
+                p-4
+                shadow-[0_20px_50px_rgba(15,23,42,0.18)]
+                backdrop-blur-xl
+              "
+            >
+              {/* Header */}
+
+              <div className="mb-3 flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                    Call Luster Clinic
+                  </p>
+
+                  <p className="mt-1 text-sm font-bold text-slate-800">
+                    Choose a clinic
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setShowCallOptions(false)}
+                  className="
+                    flex
+                    h-8
+                    w-8
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-slate-100
+                    text-slate-500
+                    transition-colors
+                    hover:bg-slate-200
+                    hover:text-slate-700
+                  "
+                  aria-label="Close call options"
+                >
+                  <FaTimes size={13} />
+                </button>
+              </div>
+
+              {/* Dental Clinic */}
+
+              <motion.a
+                href="tel:+918089650707"
+                onClick={() => setShowCallOptions(false)}
+                whileHover={{
+                  y: -2,
+                }}
+                whileTap={{
+                  scale: 0.98,
+                }}
+                className="
+                  flex
+                  items-center
+                  gap-3
+                  rounded-2xl
+                  bg-blue-50
+                  p-3
+                  transition-colors
+                  hover:bg-blue-100
+                "
+              >
+                <div
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-blue-700
+                    text-white
+                  "
+                >
+                  <FaPhoneAlt size={14} />
+                </div>
+
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold text-slate-500">
+                    🦷 Dental Clinic
+                  </p>
+
+                  <p className="mt-0.5 text-sm font-bold text-slate-800">
+                    +91 80896 50707
+                  </p>
+                </div>
+              </motion.a>
+
+              {/* Facial Clinic */}
+
+              <motion.a
+                href="tel:+917356196707"
+                onClick={() => setShowCallOptions(false)}
+                whileHover={{
+                  y: -2,
+                }}
+                whileTap={{
+                  scale: 0.98,
+                }}
+                className="
+                  mt-3
+                  flex
+                  items-center
+                  gap-3
+                  rounded-2xl
+                  bg-amber-50
+                  p-3
+                  transition-colors
+                  hover:bg-amber-100
+                "
+              >
+                <div
+                  className="
+                    flex
+                    h-10
+                    w-10
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-amber-500
+                    text-white
+                  "
+                >
+                  <FaPhoneAlt size={14} />
+                </div>
+
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold text-slate-500">
+                    ✨ Facial Aesthetic Clinic
+                  </p>
+
+                  <p className="mt-0.5 text-sm font-bold text-slate-800">
+                    +91 73561 96707
+                  </p>
+                </div>
+              </motion.a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Main Call Button */}
+
+        <motion.button
+          type="button"
+          onClick={() => setShowCallOptions((prev) => !prev)}
+          initial={{
+            opacity: 0,
+            x: -30,
+            scale: 0.8,
+          }}
+          animate={{
+            opacity: 1,
+            x: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          whileHover={{
+            scale: 1.1,
+            y: -2,
+            boxShadow:
+              "0 0 28px rgba(37, 99, 235, 0.7)",
+          }}
+          whileTap={{
+            scale: 0.92,
+          }}
+          className="
+            flex
+            h-14
+            w-14
+            items-center
+            justify-center
+            rounded-full
+            bg-blue-700
+            text-white
+            shadow-[0_0_18px_rgba(37,99,235,0.45)]
+          "
+          aria-label="Choose clinic to call"
+          aria-expanded={showCallOptions}
+        >
+          {showCallOptions ? (
+            <FaTimes size={20} />
+          ) : (
+            <FaPhoneAlt size={20} />
+          )}
+        </motion.button>
+      </div>
 
       {/* =====================================================
           RIGHT FLOATING BUTTONS
@@ -104,7 +314,6 @@ function FloatingButtons() {
           gap-4
         "
       >
-
         {/* =================================================
             SCROLL TO TOP
         ================================================== */}
@@ -165,12 +374,195 @@ function FloatingButtons() {
           )}
         </AnimatePresence>
 
-
         {/* =================================================
-            WHATSAPP
+            WHATSAPP + WHATSAPP OPTIONS
         ================================================== */}
 
         <div className="relative flex items-center justify-center">
+
+          {/* WhatsApp Options */}
+
+          <AnimatePresence>
+            {showWhatsappOptions && (
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 15,
+                  scale: 0.95,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  y: 15,
+                  scale: 0.95,
+                }}
+                transition={{
+                  duration: 0.25,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  absolute
+                  bottom-[72px]
+                  right-0
+                  w-[270px]
+                  overflow-hidden
+                  rounded-3xl
+                  border
+                  border-white/70
+                  bg-white/90
+                  p-4
+                  shadow-[0_20px_50px_rgba(15,23,42,0.18)]
+                  backdrop-blur-xl
+                "
+              >
+                {/* Header */}
+
+                <div className="mb-3 flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-green-600">
+                      WhatsApp Luster Clinic
+                    </p>
+
+                    <p className="mt-1 text-sm font-bold text-slate-800">
+                      Choose a clinic
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setShowWhatsappOptions(false)}
+                    className="
+                      flex
+                      h-8
+                      w-8
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-slate-100
+                      text-slate-500
+                      transition-colors
+                      hover:bg-slate-200
+                      hover:text-slate-700
+                    "
+                    aria-label="Close WhatsApp options"
+                  >
+                    <FaTimes size={13} />
+                  </button>
+                </div>
+
+                {/* Dental WhatsApp */}
+
+                <motion.button
+                  type="button"
+                  onClick={() =>
+                    openWhatsapp("918891396707")
+                  }
+                  whileHover={{
+                    y: -2,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  className="
+                    flex
+                    w-full
+                    items-center
+                    gap-3
+                    rounded-2xl
+                    bg-green-50
+                    p-3
+                    text-left
+                    transition-colors
+                    hover:bg-green-100
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-green-500
+                      text-white
+                    "
+                  >
+                    <FaWhatsapp size={17} />
+                  </div>
+
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold text-slate-500">
+                      🦷 Dental Clinic
+                    </p>
+
+                    <p className="mt-0.5 text-sm font-bold text-slate-800">
+                      +91 88913 96707
+                    </p>
+                  </div>
+                </motion.button>
+
+                {/* Facial WhatsApp */}
+
+                <motion.button
+                  type="button"
+                  onClick={() =>
+                    openWhatsapp("917356196707")
+                  }
+                  whileHover={{
+                    y: -2,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  className="
+                    mt-3
+                    flex
+                    w-full
+                    items-center
+                    gap-3
+                    rounded-2xl
+                    bg-green-50
+                    p-3
+                    text-left
+                    transition-colors
+                    hover:bg-green-100
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-green-500
+                      text-white
+                    "
+                  >
+                    <FaWhatsapp size={17} />
+                  </div>
+
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold text-slate-500">
+                      ✨ Facial Aesthetic Clinic
+                    </p>
+
+                    <p className="mt-0.5 text-sm font-bold text-slate-800">
+                      +91 73561 96707
+                    </p>
+                  </div>
+                </motion.button>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Bubble / Pulse Rings */}
 
@@ -218,10 +610,11 @@ function FloatingButtons() {
 
           {/* WhatsApp Button */}
 
-          <motion.a
-            href={enquiryWhatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            type="button"
+            onClick={() =>
+              setShowWhatsappOptions((prev) => !prev)
+            }
             initial={{
               opacity: 0,
               x: 30,
@@ -258,15 +651,16 @@ function FloatingButtons() {
               text-white
               shadow-[0_0_18px_rgba(34,197,94,0.45)]
             "
-            aria-label="Contact Luster Dental Clinic on WhatsApp"
+            aria-label="Choose clinic for WhatsApp"
+            aria-expanded={showWhatsappOptions}
           >
-
-            <FaWhatsapp size={26} />
-
-          </motion.a>
-
+            {showWhatsappOptions ? (
+              <FaTimes size={20} />
+            ) : (
+              <FaWhatsapp size={26} />
+            )}
+          </motion.button>
         </div>
-
       </div>
     </>
   );

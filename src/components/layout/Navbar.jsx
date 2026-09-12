@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 
 import logo from "../../assets/logo.png";
 import navigation from "../../data/navigation";
-import { bookingWhatsappLink } from "../../data/clinic";
+// import { bookingWhatsappLink } from "../../data/clinic";
 
 function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -39,6 +39,27 @@ function Navbar() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    const handleConsultationClick = (e) => {
+        e.preventDefault();
+
+        setMobileMenuOpen(false);
+
+        const contactSection = document.getElementById("contact");
+
+        if (contactSection) {
+            contactSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+
+            setTimeout(() => {
+                window.dispatchEvent(
+                    new CustomEvent("luster:highlight-contact")
+                );
+            }, 600);
+        }
+    };
 
     /* =========================
        NAVIGATION ANIMATION
@@ -394,14 +415,13 @@ function Navbar() {
                                             transition-all
                                             duration-300
 
-                                            ${
-                                                activeSection === item.id
-                                                    ? `
+                                            ${activeSection === item.id
+                                                ? `
                                                         bg-white/35
                                                         text-blue-700
                                                         shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_2px_12px_rgba(37,99,235,0.10)]
                                                     `
-                                                    : `
+                                                : `
                                                         text-slate-700
                                                         hover:bg-white/20
                                                         hover:text-blue-700
@@ -480,15 +500,11 @@ function Navbar() {
                     >
 
                         <motion.a
-                            href={bookingWhatsappLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="#contact"
+                            onClick={handleConsultationClick}
                             whileHover={{
                                 y: -2,
                                 scale: 1.03,
-                            }}
-                            whileTap={{
-                                scale: 0.97,
                             }}
                             className="
                                 group
@@ -721,14 +737,13 @@ function Navbar() {
                                                 transition-all
                                                 duration-300
 
-                                                ${
-                                                    activeSection === item.id
-                                                        ? `
+                                                ${activeSection === item.id
+                                                    ? `
                                                             bg-white/60
                                                             text-blue-700
                                                             shadow-sm
                                                         `
-                                                        : `
+                                                    : `
                                                             text-slate-700
                                                             hover:bg-white/45
                                                             hover:text-blue-700
@@ -749,12 +764,8 @@ function Navbar() {
                             {/* Mobile Booking Button */}
 
                             <motion.a
-                                href={bookingWhatsappLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() =>
-                                    setMobileMenuOpen(false)
-                                }
+                                href="#contact"
+                                onClick={handleConsultationClick}
                                 initial={{
                                     opacity: 0,
                                     y: 10,
