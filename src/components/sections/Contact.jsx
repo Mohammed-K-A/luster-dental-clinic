@@ -12,41 +12,41 @@ import {
 } from "react-icons/fa";
 
 function Contact() {
-  const [highlightPhone, setHighlightPhone] = useState(false);
+  const [highlightContact, setHighlightContact] = useState(false);
 
   /* =========================================
-      HIGHLIGHT PHONE CARD
+      HIGHLIGHT CONTACT CARD
   ========================================== */
 
   useEffect(() => {
-    const handleHighlightPhone = () => {
-      const phoneCard = document.getElementById("contact-phone");
+    const handleHighlightContact = () => {
+      const contactCard = document.getElementById("contact-cta");
 
-      if (phoneCard) {
-        phoneCard.scrollIntoView({
+      if (contactCard) {
+        contactCard.scrollIntoView({
           behavior: "smooth",
           block: "center",
         });
       }
 
-      setHighlightPhone(true);
+      setHighlightContact(true);
 
       const timer = setTimeout(() => {
-        setHighlightPhone(false);
+        setHighlightContact(false);
       }, 3000);
 
       return () => clearTimeout(timer);
     };
 
     window.addEventListener(
-      "luster:highlight-phone",
-      handleHighlightPhone
+      "luster:highlight-contact",
+      handleHighlightContact
     );
 
     return () => {
       window.removeEventListener(
-        "luster:highlight-phone",
-        handleHighlightPhone
+        "luster:highlight-contact",
+        handleHighlightContact
       );
     };
   }, []);
@@ -313,9 +313,8 @@ function Contact() {
           <div
             className="
               flex
-              h-full
               flex-col
-              gap-6
+              gap-12
             "
           >
 
@@ -338,17 +337,14 @@ function Contact() {
               className="
                 flex
                 min-h-[110px]
-                flex-1
                 items-start
-                gap-4
+                gap-5
                 rounded-3xl
                 bg-slate-50
-                p-5
+                p-6
                 shadow-sm
                 transition-shadow
                 duration-300
-                sm:gap-5
-                sm:p-6
               "
             >
 
@@ -387,62 +383,59 @@ function Contact() {
 
             <motion.div
               id="contact-phone"
-              className={`
-                rounded-2xl
-                border
-                bg-white
+              custom={1}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.2,
+              }}
+              whileHover={{
+                y: -3,
+                boxShadow:
+                  "0 14px 30px rgba(15, 23, 42, 0.08)",
+              }}
+              className="
+                flex
+                min-h-[110px]
+                items-start
+                gap-5
+                rounded-3xl
+                bg-slate-50
                 p-6
                 shadow-sm
-                transition-all
-                duration-500
-                ${highlightPhone
-                  ? "border-blue-500 shadow-[0_0_35px_rgba(37,99,235,0.35)] ring-4 ring-blue-100"
-                  : "border-slate-200"
-                }
-              `}
-              whileHover={{
-                y: -4,
-                boxShadow: "0 15px 35px rgba(15, 23, 42, 0.08)",
-              }}
+                transition-shadow
+                duration-300
+              "
             >
-              <div className="flex items-center gap-4">
-                <div
-                  className="
-                    flex
-                    h-12
-                    w-12
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-blue-50
-                    text-blue-700
-                  "
-                >
-                  <FaPhoneAlt />
-                </div>
+              <FaPhoneAlt
+                className="mt-1 shrink-0 text-blue-700"
+                size={22}
+              />
 
-                <div>
-                  <h3 className="text-base font-semibold text-slate-900">
-                    Phone
-                  </h3>
+              <div className="min-w-0">
+                <h3 className="font-semibold text-slate-800">
+                  Phone
+                </h3>
 
-                  <p className="mt-1 text-sm text-slate-600">
-                    <a
-                      href="tel:+918089650707"
-                      className="transition-colors hover:text-blue-700"
-                    >
-                      +91 80896 50707
-                    </a>
-                    <span className="mx-1">,</span>
-                    <a
-                      href="tel:+917356196707"
-                      className="transition-colors hover:text-blue-700"
-                    >
-                      +91 73561 96707
-                    </a>
-                  </p>
-                </div>
+                <p className="mt-2 text-sm leading-7 text-slate-600 sm:text-base">
+                  <a
+                    href={`tel:${clinic.dentalPhone}`}
+                    className="transition-colors hover:text-blue-700"
+                  >
+                    {clinic.dentalPhoneDisplay}
+                  </a>
+
+                  <span className="mx-1">,</span>
+
+                  <a
+                    href={`tel:${clinic.facialPhone}`}
+                    className="transition-colors hover:text-blue-700"
+                  >
+                    {clinic.facialPhoneDisplay}
+                  </a>
+                </p>
               </div>
             </motion.div>
 
@@ -466,7 +459,6 @@ function Contact() {
               className="
                 flex
                 min-h-[110px]
-                flex-1
                 items-start
                 gap-5
                 rounded-3xl
@@ -530,7 +522,6 @@ function Contact() {
               className="
                 flex
                 min-h-[110px]
-                flex-1
                 items-start
                 gap-5
                 rounded-3xl
@@ -571,6 +562,7 @@ function Contact() {
           ========================================== */}
 
           <motion.div
+            id="contact-cta"
             initial={{
               opacity: 0,
               x: 40,
@@ -590,7 +582,7 @@ function Contact() {
               delay: 0.2,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="
+            className={`
               relative
               flex
               min-h-[480px]
@@ -598,15 +590,21 @@ function Contact() {
               overflow-hidden
               rounded-[28px]
               border
-              border-white/80
               bg-white/85
               p-7
               shadow-[0_20px_60px_rgba(15,23,42,0.10)]
               backdrop-blur-xl
+              transition-all
+              duration-500
               sm:rounded-[32px]
               sm:p-9
-              lg:p-10
-            "
+              lg:p-9
+
+              ${highlightContact
+                ? "border-blue-500 shadow-[0_0_45px_rgba(37,99,235,0.35)] ring-4 ring-blue-100"
+                : "border-white/80"
+              }
+            `}
           >
 
             {/* Decorative Glow */}
@@ -713,13 +711,11 @@ function Contact() {
                 {/* Dental */}
 
                 <motion.a
-                  href="tel:+918089650707"
+                  href={`tel:${clinic.dentalPhone}`}
                   whileHover={{
                     y: -3,
-                    scale: 1.01,
-                  }}
-                  whileTap={{
-                    scale: 0.98,
+                    boxShadow:
+                      "0 14px 30px rgba(15, 23, 42, 0.08)",
                   }}
                   className="
                     flex
@@ -732,11 +728,10 @@ function Contact() {
                     bg-blue-50/70
                     px-5
                     py-4
-                    transition-all
+                    transition-shadow
                     duration-300
                     hover:border-blue-200
                     hover:bg-blue-50
-                    hover:shadow-lg
                   "
                 >
 
@@ -765,7 +760,7 @@ function Contact() {
                       </p>
 
                       <p className="mt-1 font-bold text-slate-800">
-                        +91 80896 50707
+                        {clinic.dentalPhoneDisplay}
                       </p>
 
                     </div>
@@ -783,13 +778,11 @@ function Contact() {
                 {/* Facial */}
 
                 <motion.a
-                  href="tel:+917356196707"
+                  href={`tel:${clinic.facialPhone}`}
                   whileHover={{
                     y: -3,
-                    scale: 1.01,
-                  }}
-                  whileTap={{
-                    scale: 0.98,
+                    boxShadow:
+                      "0 14px 30px rgba(15, 23, 42, 0.08)",
                   }}
                   className="
                     flex
@@ -802,11 +795,10 @@ function Contact() {
                     bg-amber-50/60
                     px-5
                     py-4
-                    transition-all
+                    transition-shadow
                     duration-300
                     hover:border-amber-200
                     hover:bg-amber-50
-                    hover:shadow-lg
                   "
                 >
 
@@ -835,7 +827,7 @@ function Contact() {
                       </p>
 
                       <p className="mt-1 font-bold text-slate-800">
-                        +91 73561 96707
+                        {clinic.facialPhoneDisplay}
                       </p>
 
                     </div>

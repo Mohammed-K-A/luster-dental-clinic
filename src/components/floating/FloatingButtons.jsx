@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
+
 import {
   FaWhatsapp,
   FaPhoneAlt,
   FaArrowUp,
   FaTimes,
 } from "react-icons/fa";
-import { enquiryWhatsappLink } from "../../data/clinic";
+
 import { motion, AnimatePresence } from "motion/react";
-import { data } from "framer-motion/client";
+
+import {
+  dentalWhatsappLink,
+  facialWhatsappLink,
+  clinic,
+} from "../../data/clinic";
+
 
 function FloatingButtons() {
   const [showTop, setShowTop] = useState(false);
@@ -37,20 +44,9 @@ function FloatingButtons() {
     });
   };
 
-  const openWhatsapp = (number) => {
-    const whatsappMessage = `
-  Hello Luster Dental & Facial Aesthetic Clinic,
-
-  I would like to know about your treatments.
-    `.trim();
-
-    const whatsappUrl =
-      `https://wa.me/${number}?text=${encodeURIComponent(
-        whatsappMessage
-      )}`;
-
+  const openWhatsapp = (whatsappLink) => {
     window.open(
-      whatsappUrl,
+      whatsappLink,
       "_blank",
       "noopener,noreferrer"
     );
@@ -149,7 +145,7 @@ function FloatingButtons() {
               {/* Dental Clinic */}
 
               <motion.a
-                href="tel:+918089650707"
+                href={`tel:${clinic.dentalPhone}`}
                 onClick={() => setShowCallOptions(false)}
                 whileHover={{
                   y: -2,
@@ -190,7 +186,7 @@ function FloatingButtons() {
                   </p>
 
                   <p className="mt-0.5 text-sm font-bold text-slate-800">
-                    +91 80896 50707
+                    {clinic.dentalPhoneDisplay}
                   </p>
                 </div>
               </motion.a>
@@ -198,7 +194,7 @@ function FloatingButtons() {
               {/* Facial Clinic */}
 
               <motion.a
-                href="tel:+917356196707"
+                href={`tel:${clinic.facialPhone}`}
                 onClick={() => setShowCallOptions(false)}
                 whileHover={{
                   y: -2,
@@ -240,7 +236,7 @@ function FloatingButtons() {
                   </p>
 
                   <p className="mt-0.5 text-sm font-bold text-slate-800">
-                    +91 73561 96707
+                    {clinic.facialPhoneDisplay}
                   </p>
                 </div>
               </motion.a>
@@ -248,54 +244,108 @@ function FloatingButtons() {
           )}
         </AnimatePresence>
 
-        {/* Main Call Button */}
+        {/* Main Call Button + Bubble Effect */}
 
-        <motion.button
-          type="button"
-          onClick={() => setShowCallOptions((prev) => !prev)}
-          initial={{
-            opacity: 0,
-            x: -30,
-            scale: 0.8,
-          }}
-          animate={{
-            opacity: 1,
-            x: 0,
-            scale: 1,
-          }}
-          transition={{
-            duration: 0.6,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          whileHover={{
-            scale: 1.1,
-            y: -2,
-            boxShadow:
-              "0 0 28px rgba(37, 99, 235, 0.7)",
-          }}
-          whileTap={{
-            scale: 0.92,
-          }}
-          className="
-            flex
-            h-14
-            w-14
-            items-center
-            justify-center
-            rounded-full
-            bg-blue-700
-            text-white
-            shadow-[0_0_18px_rgba(37,99,235,0.45)]
-          "
-          aria-label="Choose clinic to call"
-          aria-expanded={showCallOptions}
-        >
-          {showCallOptions ? (
-            <FaTimes size={20} />
-          ) : (
-            <FaPhoneAlt size={20} />
-          )}
-        </motion.button>
+        <div className="relative flex items-center justify-center">
+
+          {/* Blue Pulse Ring */}
+
+          <motion.span
+            className="
+              pointer-events-none
+              absolute
+              h-14
+              w-14
+              rounded-full
+              border
+              border-blue-400/50
+            "
+            animate={{
+              scale: [1, 1.35, 1],
+              opacity: [0.45, 0, 0.45],
+            }}
+            transition={{
+              duration: 2.4,
+              repeat: Infinity,
+              ease: "easeOut",
+            }}
+          />
+
+          {/* Blue Bubble */}
+
+          <motion.span
+            className="
+              pointer-events-none
+              absolute
+              h-14
+              w-14
+              rounded-full
+              bg-blue-400/20
+            "
+            animate={{
+              scale: [1, 1.25, 1],
+              opacity: [0.35, 0, 0.35],
+            }}
+            transition={{
+              duration: 2.4,
+              repeat: Infinity,
+              delay: 0.6,
+              ease: "easeOut",
+            }}
+          />
+
+          {/* Call Button */}
+
+          <motion.button
+            type="button"
+            onClick={() => setShowCallOptions((prev) => !prev)}
+            initial={{
+              opacity: 0,
+              x: -30,
+              scale: 0.8,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }}
+            transition={{
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            whileHover={{
+              scale: 1.1,
+              y: -2,
+              boxShadow:
+                "0 0 28px rgba(37, 99, 235, 0.7)",
+            }}
+            whileTap={{
+              scale: 0.92,
+            }}
+            className="
+              relative
+              z-10
+              flex
+              h-14
+              w-14
+              items-center
+              justify-center
+              rounded-full
+              bg-blue-700
+              text-white
+              shadow-[0_0_18px_rgba(37,99,235,0.45)]
+            "
+            aria-label="Choose clinic to call"
+            aria-expanded={showCallOptions}
+          >
+            {showCallOptions ? (
+              <FaTimes size={20} />
+            ) : (
+              <FaPhoneAlt size={20} />
+            )}
+          </motion.button>
+
+        </div>
       </div>
 
       {/* =====================================================
@@ -342,13 +392,17 @@ function FloatingButtons() {
               }}
               onClick={scrollToTop}
               whileHover={{
-                scale: 1.12,
+                scale: 1.1,
                 y: -2,
+                boxShadow:
+                  "0 0 28px rgba(37, 99, 235, 0.55)",
               }}
               whileTap={{
-                scale: 0.9,
+                scale: 0.92,
               }}
               className="
+                relative
+                z-10
                 flex
                 h-12
                 w-12
@@ -359,13 +413,9 @@ function FloatingButtons() {
                 border-blue-200/70
                 bg-white/35
                 text-blue-700
-                shadow-[0_8px_25px_rgba(37,99,235,0.12)]
+                shadow-[0_0_18px_rgba(37,99,235,0.20)]
                 backdrop-blur-xl
                 backdrop-saturate-150
-                transition-all
-                duration-300
-                hover:bg-white/60
-                hover:shadow-[0_10px_30px_rgba(37,99,235,0.22)]
               "
               aria-label="Scroll to top"
             >
@@ -458,9 +508,7 @@ function FloatingButtons() {
 
                 <motion.button
                   type="button"
-                  onClick={() =>
-                    openWhatsapp("918891396707")
-                  }
+                  onClick={() => openWhatsapp(dentalWhatsappLink)}
                   whileHover={{
                     y: -2,
                   }}
@@ -511,9 +559,7 @@ function FloatingButtons() {
 
                 <motion.button
                   type="button"
-                  onClick={() =>
-                    openWhatsapp("917356196707")
-                  }
+                  onClick={() => openWhatsapp(facialWhatsappLink)}
                   whileHover={{
                     y: -2,
                   }}

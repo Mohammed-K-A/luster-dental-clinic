@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { bookingWhatsappLink } from "../../data/clinic";
 import {
   Sparkles,
   Smile,
@@ -72,6 +71,30 @@ function Hero() {
 
     return () => clearTimeout(timeout);
   }, [textIndex]);
+
+
+  /* =========================
+     BOOK CONSULTATION
+  ========================== */
+
+  const handleConsultationClick = (e) => {
+    e.preventDefault();
+
+    const contactSection = document.getElementById("contact");
+
+    if (contactSection) {
+      contactSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      setTimeout(() => {
+        window.dispatchEvent(
+          new CustomEvent("luster:highlight-contact")
+        );
+      }, 600);
+    }
+  };
 
   return (
     <section
@@ -381,9 +404,8 @@ function Hero() {
             {/* Book Consultation */}
 
             <motion.a
-              href={bookingWhatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
+              onClick={handleConsultationClick}
               className="
                 inline-flex
                 w-full

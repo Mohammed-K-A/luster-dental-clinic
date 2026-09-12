@@ -115,7 +115,7 @@ function About() {
           >
 
             <h3 className="text-3xl font-bold sm:text-4xl">
-              15+
+              5+
             </h3>
 
             <p className="mt-2 text-sm uppercase tracking-widest">

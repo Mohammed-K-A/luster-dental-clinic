@@ -1,17 +1,19 @@
 export const clinic = {
   name: "Luster Dental & Facial Aesthetic Clinic",
 
-  phone: "+917356196707",
+  dentalPhone: "+918089650707",
+  dentalPhoneDisplay: "+91 80896 50707",
 
-  whatsapp: "918891396707",
+  facialPhone: "+917356196707",
+  facialPhoneDisplay: "+91 73561 96707",
 
-  email: "mylusterdc@gmail.com", // Change later if needed
+  dentalWhatsapp: "918891396707",
+  facialWhatsapp: "917356196707",
+
+  email: "mylusterdc@gmail.com",
 
   address:
     "KVM Complex, Valayamkulam, Malappuram, Kerala, 679591",
-
-  bookingMessage:
-    "Hi Luster Dental & Facial Aesthetic Clinic,\n\nI would like to book a consultation.\n\nPlease let me know the available appointment slots.\n\nThank you.",
 
   enquiryMessage:
     "Hi Luster Dental & Facial Aesthetic Clinic,\n\nI would like to know more about your treatments.",
@@ -19,10 +21,26 @@ export const clinic = {
   instagram: "https://www.instagram.com/luster.clinic",
 };
 
-export const bookingWhatsappLink = `https://wa.me/${
-  clinic.whatsapp
-}?text=${encodeURIComponent(clinic.bookingMessage)}`;
 
+// Primary / general WhatsApp link
 export const enquiryWhatsappLink = `https://wa.me/${
-  clinic.whatsapp
+  clinic.dentalWhatsapp
+}?text=${encodeURIComponent(clinic.enquiryMessage)}`;
+
+
+// Booking WhatsApp link
+export const bookingWhatsappLink = `https://wa.me/${
+  clinic.dentalWhatsapp
+}?text=${encodeURIComponent(clinic.enquiryMessage)}`;
+
+
+// Dental WhatsApp link
+export const dentalWhatsappLink = `https://wa.me/${
+  clinic.dentalWhatsapp
+}?text=${encodeURIComponent(clinic.enquiryMessage)}`;
+
+
+// Facial WhatsApp link
+export const facialWhatsappLink = `https://wa.me/${
+  clinic.facialWhatsapp
 }?text=${encodeURIComponent(clinic.enquiryMessage)}`;

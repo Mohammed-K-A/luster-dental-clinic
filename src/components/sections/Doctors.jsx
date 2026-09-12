@@ -1,9 +1,28 @@
 import { motion } from "motion/react";
 import doctors from "../../data/doctors";
 import { FaArrowRight } from "react-icons/fa6";
-import { bookingWhatsappLink } from "../../data/clinic";
+
 
 function Doctors() {
+  const handleConsultationClick = (e) => {
+    e.preventDefault();
+
+    const contactSection = document.getElementById("contact");
+
+    if (contactSection) {
+      contactSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      setTimeout(() => {
+        window.dispatchEvent(
+          new CustomEvent("luster:highlight-contact")
+        );
+      }, 600);
+    }
+  };
+
   return (
     <section
       id="doctors"
@@ -330,9 +349,8 @@ function Doctors() {
                 {/* CTA */}
 
                 <motion.a
-                  href={bookingWhatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contact"
+                  onClick={handleConsultationClick}
                   whileHover="hover"
                   className="
                     mt-8
