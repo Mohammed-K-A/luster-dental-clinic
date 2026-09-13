@@ -18,7 +18,7 @@ export const dentalServices = [
     id: 2,
     title: "Root Canal Treatment",
     description:
-      "Advanced root canal treatment to save infected teeth and eliminate pain.",
+      "Advanced root canal treatment to save infected teeth, relieve pain, and preserve your natural tooth.",
 
     benefits: [
       "Pain Relief",
@@ -33,7 +33,7 @@ export const dentalServices = [
     id: 3,
     title: "Smile Designing",
     description:
-      "Customized cosmetic dental treatments to enhance the appearance of your smile.",
+      "Customized cosmetic dental treatments to enhance the appearance of your smile and create natural-looking results.",
 
     benefits: [
       "Beautiful Smile",
@@ -46,9 +46,9 @@ export const dentalServices = [
 
   {
     id: 4,
-    title: "Braces & Aligners",
+    title: "Dental Braces & Aligners",
     description:
-      "Modern orthodontic solutions for properly aligned teeth and improved bite.",
+      "Modern orthodontic solutions to straighten teeth, improve alignment, and achieve a healthier bite.",
 
     benefits: [
       "Straight Teeth",
@@ -61,14 +61,14 @@ export const dentalServices = [
 
   {
     id: 5,
-    title: "Teeth Whitening",
+    title: "Teeth Cleaning & Whitening",
     description:
-      "Professional whitening procedures to brighten your smile safely and effectively.",
+      "Professional teeth cleaning and whitening treatments to remove stains, maintain oral hygiene, and brighten your smile.",
 
     benefits: [
       "Brighter Smile",
-      "Safe Procedure",
-      "Quick Results",
+      "Deep Cleaning",
+      "Fresh & Healthy Teeth",
     ],
 
     image: "/images/dental/whitening.png",
@@ -76,17 +76,77 @@ export const dentalServices = [
 
   {
     id: 6,
-    title: "General Dentistry",
+    title: "Pediatric Dentistry",
     description:
-      "Comprehensive preventive and restorative dental care for patients of all ages.",
+      "Gentle and child-friendly dental care focused on maintaining healthy teeth and building positive dental habits from an early age.",
 
     benefits: [
-      "Routine Checkups",
-      "Preventive Care",
-      "Healthy Smile",
+      "Child-Friendly Care",
+      "Preventive Treatment",
+      "Healthy Growing Smiles",
     ],
 
-    image: "/images/dental/general.png",
+    image: "/images/dental/pediatric.png",
+  },
+
+  {
+    id: 7,
+    title: "Dental Fillings",
+    description:
+      "Tooth-coloured dental fillings to repair cavities, restore damaged teeth, and protect them from further decay.",
+
+    benefits: [
+      "Cavity Protection",
+      "Natural Appearance",
+      "Restored Tooth Function",
+    ],
+
+    image: "/images/dental/filling.png",
+  },
+
+  {
+    id: 8,
+    title: "Crowns & Bridges",
+    description:
+      "Custom-made dental crowns and bridges to restore damaged or missing teeth and improve your smile and chewing function.",
+
+    benefits: [
+      "Restored Smile",
+      "Strong & Durable",
+      "Improved Chewing",
+    ],
+
+    image: "/images/dental/crowns-bridges.png",
+  },
+
+  {
+    id: 9,
+    title: "Wisdom Tooth Removal",
+    description:
+      "Safe and comfortable removal of problematic wisdom teeth to relieve pain and prevent potential dental complications.",
+
+    benefits: [
+      "Pain Relief",
+      "Safe Procedure",
+      "Prevents Complications",
+    ],
+
+    image: "/images/dental/wisdom-tooth.png",
+  },
+
+  {
+    id: 10,
+    title: "Gum Treatment",
+    description:
+      "Comprehensive treatment for gum problems to reduce infection, improve gum health, and maintain healthy supporting tissues.",
+
+    benefits: [
+      "Healthy Gums",
+      "Infection Control",
+      "Improved Oral Health",
+    ],
+
+    image: "/images/dental/gum-treatment.png",
   },
 ];
 
@@ -180,5 +240,50 @@ export const facialServices = [
     ],
 
     image: "/images/facial/skin.png",
+  },
+
+  {
+    id: 7,
+    title: "Microblading",
+    description:
+      "Semi-permanent eyebrow enhancement that creates natural-looking, well-defined brows with precision.",
+
+    benefits: [
+      "Natural-Looking Brows",
+      "Enhanced Shape",
+      "Long-Lasting Results",
+    ],
+
+    image: "/images/facial/microblading.png",
+  },
+
+  {
+    id: 8,
+    title: "Vampire Facelift",
+    description:
+      "A regenerative facial treatment using platelet-rich plasma to support skin rejuvenation and improve overall skin appearance.",
+
+    benefits: [
+      "Skin Rejuvenation",
+      "Improved Skin Texture",
+      "Natural-Looking Results",
+    ],
+
+    image: "/images/facial/vampire-facelift.png",
+  },
+
+  {
+    id: 9,
+    title: "Scalp Micropigmentation",
+    description:
+      "A non-surgical scalp treatment that creates the appearance of fuller hair by replicating natural hair follicles.",
+
+    benefits: [
+      "Natural Hairline Appearance",
+      "Creates Fuller-Looking Hair",
+      "Non-Surgical Treatment",
+    ],
+
+    image: "/images/facial/scalp-micropigmentation.png",
   },
 ];
