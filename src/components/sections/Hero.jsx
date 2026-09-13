@@ -83,9 +83,14 @@ function Hero() {
     const contactSection = document.getElementById("contact");
 
     if (contactSection) {
-      contactSection.scrollIntoView({
+      const contactTop =
+        contactSection.getBoundingClientRect().top +
+        window.scrollY;
+
+      window.scrollTo({
+        top: contactTop,
+        left: 0,
         behavior: "smooth",
-        block: "start",
       });
 
       setTimeout(() => {

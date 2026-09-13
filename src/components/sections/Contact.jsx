@@ -23,9 +23,17 @@ function Contact() {
       const contactCard = document.getElementById("contact-cta");
 
       if (contactCard) {
-        contactCard.scrollIntoView({
+        const cardTop =
+          contactCard.getBoundingClientRect().top +
+          window.scrollY;
+
+        window.scrollTo({
+          top:
+            cardTop -
+            window.innerHeight / 2 +
+            contactCard.offsetHeight / 2,
+          left: 0,
           behavior: "smooth",
-          block: "center",
         });
       }
 
